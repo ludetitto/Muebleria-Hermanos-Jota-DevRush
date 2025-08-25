@@ -1,43 +1,3 @@
-/* Fuente base */
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: #F5E6D3; /* Alabastro cálido */
-  color: #333;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-}
-
-/* Header */
-.top-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 15px 40px;
-  background-color: #A0522D; /* Siena tostado */
-  fill-opacity: 0.65;
-}
-
-/* Navegación */
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 25px;
-}
-
-.nav-links li a {
-  text-decoration: none;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  text-transform: uppercase;
-  color: white;
-  letter-spacing: 0.08em;
-  transition: color 0.3s;
-}
-
-.nav-links li a:hover {
-  color: #D4A437; /* Vara de Oro */
-}
 
 /* Hero */
 #hero-banner {
@@ -129,22 +89,4 @@ body {
   font-family: 'Playfair Display', serif;
   font-size: 2em;
   margin-bottom: 20px;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #A0522D;
-  color: #F5E6D3;
-  font-size: 0.9em;
-}
-
-footer a {
-  color: #F5E6D3;
-  text-decoration: none;
-}
-
-footer a:hover {
-  color: #D4A437;
 }

@@ -1,0 +1,17 @@
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #A0522D;
+  color: #F5E6D3;
+  font-size: 0.9em;
+}
+
+footer a {
+  color: #F5E6D3;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #D4A437;
+}

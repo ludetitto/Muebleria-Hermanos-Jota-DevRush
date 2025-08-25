@@ -1,0 +1,11 @@
+/* Fuente base */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #F5E6D3; /* Alabastro cálido */
+  color: #333;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+
