@@ -169,6 +169,7 @@ function inicializarPaginaProducto() {
     configurarBotonCarrito(productoACargar);
   } else {
     // Si no se encuentra el producto mostrar mensaje de error
+    mostrarContenido();
     console.error("No se encontraron productos destacados ni producto válido");
     mostrarMensajeError();
   }
