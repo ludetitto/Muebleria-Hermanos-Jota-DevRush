@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/producto.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <!-- Encabezado -->
+      <nav>
+        <div class="top-bar">
+          <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Contenedor producto-->
+    <main class="container producto-loading" id="main" role="main">
+      <section class="producto-galeria" aria-label="Galería del producto">
+        <figure>
+          <img
+            id="img-producto"
+            src=""
+            alt="Imagen del producto"
+            loading="lazy"
+            width="800"
+            height="600"
+          />
+          <figcaption
+            id="product-image-caption"
+            class="visually-hidden"
+          ></figcaption>
+        </figure>
+      </section>
+
+      <!-- Informacion del producto -->
+      <section class="producto-info" aria-labelledby="product-title">
+        <h1 id="producto-titulo"></h1>
+
+        <div
+          class="descripcion"
+          id="desc-producto"
+          aria-labelledby="desc-title"
+        >
+          <h2 id="desc-titulo"></h2>
+          <p>.</p>
+        </div>
+
+        <div class="compra">
+          <p id="precio-producto" class="precio" aria-live="polite"></p>
+          <label for="cantidad"></label>
+          <input
+            id="cantidad"
+            type="number"
+            min="1"
+            value="1"
+            inputmode="numeric"
+            aria-label="Cantidad"
+          />
+
+          <button id="agregar-carrito" class="btn-primario" type="button">
+            Añadir al carrito
+          </button>
+        </div>
+
+        <div class="medidas">
+          <h3>Medidas</h3>
+          <p></p>
+        </div>
+
+        <div class="materiales">
+          <h3>Materiales</h3>
+          <ul id="producto-materiales"></ul>
+        </div>
+
+        <div class="acabado">
+          <h3>Acabado</h3>
+          <p></p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="producto-loading">
+      <p>
+        &copy; 2025 Mueblería Hermanos Jota — Todos los derechos reservados.
+      </p>
+      <p>
+        <a href="contacto.html">Contacto</a> ·
+        <a href="nosotros.html">Nosotros</a>
+      </p>
+    </footer>
+    <script src="../js/data.js"></script>
+    <script src="../js/producto.js"></script>
+  </body>
+</html>
