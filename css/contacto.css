@@ -1,0 +1,65 @@
+body{
+    padding: ;
+    box-sizing: border-box;
+}
+h1{
+    font-size: 50px;
+    text-shadow: 2px 2px 4px #F5E6D3;
+    padding: 30vh;
+    background-size: cover;
+    background-image: url('../assets/productos/background.jpg');
+}
+
+p{
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+    max-width: 500px;
+    margin: 0px auto;
+    padding-top: 20px;
+}
+main{
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+}
+form {
+    padding-right: 20vh;
+    padding-left: 20vh;
+    display: inline-block;
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 10vh;
+    padding-bottom: 20vh;
+    margin-bottom: 20px
+}
+.sin-borde{
+    background-color: none;
+    border: none;
+    border-bottom: 2px solid #333;
+    padding-left: 80px;
+    padding-right: 80px;
+    background-color: #F5E6D3;
+}
+textarea {
+    background-color: #F5E6D3;
+    border: 1px solid #333;
+}
+input::placeholder {
+    text-align: center;}
+
+input[type="submit"] {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+
+

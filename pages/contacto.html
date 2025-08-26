@@ -5,16 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Contacto</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/contacto.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap"
+    rel="stylesheet"/>
 </head>
 <body>
-    <h1>Contacto</h1>
-    <p>Página de contacto. Aquí puedes encontrar nuestra información de contacto.</p>
-    <div>
-        <p>Sitio web	www.hermanosjota.com.ar</p>
-        <p>Email general	info@hermanosjota.com.ar</p>
-        <p>Ventas	ventas@hermanosjota.com.ar</p>
-        <p>Instagram	@hermanosjota_ba</p>
-        <p>WhatsApp	+54 11 4567-8900</p>
-    </div>
+    <nav>
+        <div class="top-bar">
+            <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+    <h1>¿Tenes preguntas? ¡Contactanos!</h1>
+    <p>Complete el siguiente formulario y a la brevedad un representante se communicará con usted. Gracias</p>
+        <form>
+            <input type="text" id="name" name="name" required placeholder="NOMBRE" class="sin-borde"><br><br>
+            <input type="email" id="email" name="email" required placeholder="EMAIL" class="sin-borde"><br><br>
+            <label for="message">CONSULTA</label><br>
+            <textarea id="message" name="message" rows="6" cols="60" required></textarea><br><br>
+            <input type="submit" value="Enviar">
+        </form>
+    </main>
+    <footer class="producto-loading">
+        <p>
+            &copy; 2025 Mueblería Hermanos Jota — Todos los derechos reservados.
+        </p>
+        <p>
+            <a href="contacto.html">Contacto</a> ·
+            <a href="nosotros.html">Nosotros</a>
+        </p>
+    </footer>
 </body>
 </html>
