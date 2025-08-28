@@ -1,3 +1,11 @@
+button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin: 0
+}
+
 /* Prevenir flickering inicial */
 .producto-loading {
   opacity: 0;
@@ -8,4 +16,69 @@
   opacity: 1;
   visibility: visible;
   transition: opacity 0.3s ease-in-out;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: row;
+}
+
+h1 {
+  font-family: 'Playfair Display', 'Georgia';
+  font-weight: 700;
+  color: #A0522D;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+h3 {
+  font-weight: 500;
+  color: #C47A6D;
+}
+
+#precio-producto {
+  font-weight: 700;
+}
+
+.cantidad-container {
+  margin: 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+ display: visible;
+ cursor: pointer;
+}
+
+input[type="number"] {
+  border: none;
+  outline: none;
+}
+
+#cantidad:focus {
+  box-shadow: 0 0 0 4px #a0512d57;
+  outline: 1px solid #A0522D;
+  outline-offset: 1px;
+}
+
+#cantidad {
+  height: 2.5rem;
+  width: 4rem;
+  border-radius: 3px; 
+  padding: 2px 8px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+#cantidad:hover {
+  border-color: #777;
+}
+
+.producto-info > div {
+  border-bottom: 1px solid #c47a6d8e;
 }

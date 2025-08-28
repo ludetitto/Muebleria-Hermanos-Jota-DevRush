@@ -166,7 +166,6 @@ function inicializarPaginaProducto() {
 
   if (productoACargar) {
     renderizarProducto(productoACargar);
-    configurarBotonCarrito(productoACargar);
   } else {
     // Si no se encuentra el producto mostrar mensaje de error
     mostrarContenido();

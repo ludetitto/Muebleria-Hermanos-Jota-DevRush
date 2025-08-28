@@ -58,19 +58,23 @@
 
         <div class="compra">
           <p id="precio-producto" class="precio" aria-live="polite"></p>
-          <label for="cantidad"></label>
-          <input
-            id="cantidad"
-            type="number"
-            min="1"
-            value="1"
-            inputmode="numeric"
-            aria-label="Cantidad"
-          />
 
-          <button id="agregar-carrito" class="btn-primario" type="button">
-            Añadir al carrito
-          </button>
+          <div class="cantidad-container">
+            <input
+              id="cantidad"
+              type="number"
+              name="cantidad"
+              min="1"
+              max="10"
+              value="1"
+              inputmode="numeric"
+              aria-label="Cantidad"
+            />
+
+            <button id="agregar-carrito" class="btn-primary" type="button">
+              Añadir al carrito
+            </button>
+          </div>
         </div>
 
         <div class="medidas">

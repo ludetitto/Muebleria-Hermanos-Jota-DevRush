@@ -15,7 +15,7 @@ const productos = [
     nombre: "Biblioteca Recoleta",
     descripcion: "Sistema modular de estantes en acero Sage Green y repisas de roble.",
     medidas: "100 × 35 × 200 cm",
-    materiales: "Estructura de acero, estantes de roble",
+    materiales: "Estructura de acero, Estantes de roble",
     acabado: "Laca mate ecológica",
     precio: 2100,
     imagen: "../assets/productos/Biblioteca-Recoleta.png",
