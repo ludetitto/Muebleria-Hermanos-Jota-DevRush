@@ -1,7 +1,11 @@
 body{
-    padding: ;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    background-color: #fff;
 }
+
 h1{
     font-size: 50px;
     text-shadow: 2px 2px 4px #F5E6D3;
