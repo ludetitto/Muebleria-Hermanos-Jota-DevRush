@@ -41,6 +41,14 @@ figcaption {
   background-color: #c47a6d; /* Rosa Polvoriento */
 }
 
+#btn-ver-carrito {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 10px;
+  position: relative;
+}
+
 main {
   flex: 1 0 auto;
 }
@@ -48,4 +56,111 @@ main {
 footer {
   flex-shrink: 0;
   margin: 0;
+}
+
+/* Badge del carrito */
+.badge {
+  background-color: #d4a437; /* Vara de Oro */
+  color: white;
+  border-radius: 50%;
+  padding: 4px 8px;
+  font-size: 0.8em;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+
+/* Modal general */
+.modal-fondo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(3px);
+}
+
+/* Contenido del modal */
+.modal-contenido {
+  background-color: #fefefe;
+  padding: 25px 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 450px;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  font-family: "Inter", sans-serif;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.3s ease;
+}
+
+.modal-contenido.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.modal-contenido h2 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal-contenido ul {
+  list-style: none;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+}
+
+.modal-contenido li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95em;
+}
+
+.modal-contenido .btn-eliminar {
+  background: #c47a6d; /* Rosa Polvoriento */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 2px 8px;
+}
+
+.modal-contenido .btn-eliminar:hover {
+  background: #d4a437; /* Vara de Oro */
+}
+
+.modal-contenido .cerrar {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 28px;
+  font-weight: bold;
+  color: #d4a437; /* Vara de Oro */
+  transition: transform 0.2s, color 0.2s;
+}
+
+.modal-contenido .cerrar:hover {
+  transform: scale(1.2);
+  color: #c47a6d; /* Rosa Polvoriento */
+}
+
+.modal-contenido p.total {
+  margin-top: 15px;
+  font-weight: 600;
+  font-size: 1.1em;
+  text-align: right;
+  color: #333;
 }

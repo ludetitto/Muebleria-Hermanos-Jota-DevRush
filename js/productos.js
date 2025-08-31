@@ -11,10 +11,11 @@ function cargarProductos() {
 }
 
 // Render de productos
-function renderProductos(lista) {
-  container.innerHTML = "";
+function renderProductos(lista, customContainer) { // Permite pasar un contenedor personalizado
+  const target = customContainer || container;
+  target.innerHTML = "";
   if (lista.length === 0) {
-    container.innerHTML = "<p>No se encontraron productos.</p>";
+    target.innerHTML = "<p>No se encontraron productos.</p>";
     return;
   }
 
@@ -31,7 +32,18 @@ function renderProductos(lista) {
       </div>
     `;
 
-    container.appendChild(card);
+    target.appendChild(card);
+  });
+
+  // Evento para los botones de carrito
+  target.querySelectorAll('.boton-carrito').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const id = parseInt(this.getAttribute('data-id'));
+      const prod = lista.find(p => p.id === id);
+      if (prod) {
+        agregarAlCarrito(prod);
+      }
+    });
   });
 }
 

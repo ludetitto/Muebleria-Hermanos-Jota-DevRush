@@ -31,6 +31,17 @@ function parsearMateriales(materiales) {
     .join("");
 }
 
+// Añadir al carrito 
+
+function agregarAlCarrito(producto) {
+    
+    if (typeof agregarEnElCarrito === "function") {
+      agregarEnElCarrito(producto);
+    } else {
+      console.error("No se encontró la función agregarEnElCarrito");
+    }
+};
+
 function renderizarProducto(producto) {
   try {
     // Imagen del producto
@@ -82,6 +93,20 @@ function renderizarProducto(producto) {
     const acabadoContainer = document.querySelector(".acabado p");
     if (acabadoContainer) {
       acabadoContainer.textContent = producto.acabado;
+    }
+
+    const btnCarrito = document.getElementById("agregar-carrito");
+    if (btnCarrito) {
+      btnCarrito.onclick = function() {
+        // Obtener la cantidad seleccionada
+        const cantidadInput = document.getElementById("cantidad");
+        let cantidad = 1;
+        if (cantidadInput && !isNaN(parseInt(cantidadInput.value)) && parseInt(cantidadInput.value) > 0) {
+          cantidad = parseInt(cantidadInput.value);
+        }
+        producto.cantidad = cantidad;
+        agregarAlCarrito(producto);
+      }
     }
 
     // Actualizar títulos de página
@@ -156,13 +181,8 @@ function inicializarPaginaProducto() {
 
     if (!productoACargar) {
       console.warn(`Producto con ID ${idProducto} no encontrado`);
-      // Si no se encuentra el producto, carga el primer producto destacado.
-      //productoACargar = obtenerPrimerDestacado();
     }
-  } /*else {
-    // Si no se encuentra el ID en la url, mostrar producto destacado
-    productoACargar = obtenerPrimerDestacado();
-  }*/
+  }
 
   if (productoACargar) {
     renderizarProducto(productoACargar);
@@ -177,11 +197,13 @@ function inicializarPaginaProducto() {
 // Inicializar cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", function () {
   inicializarPaginaProducto();
+  actualizarContadorCarrito();
 });
 
 // También inicializar si el DOM ya está cargado
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", inicializarPaginaProducto);
+  actualizarContadorCarrito();
 } else {
   inicializarPaginaProducto();
 }
