@@ -2,10 +2,15 @@
 .top-bar {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content:  space-between; /*  reparte: izq - medio - der  */
   padding: 15px 40px;
   background-color: #A0522D; /* Siena tostado */
   fill-opacity: 0.65;
+}
+
+.logo {
+  height: 50px;     /* Tamaño del logo */
+  margin-right: 20px;
 }
 
 /* Navegación */
@@ -13,6 +18,8 @@
   list-style: none;
   display: flex;
   gap: 25px;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links li a {
