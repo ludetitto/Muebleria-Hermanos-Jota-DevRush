@@ -1,55 +1,118 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Contacto</title>
     <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/home.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/contacto.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap"
-    rel="stylesheet"/>
-</head>
-<body>
-    <nav>
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/contacto.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <!-- Encabezado -->
+      <nav>
         <div class="top-bar">
+          <div class="nav-container">
             <ul class="nav-links">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="productos.html">Productos</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
+              <img
+                src="../assets/logo.svg"
+                alt="Logo Hermanos Jota"
+                class="logo"
+              />
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="productos.html">Productos</a></li>
+
+              <li><a href="nosotros.html">Nosotros</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
             </ul>
+          </div>
 
           <script src="../js/carrito.js"></script>
           <!-- Carrito de compras -->
-          <button id="btn-ver-carrito" title="Ver carrito">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#D4A437" viewBox="0 0 24 24"><path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm1.447-2.105l1.553-9.895h-17v2h2l3.6 7.59-1.35 2.44c-.16.28-.25.61-.25.96 0 1.104.896 2 2 2h12v-2h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25z"/></svg>
-            <span id="contador-carrito" class="badge">0</span>
-          </button>
+          <div class="cart-container">
+            <button id="btn-ver-carrito" title="Ver carrito">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                fill="#D4A437"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm1.447-2.105l1.553-9.895h-17v2h2l3.6 7.59-1.35 2.44c-.16.28-.25.61-.25.96 0 1.104.896 2 2 2h12v-2h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25z"
+                />
+              </svg>
+              <span id="contador-carrito" class="badge">0</span>
+            </button>
+          </div>
         </div>
-    </nav>
-    <main>
-    <h1>¿Tenes preguntas? ¡Contactanos!</h1>
-    <p>Complete el siguiente formulario y a la brevedad un representante se communicará con usted. Gracias</p>
-        <form>
-            <input type="text" id="name" name="name" required placeholder="NOMBRE" class="sin-borde"><br><br>
-            <input type="email" id="email" name="email" required placeholder="EMAIL" class="sin-borde"><br><br>
-            <label for="message">CONSULTA</label><br>
-            <textarea id="message" name="message" rows="6" cols="60" required></textarea><br><br>
-            <input type="submit" value="Enviar">
-        </form>
+      </nav>
+    </header>
+
+    <!--Banner-->
+    <section class="banner" aria-labelledby="Banner de contacto">
+      <h1 class="titulo-principal">CONTACTO</h1>
+    </section>
+
+    <!--Formulario-->
+    <main class="container" role="main">
+      <div class="info-text">
+        <p>
+          Complete el siguiente formulario y a la brevedad un representante se
+          communicará con usted.
+        </p>
+      </div>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="nombre">Nombre *</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            required
+            placeholder="Ingrese su nombre completo"
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="ejemplo@correo.com"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Consulta *</label><br />
+          <textarea
+            id="mensaje"
+            name="mensaje"
+            required
+            placeholder="Escriba su consulta aquí..."
+          ></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn btn-primary">Enviar</button>
+      </form>
     </main>
+
     <footer class="producto-loading">
-        <p>
-            &copy; 2025 Mueblería Hermanos Jota — Todos los derechos reservados.
-        </p>
-        <p>
-            <a href="contacto.html">Contacto</a> ·
-            <a href="nosotros.html">Nosotros</a>
-        </p>
+      <p>
+        &copy; 2025 Mueblería Hermanos Jota — Todos los derechos reservados.
+      </p>
+      <p>
+        <a href="contacto.html">Contacto</a> ·
+        <a href="nosotros.html">Nosotros</a>
+      </p>
     </footer>
-</body>
+  </body>
 </html>

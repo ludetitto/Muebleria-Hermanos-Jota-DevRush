@@ -1,21 +1,34 @@
+:root {
+  --color-primario: #a0522d;
+  --acento-secundario-color: #87a96b;
+  --fondo-principal-color: #f5e6d3;
+  --detalles-color: #d4a437;
+  --acentos-suaves-color: #c47a6d;
+  --color-texto: #333;
+}
 /* Hero */
 #hero-banner {
-  background: url("assets/hero.jpg") center/cover no-repeat;
-  color: #A0522D; /* Siena tostado */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)),
+    url("../assets/contact-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: var(--fondo-principal-color);
   text-align: center;
   padding: 100px 20px;
+  height: 100dvh;
 }
 
 #brand-name {
-  font-family: 'Playfair Display', serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   font-size: 4em;
-  text-transform: uppercase;
   margin: 0;
 }
 
 #hero-banner p {
   font-size: 1.2em;
   margin: 15px 0 30px;
+  animation: fadeInUp 1.3s ease-out;
 }
 
 #logo-img {
@@ -24,32 +37,20 @@
   margin: 15px; /* “zona de protección” */
 }
 
-.btn-primary {
-  background-color: #D4A437; /* Vara de Oro */
-  color: white;
-  padding: 12px 30px;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 8px;
-  text-transform: uppercase;
-  transition: background 0.3s;
+#logo-img{
+  transition: all 0.3s ease;
+  filter: brightness(1);
 }
 
-.btn-primary:hover {
-  background-color: #C47A6D; /* Rosa Polvoriento */
+#logo-img:hover {
+  filter: brightness(1.13);
+  transform: scale(1.1) rotate(3deg);
 }
 
 /* Productos destacados*/
 .productos-destacados {
   padding: 60px 20px;
   text-align: center;
-}
-
-.productos-destacados h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2em;
-  color: #A0522D;
-  margin-bottom: 30px;
 }
 
 .grid-productos {
@@ -67,18 +68,14 @@
 }
 
 .grid-productos.destacados .card {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.301);
   border-radius: 1.2rem;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
   padding: 2.2rem 1.5rem;
   min-height: 260px;
   width: 100%;
   max-width: 100%;
   margin: 0;
-  transition: box-shadow 0.2s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .grid-productos.destacados .card img {
@@ -90,19 +87,19 @@
 }
 
 .grid-productos.destacados .card:hover {
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  transition: 0.2s ease-in-out;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
 }
 
 /* Filosofía */
 .filosofia {
-  background-color: #87A96B; /* Verde Salvia */
+  background-color: #87a96b; /* Verde Salvia */
   color: white;
   padding: 60px 20px;
   text-align: center;
 }
 
-.filosofia h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2em;
+.filosofia h2 {
+  color: white;
   margin-bottom: 20px;
 }

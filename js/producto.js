@@ -31,16 +31,15 @@ function parsearMateriales(materiales) {
     .join("");
 }
 
-// Añadir al carrito 
+// Añadir al carrito
 
 function agregarAlCarrito(producto) {
-    
-    if (typeof agregarEnElCarrito === "function") {
-      agregarEnElCarrito(producto);
-    } else {
-      console.error("No se encontró la función agregarEnElCarrito");
-    }
-};
+  if (typeof agregarEnElCarrito === "function") {
+    agregarEnElCarrito(producto);
+  } else {
+    console.error("No se encontró la función agregarEnElCarrito");
+  }
+}
 
 function renderizarProducto(producto) {
   try {
@@ -77,36 +76,48 @@ function renderizarProducto(producto) {
       precioElement.textContent = formatearPrecio(producto.precio);
     }
 
-    // Medidas
-    const medidasContainer = document.querySelector(".medidas p");
-    if (medidasContainer) {
-      medidasContainer.textContent = producto.medidas;
-    }
+    // Detalles del producto
+    const infoProducto = document.querySelector(".producto-info");
+    const detalles = producto.detalles;
+    const detallesKeys = Object.keys(detalles);
 
-    // Materiales
-    const materialesContainer = document.getElementById("producto-materiales");
-    if (materialesContainer) {
-      materialesContainer.innerHTML = parsearMateriales(producto.materiales);
-    }
+    detallesKeys.forEach((key) => {
+      const divDetalle = document.createElement("div");
+      divDetalle.classList.add("detalle-producto");
+      const tituloDetalle = document.createElement("h3");
+      tituloDetalle.textContent = key.charAt(0).toUpperCase() + key.slice(1);
+      divDetalle.appendChild(tituloDetalle);
 
-    // Acabado
-    const acabadoContainer = document.querySelector(".acabado p");
-    if (acabadoContainer) {
-      acabadoContainer.textContent = producto.acabado;
-    }
+      if (key === "materiales") {
+        const listaMateriales = document.createElement("ul");
+        listaMateriales.id = "producto-materiales";
+        listaMateriales.innerHTML = parsearMateriales(detalles[key]);
+        divDetalle.appendChild(listaMateriales);
+      } else {
+        const parrafoDetale = document.createElement("p");
+        parrafoDetale.textContent = detalles[key];
+        divDetalle.appendChild(parrafoDetale);
+      }
+
+      infoProducto.appendChild(divDetalle);
+    });
 
     const btnCarrito = document.getElementById("agregar-carrito");
     if (btnCarrito) {
-      btnCarrito.onclick = function() {
+      btnCarrito.onclick = function () {
         // Obtener la cantidad seleccionada
         const cantidadInput = document.getElementById("cantidad");
         let cantidad = 1;
-        if (cantidadInput && !isNaN(parseInt(cantidadInput.value)) && parseInt(cantidadInput.value) > 0) {
+        if (
+          cantidadInput &&
+          !isNaN(parseInt(cantidadInput.value)) &&
+          parseInt(cantidadInput.value) > 0
+        ) {
           cantidad = parseInt(cantidadInput.value);
         }
         producto.cantidad = cantidad;
         agregarAlCarrito(producto);
-      }
+      };
     }
 
     // Actualizar títulos de página
@@ -194,16 +205,17 @@ function inicializarPaginaProducto() {
   }
 }
 
-// Inicializar cuando el DOM esté listo
-document.addEventListener("DOMContentLoaded", function () {
-  inicializarPaginaProducto();
-  actualizarContadorCarrito();
-});
-
-// También inicializar si el DOM ya está cargado
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", inicializarPaginaProducto);
-  actualizarContadorCarrito();
+  document.addEventListener("DOMContentLoaded", function () {
+    inicializarPaginaProducto();
+    if (typeof actualizarContadorCarrito === "function") {
+      actualizarContadorCarrito();
+    }
+  });
 } else {
+  //El DOM ya esta cargado
   inicializarPaginaProducto();
+  if (typeof actualizarContadorCarrito === "function") {
+    actualizarContadorCarrito();
+  }
 }

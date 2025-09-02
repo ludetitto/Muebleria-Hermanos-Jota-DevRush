@@ -27,8 +27,8 @@ function renderProductos(lista, customContainer) { // Permite pasar un contenedo
       <img src="${producto.imagen}" alt="${producto.nombre}">
       <div class="card-body">
         <h3>${producto.nombre}</h3>
-        <p>${producto.descripcion}</p>
-        <a href="producto.html?id=${producto.id}">Ver detalle</a>
+        <p>${producto.descripcion.substring(0, producto.descripcion.indexOf('.') + 1)}</p>
+        <a href="producto.html?id=${producto.id}" class = "btn-secondary">Ver detalle</a>
       </div>
     `;
 

@@ -1,30 +1,60 @@
+:root {
+  --color-primario: #a0522d;
+  --acento-secundario-color: #87a96b;
+  --fondo-principal-color: #f5e6d3;
+  --detalles-color: #d4a437;
+  --acentos-suaves-color: #c47a6d;
+  --color-texto: #333;
+}
+
 /* Header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+}
+
 .top-bar {
+  max-width: 100dvw;
+  margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content:  space-between; /*  reparte: izq - medio - der  */
-  padding: 15px 40px;
-  background-color: #A0522D; /* Siena tostado */
+  justify-content: space-between; /*  reparte: izq - medio - der  */
+  padding: 1rem 2rem;
   fill-opacity: 0.65;
+  position: relative;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 2.5rem;
 }
 
 .logo {
-  height: 50px;     /* Tamaño del logo */
-  margin-right: 20px;
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
 }
 
 /* Navegación */
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 25px;
-  margin: 0;
-  padding: 0;
+  align-items: center;
+  gap: 2.5rem;
 }
 
 .nav-links li a {
   text-decoration: none;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 500;
   text-transform: uppercase;
   color: white;
@@ -33,5 +63,71 @@
 }
 
 .nav-links li a:hover {
-  color: #D4A437; /* Vara de Oro */
+  color: var(--detalles-color); /* Vara de Oro */
+}
+
+.cart-container {
+  margin-right: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+#btn-ver-carrito {
+  background: rgba(212, 164, 55, 0.1);
+  border-radius: 12px;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#btn-ver-carrito:hover {
+  background: var(--detalles-color);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 164, 55, 0.3);
+}
+
+#btn-ver-carrito svg {
+  width: 28px;
+  height: 28px;
+  fill: var(--detalles-color);
+  transition: fill 0.3s ease;
+}
+
+#btn-ver-carrito:hover svg {
+  fill: #ffffff;
+}
+
+.badge {
+  background-color: var(--detalles-color); /* Vara de Oro */
+  position: absolute;
+  top: -8px;
+  border-radius: 50%;
+  right: -8px;
+  padding: 4px 8px;
+  color: var(--fondo-principal-color);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

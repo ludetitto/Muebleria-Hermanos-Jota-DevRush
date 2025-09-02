@@ -4,35 +4,55 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/home.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/productos.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap"
-    rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/home.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/productos.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Mueblería Hermanos Jota</title>
   </head>
-  
+
   <body>
     <header>
       <!-- Encabezado -->
       <nav>
         <div class="top-bar">
-          <img src="../assets/logo.svg" alt="Logo Hermanos Jota" class="logo">
-          
-          <ul class="nav-links">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="productos.html">Productos</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-          </ul>
+          <div class="nav-container">
+            <ul class="nav-links">
+              <img
+                src="../assets/logo.svg"
+                alt="Logo Hermanos Jota"
+                class="logo"
+              />
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="productos.html">Productos</a></li>
+
+              <li><a href="nosotros.html">Nosotros</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
 
           <script src="../js/carrito.js"></script>
           <!-- Carrito de compras -->
-          <button id="btn-ver-carrito" title="Ver carrito">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#D4A437" viewBox="0 0 24 24"><path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm1.447-2.105l1.553-9.895h-17v2h2l3.6 7.59-1.35 2.44c-.16.28-.25.61-.25.96 0 1.104.896 2 2 2h12v-2h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25z"/></svg>
-            <span id="contador-carrito" class="badge">0</span>
-          </button>
+          <div class="cart-container">
+            <button id="btn-ver-carrito" title="Ver carrito">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                fill="#D4A437"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm1.447-2.105l1.553-9.895h-17v2h2l3.6 7.59-1.35 2.44c-.16.28-.25.61-.25.96 0 1.104.896 2 2 2h12v-2h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25z"
+                />
+              </svg>
+              <span id="contador-carrito" class="badge">0</span>
+            </button>
+          </div>
         </div>
       </nav>
     </header>
@@ -45,7 +65,7 @@
           src="../assets/logo.svg"
           alt="Logo de Mueblería Hermanos Jota"
         />
-        <h1 id="brand-name">Hermanos Jota</h1>
+        <h1 id="brand-name" class="titulo-principal">Hermanos Jota</h1>
         <p>Encuentra los mejores muebles para tu hogar con nosotros.</p>
         <a href="productos.html" class="btn-primary">Ver Productos</a>
       </div>
@@ -53,7 +73,7 @@
 
     <!-- Sección Destacados -->
     <section class="productos-destacados">
-      <h3>Nuestros Destacados</h3>
+      <h2 class="titulo-principal">NUESTROS DESTACADOS</h2>
       <div class="grid-productos destacados" id="destacados-container"></div>
       <script src="../js/data.js"></script>
       <script src="../js/productos.js"></script>
@@ -62,7 +82,7 @@
 
     <!-- Sección Filosofía -->
     <section class="filosofia">
-      <h3>Nuestra Filosofía</h3>
+      <h2 class="titulo-principal">NUESTRA FILOSOFÍA</h2>
       <p>
         En Hermanos Jota creemos que los muebles no solo cumplen una función,
         sino que son parte de la vida diaria. Apostamos por materiales nobles,
