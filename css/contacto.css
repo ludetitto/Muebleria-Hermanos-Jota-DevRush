@@ -44,4 +44,9 @@
     border: 1px solid #c47a6d ;
     text-align: center;
   }
-
+.horarios{
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+}
