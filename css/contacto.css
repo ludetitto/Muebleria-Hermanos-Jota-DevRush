@@ -34,5 +34,14 @@
   margin: 0 auto;
   border: none;
 }
-
+.mensaje-envio {
+    display: none; 
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    background: white;
+    color:#c47a6d ;
+    border: 1px solid #c47a6d ;
+    text-align: center;
+  }
 

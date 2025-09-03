@@ -70,7 +70,7 @@
           communicará con usted.
         </p>
       </div>
-      <form class="contact-form">
+      <form class="contact-form" id="contact-form">
         <div class="form-group">
           <label for="nombre">Nombre *</label>
           <input
@@ -104,8 +104,20 @@
 
         <button type="submit" class="submit-btn btn-primary">Enviar</button>
       </form>
+      <div id="mensaje-envio" class="mensaje-envio">
+        <p>Formulario enviado correctamente ¡Gracias por contactarnos!</p>
+    </div>
     </main>
+    <script>
+    const form = document.getElementById("contact-form");
+    const mensajeExito = document.getElementById("mensaje-envio");
 
+    form.addEventListener("submit", function(event) {
+      event.preventDefault(); 
+      mensajeExito.style.display = "block";
+      form.reset();
+    });
+  </script>
     <footer class="producto-loading">
       <p>
         &copy; 2025 Mueblería Hermanos Jota — Todos los derechos reservados.
@@ -113,6 +125,12 @@
       <p>
         <a href="contacto.html">Contacto</a> ·
         <a href="nosotros.html">Nosotros</a>
+      </p>
+      <p>
+        Seguinos en
+        <a href="https://www.instagram.com" target="_blank">Instagram</a>
+        y
+        <a href="https://www.facebook.com" target="_blank">Facebook</a>
       </p>
     </footer>
   </body>
