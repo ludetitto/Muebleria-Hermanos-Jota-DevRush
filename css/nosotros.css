@@ -1,9 +1,9 @@
 .container {
+  max-width: 800px;
   margin: 0 auto;
 }
 
 .about-us {
-  max-width: 900px;
   margin: 50px auto;
 }
 
