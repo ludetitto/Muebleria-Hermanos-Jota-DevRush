@@ -15,8 +15,8 @@
 
 #brand-name {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  font-size: clamp(2rem, 5vw, 4rem);
-  padding: clamp(2rem, 6vw, 6rem) 1rem;
+  font-size: 4em;
+  padding: 2rem 1rem;
   margin: 0;
 }
 
@@ -107,7 +107,7 @@
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 500px) {
   #logo-img {
     max-width: 300px;
   }
@@ -120,7 +120,11 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 
-  @media (max-width: 320px) {
+  @media (max-width: 347px) {
+    #brand-name {
+      font-size: 1.6em;
+    }
+
     #logo-img {
       max-width: 250px;
     }
