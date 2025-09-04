@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/header.css" />
-    <link rel="stylesheet" href="../css/home.css" />
     <link rel="stylesheet" href="../css/footer.css" />
     <link rel="stylesheet" href="../css/nosotros.css" />
     <link
@@ -20,7 +19,20 @@
     <header>
       <!-- Encabezado -->
       <nav>
+        <script src="../js/header.js"></script>
         <div class="top-bar">
+          <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <img
+            src="../assets/logo.svg"
+            alt="Logo Hermanos Jota"
+            class="logo logo-responsive"
+          />
+
           <div class="nav-container">
             <ul class="nav-links">
               <img
@@ -92,8 +104,11 @@
           ser parte de tu viaje para crear un hogar lleno de estilo, confort y
           sostenibilidad.
         </p>
-        <video width="600" controls>
-        <source src="../assets/Video institucional Hermanos Jota" type="video/mp4">
+        <video controls>
+          <source
+            src="../assets/Video institucional Hermanos Jota"
+            type="video/mp4"
+          />
         </video>
       </section>
     </main>
@@ -107,7 +122,8 @@
         <a href="contacto.html">Contacto</a> ·
         <a href="nosotros.html">Nosotros</a>
       </p>
-      <p>Seguinos en
+      <p>
+        Seguinos en
         <a href="https://www.instagram.com" target="_blank">Instagram</a>
         y
         <a href="https://www.facebook.com" target="_blank">Facebook</a>

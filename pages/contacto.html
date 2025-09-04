@@ -3,8 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <title>Contacto</title>
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/footer.css" />
@@ -14,12 +12,26 @@
       rel="stylesheet"
     />
     <link rel="icon" type="image/svg" href="../assets/logo.svg" />
+    <title>Contacto</title>
   </head>
   <body>
     <header>
       <!-- Encabezado -->
       <nav>
+        <script src="../js/header.js"></script>
         <div class="top-bar">
+          <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <img
+            src="../assets/logo.svg"
+            alt="Logo Hermanos Jota"
+            class="logo logo-responsive"
+          />
+
           <div class="nav-container">
             <ul class="nav-links">
               <img
@@ -64,12 +76,12 @@
 
     <!--Formulario-->
     <main class="container" role="main">
-      <div class="info-text">
+      <section class="info-text">
         <p>
           Complete el siguiente formulario y a la brevedad un representante se
           communicará con usted.
         </p>
-      </div>
+      </section>
       <form class="contact-form" id="contact-form">
         <div class="form-group">
           <label for="nombre">Nombre *</label>
@@ -101,34 +113,42 @@
             placeholder="Escriba su consulta aquí..."
           ></textarea>
         </div>
-
         <button type="submit" class="submit-btn btn-primary">Enviar</button>
       </form>
-      <div id="mensaje-envio" class="mensaje-envio">
-        <p>Formulario enviado correctamente ¡Gracias por contactarnos!</p>
-    </div>
-    <div class="horarios" style="font-weight: bold;">
-      <h2>Visitanos en</h2>
-        <h3>Hermanos Jota — Casa Taller </h3>
-        <p>Av. San Juan 2847— Barrio de San Cristóbal
-        Ciudad Autónoma de Buenos Aires, Argentina</p>
-        </h3>
-        <p>Horario de atención: Lunes a Viernes: 10:00 - 19:00
-          Sábados: 10:00 - 14:00</p>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.2168245958396!2d-58.4047736!3d-34.6239606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccae2a0c04a2f%3A0x77f381af8f0ca1fa!2sAv.%20San%20Juan%202847%2C%20C1232AAK%20Cdad.%20Aut%C3%B3noma%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1756860483716!5m2!1ses-419!2sar" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
-    </div>
+      <div id="mensaje-envio" class="mensaje-envio info-text">
+        <p>Formulario enviado correctamente ¡Gracias por contactarnos!</p>
+      </div>
+      <div class="horarios" style="font-weight: bold">
+        <h2>Visitanos en</h2>
+        <h3>Hermanos Jota — Casa Taller</h3>
+        <p>
+          Av. San Juan 2847— Barrio de San Cristóbal Ciudad Autónoma de Buenos
+          Aires, Argentina
+        </p>
+        <p>
+          Horario de atención: Lunes a Viernes: 10:00 - 19:00 Sábados: 10:00 -
+          14:00
+        </p>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.2168245958396!2d-58.4047736!3d-34.6239606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccae2a0c04a2f%3A0x77f381af8f0ca1fa!2sAv.%20San%20Juan%202847%2C%20C1232AAK%20Cdad.%20Aut%C3%B3noma%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1756860483716!5m2!1ses-419!2sar"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
     </main>
     <script>
-    const form = document.getElementById("contact-form");
-    const mensajeExito = document.getElementById("mensaje-envio");
+      const form = document.getElementById("contact-form");
+      const mensajeExito = document.getElementById("mensaje-envio");
 
-    form.addEventListener("submit", function(event) {
-      event.preventDefault(); 
-      mensajeExito.style.display = "block";
-      form.reset();
-    });
-  </script>
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        mensajeExito.style.display = "block";
+        form.reset();
+      });
+    </script>
 
     <footer class="producto-loading">
       <p>

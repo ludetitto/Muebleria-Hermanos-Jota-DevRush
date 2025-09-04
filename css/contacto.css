@@ -1,16 +1,7 @@
-:root {
-  --color-primario: #a0522d;
-  --acento-secundario-color: #87a96b;
-  --fondo-principal-color: #f5e6d3;
-  --detalles-color: #d4a437;
-  --acentos-suaves-color: #c47a6d;
-  --color-texto: #333;
-}
-
 .container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 4rem 0;
 }
 
 .contact-form {
@@ -34,19 +25,25 @@
   margin: 0 auto;
   border: none;
 }
+
 .mensaje-envio {
-    display: none; 
-    margin-top: 20px;
-    padding: 10px;
-    border-radius: 8px;
-    background: white;
-    color:#c47a6d ;
-    border: 1px solid #c47a6d ;
-    text-align: center;
-  }
-.horarios{
-    margin-top: 20px;
-    padding: 10px;
-    border-radius: 8px;
-    text-align: center;
+  display: none;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  background: white;
+  color: #c47a6d;
+  border: 1px solid #c47a6d;
+  text-align: center;
+}
+
+.horarios {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+iframe {
+  width: 100%;
 }

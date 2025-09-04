@@ -12,3 +12,8 @@
   margin-bottom: 20px;
   text-align: justify;
 }
+
+video {
+  max-width: 100%;
+  height:auto;
+}

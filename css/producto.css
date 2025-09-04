@@ -110,3 +110,15 @@ input[type="number"] {
 .detalle-producto ul {
   padding-left: 40px;
 }
+
+@media (max-width: 425px) {
+  h1 {
+    font-size: 2.5em;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links li a {
+    color: var(--fondo-principal-color);
+  }
+}

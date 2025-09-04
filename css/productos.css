@@ -33,7 +33,7 @@
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  width: 280px;
+  max-width: 280px;
   transition: transform 0.2s ease-in-out;
 }
 
@@ -68,4 +68,10 @@
 
 .form-group input:focus {
   transform: translateY(-2px);
+}
+
+@media (max-width: 360px) {
+  h1 {
+    font-size: 2.5em;
+  }
 }

@@ -17,6 +17,7 @@ body {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  font-size: 12pt;
   font-family: "Inter", sans-serif;
   background-color: var(--fondo-principal-color);
   color: var(--color-texto);
@@ -111,9 +112,6 @@ footer {
   flex-shrink: 0;
   margin: 0;
 }
-
-/* Badge del carrito */
-
 
 /* Modal general */
 .modal-fondo {
@@ -270,4 +268,14 @@ textarea {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@media (max-width: 475px) {
+  body {
+    font-size: 11pt;
+  }
+}
+
+@media (max-width: 425px) {
+  
 }
