@@ -1,15 +1,13 @@
-:root {
-  --color-primario: #a0522d;
-  --acento-secundario-color: #87a96b;
-  --fondo-principal-color: #f5e6d3;
-  --detalles-color: #d4a437;
-  --acentos-suaves-color: #c47a6d;
-  --color-texto: #333;
-}
-
 .catalogo {
   padding: 2rem;
   text-align: center;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
 }
 
 #searchInput {
@@ -19,13 +17,6 @@
   margin: 1rem auto 2rem;
   border: 1px solid #ccc;
   border-radius: 8px;
-}
-
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
 }
 
 .card {

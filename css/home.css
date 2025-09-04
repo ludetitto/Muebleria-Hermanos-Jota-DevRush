@@ -1,18 +1,10 @@
-:root {
-  --color-primario: #a0522d;
-  --acento-secundario-color: #87a96b;
-  --fondo-principal-color: #f5e6d3;
-  --detalles-color: #d4a437;
-  --acentos-suaves-color: #c47a6d;
-  --color-texto: #333;
-}
 /* Hero */
 #hero-banner {
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)),
     url("../assets/contact-bg.jpg");
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  background-attachment: scroll;
   color: var(--fondo-principal-color);
   text-align: center;
   height: 100dvh;
@@ -23,7 +15,8 @@
 
 #brand-name {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  font-size: 4em;
+  font-size: clamp(2rem, 5vw, 4rem);
+  padding: clamp(2rem, 6vw, 6rem) 1rem;
   margin: 0;
 }
 
@@ -55,13 +48,6 @@
 .productos-destacados {
   padding: 60px 20px;
   text-align: center;
-}
-
-.grid-productos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
 }
 
 .grid-productos.destacados {
