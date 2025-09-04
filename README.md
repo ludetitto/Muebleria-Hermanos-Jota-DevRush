@@ -124,10 +124,11 @@ Ingresar al directorio del proyecto
  ┃ ┗ 📜 productos.js
  ┣ 📂 pages
  ┃ ┣ 📜 contacto.html
- ┃ ┣ 📜 index.html
+ ┃ ┣ 📜 home.html
  ┃ ┣ 📜 nosotros.html
  ┃ ┣ 📜 producto.html
  ┃ ┗ 📜 productos.html
+ ┣ 📜 index.html
  ┣ 📜 boceto.pdf
  ┗ 📜 README.md         # Documentación
 ```
