@@ -1,3 +1,5 @@
+@import 'variables.css';
+
 .catalogo {
   padding: 2rem;
   text-align: center;
@@ -20,7 +22,7 @@
 }
 
 .card {
-  background: #f5e6d3; /* Alabastro Cálido */
+  background: var(--fondo-principal-color); /* Alabastro Cálido */
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -44,7 +46,7 @@
 
 .card-body h3 {
   font-size: 1.1rem;
-  color: #333;
+  color: var(--color-texto);
   margin-bottom: 0.5rem;
 }
 
@@ -54,15 +56,9 @@
 }
 
 .card-body a:hover {
-  background-color: #6e8c56;
+  background-color: var(--acento-secundario-color);
 }
 
 .form-group input:focus {
   transform: translateY(-2px);
-}
-
-@media (max-width: 360px) {
-  h1 {
-    font-size: 2.5em;
-  }
 }

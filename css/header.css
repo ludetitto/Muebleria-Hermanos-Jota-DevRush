@@ -1,3 +1,5 @@
+@import "./variables.css";
+
 /* Header */
 header {
   position: fixed;
@@ -52,7 +54,7 @@ header {
   font-family: "Inter", sans-serif;
   font-weight: 500;
   text-transform: uppercase;
-  color: white;
+  color: var(--fondo-principal-color);
   letter-spacing: 0.08em;
   transition: color 0.3s;
 }
@@ -113,6 +115,14 @@ header {
   align-items: center;
   justify-content: center;
   animation: pulse 2s infinite;
+}
+
+/*Color dinamico de links segun color de fondo*/
+header.on-light-section .nav-links li a {
+  color: var(--color-primario);
+}
+header.on-light-section .nav-links li a:hover {
+  color: var(--detalles-color);
 }
 
 @keyframes pulse {

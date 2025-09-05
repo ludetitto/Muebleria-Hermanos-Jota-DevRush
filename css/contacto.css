@@ -1,3 +1,5 @@
+@import 'variables.css';
+
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -32,8 +34,8 @@
   padding: 10px;
   border-radius: 8px;
   background: white;
-  color: #c47a6d;
-  border: 1px solid #c47a6d;
+  color: var(--acentos-suaves-color);
+  border: 1px solid var(--acentos-suaves-color);
   text-align: center;
 }
 
