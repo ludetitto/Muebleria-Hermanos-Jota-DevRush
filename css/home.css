@@ -1,42 +1,48 @@
+@import 'variables.css';
+
 /* Hero */
 #hero-banner {
-  background: url("assets/hero.jpg") center/cover no-repeat;
-  color: #A0522D; /* Siena tostado */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)),
+    url("../assets/contact-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  color: var(--fondo-principal-color);
   text-align: center;
-  padding: 100px 20px;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #brand-name {
-  font-family: 'Playfair Display', serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   font-size: 4em;
-  text-transform: uppercase;
+  padding: 2rem 1rem;
   margin: 0;
 }
 
 #hero-banner p {
   font-size: 1.2em;
   margin: 15px 0 30px;
+  animation: fadeInUp 1.3s ease-out;
 }
 
 #logo-img {
+  width: 100%;
+  max-width: 500px;
   min-width: 120px; /* tamaño mínimo digital */
   height: auto;
   margin: 15px; /* “zona de protección” */
 }
 
-.btn-primary {
-  background-color: #D4A437; /* Vara de Oro */
-  color: white;
-  padding: 12px 30px;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 8px;
-  text-transform: uppercase;
-  transition: background 0.3s;
+#logo-img {
+  transition: all 0.3s ease;
+  filter: brightness(1);
 }
 
-.btn-primary:hover {
-  background-color: #C47A6D; /* Rosa Polvoriento */
+#logo-img:hover {
+  filter: brightness(1.1);
+  transform: scale(1.1) rotate(2deg);
 }
 
 /* Productos destacados*/
@@ -45,40 +51,21 @@
   text-align: center;
 }
 
-.productos-destacados h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2em;
-  color: #A0522D;
-  margin-bottom: 30px;
-}
-
-.grid-productos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
-}
-
 .grid-productos.destacados {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 0.5rem;
   justify-content: center;
 }
 
 .grid-productos.destacados .card {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.301);
   border-radius: 1.2rem;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
   padding: 2.2rem 1.5rem;
   min-height: 260px;
-  width: 100%;
   max-width: 100%;
   margin: 0;
-  transition: box-shadow 0.2s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .grid-productos.destacados .card img {
@@ -90,19 +77,57 @@
 }
 
 .grid-productos.destacados .card:hover {
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  transition: 0.2s ease-in-out;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
 }
 
 /* Filosofía */
 .filosofia {
-  background-color: #87A96B; /* Verde Salvia */
+  background-color: #87a96b; /* Verde Salvia */
   color: white;
   padding: 60px 20px;
   text-align: center;
 }
 
-.filosofia h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2em;
+.filosofia h2 {
+  color: white;
   margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  #logo-img {
+    max-width: 400px;
+  }
+
+  #brand-name {
+    font-size: 3em;
+  }
+
+  #hero-banner p {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 500px) {
+  #logo-img {
+    max-width: 300px;
+  }
+
+  #brand-name {
+    font-size: 2em;
+  }
+
+  .grid-productos.destacados {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  @media (max-width: 347px) {
+    #brand-name {
+      font-size: 1.6em;
+    }
+
+    #logo-img {
+      max-width: 250px;
+    }
+  }
 }

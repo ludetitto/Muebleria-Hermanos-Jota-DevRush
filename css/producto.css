@@ -1,10 +1,4 @@
-button {
-  padding: 0;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  margin: 0
-}
+@import 'variables.css';
 
 /* Prevenir flickering inicial */
 .producto-loading {
@@ -19,23 +13,50 @@ button {
 }
 
 .container {
+  margin-top: 8rem;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(1rem, 2vw, 2rem);
+}
+
+.producto-info {
+  flex: 1 1 clamp(220px, 50%, 800px);
+  min-width: 220px;
+}
+
+.producto-galeria {
+  flex: 1 0 clamp(300px, 48vw, 750px);
+  display: flex;
   align-items: center;
-  flex-direction: row;
+  justify-content: center;
+}
+
+.producto-galeria figure {
+  margin: 0;
+  width: min(100%, 700px);
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.producto-galeria img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
 }
 
 h1 {
-  font-family: 'Playfair Display', 'Georgia';
-  font-weight: 700;
-  color: #A0522D;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  color: var(--color-primario);
 }
 
 h3 {
   font-weight: 500;
-  color: #C47A6D;
+  color: var(--acentos-suaves-color);
 }
 
 #precio-producto {
@@ -51,8 +72,8 @@ h3 {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
- display: visible;
- cursor: pointer;
+  display: visible;
+  cursor: pointer;
 }
 
 input[type="number"] {
@@ -61,24 +82,40 @@ input[type="number"] {
 }
 
 #cantidad:focus {
-  box-shadow: 0 0 0 4px #a0512d57;
-  outline: 1px solid #A0522D;
-  outline-offset: 1px;
+  transition: 0.04s;
+  box-shadow: 0 0 0 3px #c47a6d3d;
 }
 
 #cantidad {
   height: 2.5rem;
   width: 4rem;
-  border-radius: 3px; 
+  border-radius: 3px;
   padding: 2px 8px;
   text-align: center;
   font-size: 1.1rem;
+  border: 1px solid #c47a6d00;
 }
 
 #cantidad:hover {
-  border-color: #777;
+  border-color: var(--acentos-suaves-color);
 }
 
 .producto-info > div {
   border-bottom: 1px solid #c47a6d8e;
+  padding-bottom: 0.9rem;
+  margin-bottom: 0.9rem;
+}
+
+.detalle-producto ul {
+  padding-left: 40px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin-top: 3rem;
+  }
+
+  .nav-links li a {
+    color: var(--fondo-principal-color);
+  }
 }
