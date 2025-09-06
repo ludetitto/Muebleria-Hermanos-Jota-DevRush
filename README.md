@@ -2,7 +2,7 @@
 
 Este repositorio corresponde al desarrollo del sitio **e-commerce de la Mueblería Hermanos Jota**, como parte de la **Certificación Avanzada en Full Stack Developer**.  
 El proyecto sigue una modalidad **ágil** (Sprints), donde se construyen gradualmente tanto el **frontend** como el **backend**, hasta llegar a un despliegue completo en la nube.  
-
+[a link](https://capable-rugelach-28f3b6.netlify.app/pages/home.html)
 ---
 
 ## 🚀 Objetivo del Proyecto  
