@@ -27,7 +27,7 @@
 }
 
 .producto-galeria {
-  flex: 1 0 clamp(300px, 48vw, 750px);
+  flex: 1 0 clamp(300px, 20vw, 750px);
   display: flex;
   align-items: center;
   justify-content: center;
