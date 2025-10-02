@@ -18,11 +18,11 @@ export default function Home({ onVerProductos }) {
         </div>
       </section>
 
-      {/* Sección Destacados */}
+      {/* Sección de productos destacados */}
       <section className="productos-destacados" data-bg="light">
         <h2 className="titulo-principal">NUESTROS DESTACADOS</h2>
         <div className="grid-productos destacados" id="destacados-container">
-          {/* TODO: Renderizar destacados usando componentes cuando haya datos */}
+          
         </div>
       </section>
 
