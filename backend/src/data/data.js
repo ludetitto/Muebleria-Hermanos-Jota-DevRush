@@ -1,4 +1,4 @@
-const productos = [
+module.exports = [
   {
     id: 1,
     nombre: "Aparador Uspallata",
