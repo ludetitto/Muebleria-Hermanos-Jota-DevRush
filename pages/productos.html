@@ -1,47 +1,95 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/productos.css">
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/productos.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg" href="../assets/logo.svg" />
     <title>Productos</title>
-</head>
-<body>
-    
+  </head>
+  <body>
     <header>
       <!-- Encabezado -->
       <nav>
+        <script src="../js/header.js"></script>
         <div class="top-bar">
-          <ul class="nav-links">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="productos.html">Productos</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-          </ul>
+          <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <img
+            src="../assets/logo.svg"
+            alt="Logo Hermanos Jota"
+            class="logo logo-responsive"
+          />
+
+          <div class="nav-container">
+            <ul class="nav-links">
+              <img
+                src="../assets/logo.svg"
+                alt="Logo Hermanos Jota"
+                class="logo"
+              />
+              <li><a href="home.html">Inicio</a></li>
+              <li><a href="productos.html">Productos</a></li>
+
+              <li><a href="nosotros.html">Nosotros</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+
+          <script src="../js/carrito.js"></script>
+          <!-- Carrito de compras -->
+          <div class="cart-container">
+            <button id="btn-ver-carrito" title="Ver carrito">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                fill="#D4A437"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm1.447-2.105l1.553-9.895h-17v2h2l3.6 7.59-1.35 2.44c-.16.28-.25.61-.25.96 0 1.104.896 2 2 2h12v-2h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25z"
+                />
+              </svg>
+              <span id="contador-carrito" class="badge">0</span>
+            </button>
+          </div>
         </div>
       </nav>
     </header>
 
-    <main>
-    <section class="catalogo">
-      <h1>Catálogo de Productos</h1>
+    <section class="banner" data-bg="dark">
+      <h1 class="titulo-principal">CATÁLOGO DE PRODUCTOS</h1>
 
       <!-- Buscador -->
-      <input 
-        type="text" 
-        id="searchInput" 
-        placeholder="🔍 Buscar productos..." 
-        aria-label="Buscar productos"
-      >
-
-      <!-- Contenedor dinámico -->
-      <div id="productos-container" class="grid"></div>
+      <div class="form-group">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="🔍 Buscar productos..."
+          aria-label="Buscar productos"
+        />
+      </div>
     </section>
-  </main>
-    
+
+    <main data-bg="light">
+      <section class="catalogo">
+        <!-- Contenedor dinámico -->
+        <div id="productos-container" class="grid"></div>
+      </section>
+    </main>
+
     <!-- Footer -->
     <footer>
       <p>
@@ -51,10 +99,16 @@
         <a href="contacto.html">Contacto</a> ·
         <a href="nosotros.html">Nosotros</a>
       </p>
+      <p>
+        Seguinos en
+        <a href="https://www.instagram.com" target="_blank">Instagram</a>
+        y
+        <a href="https://www.facebook.com" target="_blank">Facebook</a>
+      </p>
     </footer>
 
-     <!-- JS -->
-  <script src="../js/data.js"></script>
-  <script src="../js/productos.js"></script>
-</body>
+    <!-- JS -->
+    <script src="../js/data.js"></script>
+    <script src="../js/productos.js"></script>
+  </body>
 </html>

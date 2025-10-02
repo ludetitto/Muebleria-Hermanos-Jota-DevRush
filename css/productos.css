@@ -1,12 +1,15 @@
+@import 'variables.css';
+
 .catalogo {
   padding: 2rem;
   text-align: center;
 }
 
-.catalogo h1 {
-  margin-bottom: 1rem;
-  font-family: "Playfair Display", serif;
-  color: #A0522D; /* Siena Tostado */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
 }
 
 #searchInput {
@@ -18,19 +21,12 @@
   border-radius: 8px;
 }
 
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
-}
-
 .card {
-  background: #F5E6D3; /* Alabastro Cálido */
+  background: var(--fondo-principal-color); /* Alabastro Cálido */
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  width: 280px;
+  max-width: 280px;
   transition: transform 0.2s ease-in-out;
 }
 
@@ -50,7 +46,7 @@
 
 .card-body h3 {
   font-size: 1.1rem;
-  color: #333;
+  color: var(--color-texto);
   margin-bottom: 0.5rem;
 }
 
@@ -59,16 +55,10 @@
   color: #555;
 }
 
-.card-body a {
-  display: inline-block;
-  margin-top: 0.8rem;
-  padding: 0.5rem 1rem;
-  background-color: #87A96B; /* Verde Salvia */
-  color: #fff;
-  border-radius: 6px;
-  text-decoration: none;
+.card-body a:hover {
+  background-color: var(--acento-secundario-color);
 }
 
-.card-body a:hover {
-  background-color: #6e8c56;
+.form-group input:focus {
+  transform: translateY(-2px);
 }

@@ -1,48 +1,117 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/home.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/nosotros.css">
-    
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/nosotros.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg" href="../assets/logo.svg" />
     <title>Nosotros</title>
+  </head>
 
-<body>
+  <body>
     <header>
       <!-- Encabezado -->
       <nav>
+        <script src="../js/header.js"></script>
         <div class="top-bar">
-          <ul class="nav-links">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="productos.html">Productos</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-          </ul>
+          <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <img
+            src="../assets/logo.svg"
+            alt="Logo Hermanos Jota"
+            class="logo logo-responsive"
+          />
+
+          <div class="nav-container">
+            <ul class="nav-links">
+              <img
+                src="../assets/logo.svg"
+                alt="Logo Hermanos Jota"
+                class="logo"
+              />
+              <li><a href="home.html">Inicio</a></li>
+              <li><a href="productos.html">Productos</a></li>
+
+              <li><a href="nosotros.html">Nosotros</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+
+          <script src="../js/carrito.js"></script>
+          <!-- Carrito de compras -->
+          <div class="cart-container">
+            <button id="btn-ver-carrito" title="Ver carrito">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                fill="#D4A437"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm1.447-2.105l1.553-9.895h-17v2h2l3.6 7.59-1.35 2.44c-.16.28-.25.61-.25.96 0 1.104.896 2 2 2h12v-2h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25h-11.42c-.14 0-.25-.11-.25-.25s.11-.25.25-.25h11.42c.14 0 .25-.11.25-.25s-.11-.25-.25-.25z"
+                />
+              </svg>
+              <span id="contador-carrito" class="badge">0</span>
+            </button>
+          </div>
         </div>
       </nav>
     </header>
 
-    <main> 
-        <section class="about-us">
-            <h1>Sobre Nosotros</h1>
-            <p>
-            En Mueblería Hermanos Jota, nos dedicamos a crear muebles de alta calidad que combinan diseño, funcionalidad y sostenibilidad. Fundada en 1960, nuestra misión es transformar espacios con piezas únicas que reflejen el estilo y la personalidad de nuestros clientes.
-            </p>
-            <p>
-            Nuestro equipo de artesanos utiliza materiales locales y técnicas tradicionales para garantizar que cada mueble no solo sea hermoso, sino también duradero y respetuoso con el medio ambiente. Creemos en la importancia de la sostenibilidad y nos esforzamos por minimizar nuestro impacto ambiental en cada etapa del proceso de producción.
-            </p>
-            <p>
-            Ya sea que estés buscando un sofá cómodo, una mesa de comedor elegante o una cama acogedora, en Hermanos Jota encontrarás la pieza perfecta para tu hogar. Nos enorgullece ofrecer un servicio personalizado y asesoramiento experto para ayudarte a elegir los muebles que mejor se adapten a tus necesidades y gustos.
-            </p>
-            <p>
-            Gracias por confiar en Mueblería Hermanos Jota. Estamos emocionados de ser parte de tu viaje para crear un hogar lleno de estilo, confort y sostenibilidad.
-            </p>
+    <section class="banner" aria-labelledby="Banner de contacto" data-bg="dark">
+      <h1 class="titulo-principal">SOBRE NOSOTROS</h1>
+    </section>
+
+    <main class="container" role="main" data-bg="light">
+      <section
+        class="about-us info-text"
+        aria-label="Información sobre nosotros"
+      >
+        <p>
+          En Mueblería Hermanos Jota, nos dedicamos a crear muebles de alta
+          calidad que combinan diseño, funcionalidad y sostenibilidad. Fundada
+          en 1960, nuestra misión es transformar espacios con piezas únicas que
+          reflejen el estilo y la personalidad de nuestros clientes.
+        </p>
+        <p>
+          Nuestro equipo de artesanos utiliza materiales locales y técnicas
+          tradicionales para garantizar que cada mueble no solo sea hermoso,
+          sino también duradero y respetuoso con el medio ambiente. Creemos en
+          la importancia de la sostenibilidad y nos esforzamos por minimizar
+          nuestro impacto ambiental en cada etapa del proceso de producción.
+        </p>
+        <p>
+          Ya sea que estés buscando un sofá cómodo, una mesa de comedor elegante
+          o una cama acogedora, en Hermanos Jota encontrarás la pieza perfecta
+          para tu hogar. Nos enorgullece ofrecer un servicio personalizado y
+          asesoramiento experto para ayudarte a elegir los muebles que mejor se
+          adapten a tus necesidades y gustos.
+        </p>
+        <p>
+          Gracias por confiar en Mueblería Hermanos Jota. Estamos emocionados de
+          ser parte de tu viaje para crear un hogar lleno de estilo, confort y
+          sostenibilidad.
+        </p>
+        <video controls>
+          <source
+            src="../assets/Video institucional Hermanos Jota"
+            type="video/mp4"
+          />
+        </video>
+      </section>
     </main>
-    
 
     <!-- Footer -->
     <footer>
@@ -53,10 +122,12 @@
         <a href="contacto.html">Contacto</a> ·
         <a href="nosotros.html">Nosotros</a>
       </p>
+      <p>
+        Seguinos en
+        <a href="https://www.instagram.com" target="_blank">Instagram</a>
+        y
+        <a href="https://www.facebook.com" target="_blank">Facebook</a>
+      </p>
     </footer>
   </body>
-</head>
-<body>
-
-</body>
 </html>

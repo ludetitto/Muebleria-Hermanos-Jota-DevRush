@@ -1,30 +1,257 @@
+@import "./variables.css";
+
 /* Header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+}
+
 .top-bar {
+  max-width: 100dvw;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  fill-opacity: 0.65;
+  position: relative;
+}
+
+.nav-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 15px 40px;
-  background-color: #A0522D; /* Siena tostado */
-  fill-opacity: 0.65;
+  flex: 1;
+  gap: 2.5rem;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.logo-responsive {
+  display: none;
 }
 
 /* Navegación */
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 25px;
+  align-items: center;
+  gap: 2.5rem;
 }
 
 .nav-links li a {
   text-decoration: none;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 500;
   text-transform: uppercase;
-  color: white;
+  color: var(--fondo-principal-color);
   letter-spacing: 0.08em;
   transition: color 0.3s;
 }
 
 .nav-links li a:hover {
-  color: #D4A437; /* Vara de Oro */
+  color: var(--detalles-color); /* Vara de Oro */
+}
+
+.cart-container {
+  margin-right: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+#btn-ver-carrito {
+  background: rgba(212, 164, 55, 0.1);
+  border-radius: 12px;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#btn-ver-carrito:hover {
+  background: var(--detalles-color);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 164, 55, 0.3);
+}
+
+#btn-ver-carrito svg {
+  width: 28px;
+  height: 28px;
+  fill: var(--detalles-color);
+  transition: fill 0.3s ease;
+}
+
+#btn-ver-carrito:hover svg {
+  fill: #ffffff;
+}
+
+.badge {
+  background-color: var(--detalles-color); /* Vara de Oro */
+  position: absolute;
+  top: -8px;
+  border-radius: 50%;
+  right: -8px;
+  padding: 4px 8px;
+  color: var(--fondo-principal-color);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s infinite;
+}
+
+/*Color dinamico de links segun color de fondo*/
+header.on-light-section .nav-links li a {
+  color: var(--color-primario);
+}
+header.on-light-section .nav-links li a:hover {
+  color: var(--detalles-color);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Menu hamburguesa para móviles */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.hamburger:hover {
+  background: rgba(212, 164, 55, 0.1);
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: var(--detalles-color);
+  margin: 3px 0;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+/*Responsive*/
+@media (max-width: 768px) {
+  .top-bar {
+    padding: 1rem;
+    justify-content: space-between;
+  }
+
+  .nav-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, var(--color-texto));
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: transform 350ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      opacity 250ms ease, visibility 0s linear 350ms;
+    will-change: transform, opacity;
+    transform: translateX(-110%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .nav-container.active {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: transform 350ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      opacity 250ms ease;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    padding: 2rem 1rem;
+    gap: 1rem;
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .logo-responsive {
+    display: inline-block;
+    order: 0;
+    width: 60px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .cart-container {
+    margin: 0;
+  }
+
+  #btn-ver-carrito {
+    padding: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-bar {
+    padding: 0.8rem;
+  }
+
+  .nav-links {
+    gap: 0.8rem;
+  }
+
+  .logo {
+    width: 45px;
+    height: 45px;
+  }
+
+  #btn-ver-carrito {
+    padding: 0.5rem;
+  }
+
+  #btn-ver-carrito svg {
+    width: 24px;
+    height: 24px;
+  }
 }

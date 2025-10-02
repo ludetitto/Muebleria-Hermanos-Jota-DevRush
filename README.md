@@ -3,6 +3,7 @@
 Este repositorio corresponde al desarrollo del sitio **e-commerce de la Mueblería Hermanos Jota**, como parte de la **Certificación Avanzada en Full Stack Developer**.  
 El proyecto sigue una modalidad **ágil** (Sprints), donde se construyen gradualmente tanto el **frontend** como el **backend**, hasta llegar a un despliegue completo en la nube.  
 
+[Link a la pagina web](https://capable-rugelach-28f3b6.netlify.app/pages/home.html)
 ---
 
 ## 🚀 Objetivo del Proyecto  
@@ -84,62 +85,53 @@ Sigue estos pasos para clonar y ejecutar el proyecto en tu entorno local:
 git clone https://github.com/<tu-usuario>/<nombre-del-repo>.git
 Ingresar al directorio del proyecto
 ```
-2. Ingresar al directorio del proyecto
-```bash
-cd nombre-del-repo
-Instalar las dependencias
-```
-3. Instalar las dependencias
-```bash
-npm install
-Configurar variables de entorno
-Crea un archivo .env en la raíz del proyecto con la configuración necesaria:
-```
-4. Configurar variables de entorno
-```bash
-MONGO_URI=<cadena-de-conexion-a-MongoDB>
-JWT_SECRET=<clave-secreta-para-tokens>
-PORT= [puerto-correspondiente]
-```
-5. Iniciar el servidor backend
-```bash
-npm run server
-Iniciar la aplicación frontend (si está en un directorio separado)
-```
-6. Iniciar la aplicación frontend (si está en un directorio separado)
-```bash
-cd client
-npm install
-npm start
-```
-La aplicación quedará disponible en:
-
-Frontend: http://localhost:[puerto-correspondiente]
-
-Backend: http://localhost:[puerto-correspondiente]
 
 🏗️ Arquitectura del Proyecto
 ```plaintext
 📦 muebleria-jota
- ┣ 📂 client            # Frontend (React)
- ┃ ┣ 📂 src
- ┃ ┃ ┣ 📂 components
- ┃ ┃ ┣ 📂 pages
- ┃ ┃ ┣ 📂 context
- ┃ ┃ ┣ 📂 hooks
- ┃ ┃ ┣ 📜 App.js
- ┃ ┃ ┗ 📜 index.js
- ┃ ┗ 📜 package.json
- ┣ 📂 server            # Backend (Node + Express)
- ┃ ┣ 📂 config
- ┃ ┣ 📂 controllers
- ┃ ┣ 📂 models
- ┃ ┣ 📂 routes
- ┃ ┣ 📜 server.js
- ┃ ┗ 📜 package.json
- ┣ 📜 .env.example      # Variables de entorno
- ┣ 📜 README.md         # Documentación
- ┗ 📜 package.json      # Dependencias generales
+ ┣ 📂 assets
+ ┃ ┣ 📂 productos
+ ┃ ┃ ┣ 📜 Aparador-Uspallata.png
+ ┃ ┃ ┣ 📜 background.jpg
+ ┃ ┃ ┣ 📜 Biblioteca-Recoleta.png
+ ┃ ┃ ┣ 📜 Butaca-Mendoza.png
+ ┃ ┃ ┣ 📜 Escritorio-Costa.png
+ ┃ ┃ ┣ 📜 Mesa-Comedor-Pampa.png
+ ┃ ┃ ┣ 📜 Mesa-de-Centro-Araucaria.png
+ ┃ ┃ ┣ 📜 Mesa-de-Noche-Aconcagua.png
+ ┃ ┃ ┣ 📜 Silla-de-Trabajo-Belgrano.png
+ ┃ ┃ ┣ 📜 Sillas-Cordoba.png
+ ┃ ┃ ┣ 📜 Sillon-Copacabana.png
+ ┃ ┃ ┗ 📜 Sofa-Patagonia.png
+ ┃ ┣ 📜 bg.png
+ ┃ ┣ 📜 contact-bg.png
+ ┃ ┣ 📜 logo_v2.svg
+ ┃ ┣ 📜 logo.svg
+ ┃ ┗ 📜 Video institucional Hermanos Jota
+ ┣ 📂 css
+ ┃ ┣ 📜 contacto.css
+ ┃ ┣ 📜 footer.css
+ ┃ ┣ 📜 header.css
+ ┃ ┣ 📜 home.css
+ ┃ ┣ 📜 nosotros.css
+ ┃ ┣ 📜 producto.css
+ ┃ ┣ 📜 productos.css
+ ┃ ┗ 📜 styles.css
+ ┣ 📂 js
+ ┃ ┣ 📜 carrito.js
+ ┃ ┣ 📜 data.js
+ ┃ ┣ 📜 destacados.js
+ ┃ ┣ 📜 producto.js
+ ┃ ┗ 📜 productos.js
+ ┣ 📂 pages
+ ┃ ┣ 📜 contacto.html
+ ┃ ┣ 📜 home.html
+ ┃ ┣ 📜 nosotros.html
+ ┃ ┣ 📜 producto.html
+ ┃ ┗ 📜 productos.html
+ ┣ 📜 index.html
+ ┣ 📜 boceto.pdf
+ ┗ 📜 README.md         # Documentación
 ```
 👥 Integrantes del Grupo  
 De Titto Lucia  
