@@ -22,3 +22,12 @@ app.use("/api/productos", productosRouter);
 });*/
 
 app.listen(PORT, () => console.log(`Server corriendo en: ${PORT}`));
+
+app.use((req, res, next) => {
+  res.status(404).json({ ok: false, error: "Ruta no encontrada" });
+});
+
+app.use((err, req, res, next) => {
+  console.error("Error:", err.stack);
+  res.status(500).json({ ok: false, error: "Error interno del servidor" });
+});
