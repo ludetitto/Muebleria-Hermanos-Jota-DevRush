@@ -1,6 +1,6 @@
 import React from "react";
 import ProductCard from "./ProductCard";
-import "./ProductList.css";
+import "../assets/css/productos.css";
 
 export default function ProductList({ productos, onSelect }) {
   return (
