@@ -1,0 +1,67 @@
+import React from "react";
+import "../assets/css/producto.css";
+
+export default function ProductDetail({ producto, onClose }) {
+  if (!producto) return null;
+
+  return (
+    <main className="container producto-loaded" role="main">
+      {/* Galería del producto */}
+      <section className="producto-galeria" aria-label="Galería del producto">
+        <figure>
+          <img
+            id="img-producto"
+            src={producto.imagen}
+            alt={`Imagen de ${producto.nombre}`}
+            loading="lazy"
+            width="800"
+            height="600"
+          />
+          <figcaption
+            id="product-image-caption"
+            className="visually-hidden"
+          >
+            {producto.nombre}
+          </figcaption>
+        </figure>
+      </section>
+
+      {/* Información del producto */}
+      <section className="producto-info" aria-labelledby="product-title">
+        <h1 id="producto-titulo" className="titulo-principal">
+          {producto.nombre}
+        </h1>
+
+        <div className="descripcion" id="desc-producto" aria-labelledby="desc-title">
+          <h2 id="desc-titulo">Descripción</h2>
+          <p>{producto.descripcion}</p>
+        </div>
+
+        <div className="compra">
+          <p id="precio-producto" className="precio" aria-live="polite">
+            ${producto.precio}
+          </p>
+
+          <div className="cantidad-container">
+            <input
+              id="cantidad"
+              type="number"
+              name="cantidad"
+              min="1"
+              max="10"
+              defaultValue="1"
+              aria-label="Cantidad"
+            />
+            <button id="agregar-carrito" className="btn-primary" type="button">
+              Añadir al carrito
+            </button>
+          </div>
+        </div>
+
+        <button onClick={onClose} className="btn-secondary">
+          ⬅ Volver al catálogo
+        </button>
+      </section>
+    </main>
+  );
+}
