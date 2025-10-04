@@ -6,6 +6,7 @@ import Catalog from './pages/Catalog';
 import ProductDetailPage from './pages/ProductDetailPage';
 import Cart from './components/Cart';
 import About from './pages/About';
+import Contact from './pages/Contact';
 import './assets/css/styles.css';
 
 export default function App() {
@@ -183,6 +184,9 @@ export default function App() {
 
       {pagina === 'about' && (
         <About></About>
+      )}
+      {pagina === 'contact' && (
+        <Contact></Contact>
       )}
 
       {showCartModal && (

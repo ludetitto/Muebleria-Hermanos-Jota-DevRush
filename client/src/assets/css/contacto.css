@@ -38,7 +38,9 @@
   border: 1px solid var(--acentos-suaves-color);
   text-align: center;
 }
-
+.mensaje-envio.show {
+  display: block;
+}
 .horarios {
   margin-top: 20px;
   padding: 10px;
