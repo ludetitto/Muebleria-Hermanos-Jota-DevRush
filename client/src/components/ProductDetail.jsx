@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import "../assets/css/producto.css";
 
-export default function ProductDetail({ producto, onClose }) {
+export default function ProductDetail({ producto, onClose, onAddToCart }) {
+  const [cantidad, setCantidad] = useState(1);
+
   if (!producto) return null;
+
+  const handleAdd = () => {
+    console.log('ProductDetail: handleAdd', { producto, cantidad });
+    if (onAddToCart) onAddToCart(producto, Number(cantidad));
+  };
 
   return (
     <main className="container producto-loaded" role="main">
@@ -49,10 +56,11 @@ export default function ProductDetail({ producto, onClose }) {
               name="cantidad"
               min="1"
               max="10"
-              defaultValue="1"
+              value={cantidad}
+              onChange={(e) => setCantidad(e.target.value)}
               aria-label="Cantidad"
             />
-            <button id="agregar-carrito" className="btn-primary" type="button">
+            <button id="agregar-carrito" className="btn-primary" type="button" onClick={handleAdd}>
               Añadir al carrito
             </button>
           </div>

@@ -1,5 +1,7 @@
 import '../assets/css/home.css';
 import logo from '../assets/logo.svg';
+import ProductList from '../components/ProductList';
+import products from '../data/products';
 
 export default function Home({ onVerProductos }) {
   return (
@@ -22,7 +24,7 @@ export default function Home({ onVerProductos }) {
       <section className="productos-destacados" data-bg="light">
         <h2 className="titulo-principal">NUESTROS DESTACADOS</h2>
         <div className="grid-productos destacados" id="destacados-container">
-          
+          <ProductList productos={products.filter(p => p.destacado)} onSelect={() => { /* handled by Catalog navigation */ }} />
         </div>
       </section>
 

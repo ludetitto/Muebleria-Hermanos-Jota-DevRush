@@ -1,14 +1,12 @@
 import React from "react";
-import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ProductDetail from "../components/ProductDetail";
 
-export default function ProductDetailPage({ producto, onBack }) {
+export default function ProductDetailPage({ producto, onBack, onAddToCart }) {
   return (
     <>
-      <Navbar />
       <main>
-        <ProductDetail producto={producto} onBack={onBack} />
+        <ProductDetail producto={producto} onBack={onBack} onAddToCart={onAddToCart} />
       </main>
       <Footer />
     </>
