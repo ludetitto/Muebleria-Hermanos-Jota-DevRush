@@ -1,17 +1,12 @@
 import React from "react";
 import "../assets/css/nosotros.css";
+import Banner from "../components/Banner";
 import videoInstitucional from "../assets/Video institucional Hermanos Jota";
 
 export default function About() {
   return (
     <>
-      <section
-        className="banner"
-        aria-labelledby="Banner de contacto"
-        data-bg="dark"
-      >
-        <h1 className="titulo-principal">SOBRE NOSOTROS</h1>
-      </section>
+      <Banner titulo="SOBRE NOSOTROS" ariaLabel="banner-nosotros"></Banner>
 
       <main className="tight-container" role="main" data-bg="light">
         <section
