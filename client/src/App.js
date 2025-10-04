@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import ProductDetailPage from './pages/ProductDetailPage';
 import Cart from './components/Cart';
+import About from './pages/About';
 import './assets/css/styles.css';
 
 export default function App() {
@@ -178,6 +179,10 @@ export default function App() {
           onBack={() => navigate('catalog')}
           onAddToCart={(producto, cantidad) => addToCart(producto, cantidad)}
         />
+      )}
+
+      {pagina === 'about' && (
+        <About></About>
       )}
 
       {showCartModal && (

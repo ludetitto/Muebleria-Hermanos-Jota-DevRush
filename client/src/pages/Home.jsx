@@ -23,7 +23,7 @@ export default function Home({ onVerProductos }) {
       {/* Sección de productos destacados */}
       <section className="productos-destacados" data-bg="light">
         <h2 className="titulo-principal">NUESTROS DESTACADOS</h2>
-        <div className="grid-productos destacados" id="destacados-container">
+        <div className="grid" id="destacados-container">
           <ProductList productos={products.filter(p => p.destacado)} onSelect={() => { /* handled by Catalog navigation */ }} />
         </div>
       </section>
