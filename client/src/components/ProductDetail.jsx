@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/css/producto.css";
 
 export default function ProductDetail({ producto, onVolver, onAgregarAlCarrito }) {
   const [cantidad, setCantidad] = useState(1);
 
-  if (!producto) return null;
+useEffect(() => {
+    if (producto) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [producto]);
 
   const handleAdd = () => {
     console.log('ProductDetail: handleAdd', { producto, cantidad });
