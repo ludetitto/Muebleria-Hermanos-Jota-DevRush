@@ -1,11 +1,5 @@
 @import 'variables.css';
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 1rem 0;
-}
-
 .contact-form {
   padding: 2rem;
   border-radius: 15px;

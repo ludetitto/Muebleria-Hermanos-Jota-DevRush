@@ -12,7 +12,7 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-.container {
+.producto-loaded {
   margin-top: 8rem;
   display: flex;
   flex-wrap: wrap;
@@ -50,11 +50,11 @@
   border-radius: 6px;
 }
 
-h1 {
+#producto-titulo {
   color: var(--color-primario);
 }
 
-h3 {
+#detalle-titulo {
   font-weight: 500;
   color: var(--acentos-suaves-color);
 }

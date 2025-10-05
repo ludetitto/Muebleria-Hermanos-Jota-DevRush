@@ -7,7 +7,7 @@ export default function Contact() {
     return (
         <div>
             <Banner titulo="CONTACTO" ariaLabel="banner-contacto"></Banner>
-            <main className="container" role="main" data-bg="light">
+            <main className="tight-container" role="main" data-bg="light">
                 <section className="info-text">
                     <p>
                     Complete el siguiente formulario y a la brevedad un representante se
