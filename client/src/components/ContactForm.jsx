@@ -1,5 +1,5 @@
 import React from 'react'
-import {useState} from 'react'
+import {useState, useRef,useEffect } from 'react'
 
 export default function ContactForm() {
     const [formData, setFormData] = useState({
@@ -8,6 +8,13 @@ export default function ContactForm() {
     mensaje: "",
     });
     const [enviado, setEnviado] = useState(false);
+    const mensajeRef = useRef(null);
+
+    useEffect(() => {
+    if (enviado && mensajeRef.current) {
+        mensajeRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+    }, [enviado]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -17,21 +24,15 @@ export default function ContactForm() {
         });
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("¡Formulario enviado!:", formData);
-        setEnviado(true);
-        setFormData({ nombre: "", email: "", mensaje: "" });
-    };
+const handleSubmit = (e) => {
+    e.preventDefault();
+    setEnviado(true); 
+    setFormData({ nombre: "", email: "", mensaje: "" }); // limpiar  formulario
+    setTimeout(() => setEnviado(false), 5000); // desaparecer mensaje exitoso
+};
 
     return (
         <main className="container" data-bg="light">
-        <section className="info-text">
-            <p>
-            Complete el siguiente formulario y a la brevedad un representante se
-            comunicará con usted.
-            </p>
-        </section>
 
         <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
@@ -43,8 +44,7 @@ export default function ContactForm() {
                 required
                 placeholder="Ingrese su nombre completo"
                 value={formData.nombre}
-                onChange={handleChange}
-            />
+                onChange={handleChange}/>
             </div>
 
             <div className="form-group">
@@ -76,12 +76,13 @@ export default function ContactForm() {
             Enviar
             </button>
         </form>
-
         {enviado && (
-            <div className={`mensaje-envio info-text ${enviado ? 'show' : ''}`}>
+        <div ref={mensajeRef} className={`mensaje-envio info-text show`}>
             <p>Formulario enviado correctamente ¡Gracias por contactarnos!</p>
-            </div>
+        </div>
         )}
+
+
         </main>
     );
     }
