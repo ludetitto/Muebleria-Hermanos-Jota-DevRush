@@ -3,7 +3,7 @@
 .container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 4rem 0;
+  padding: 1rem 0;
 }
 
 .contact-form {
@@ -37,9 +37,16 @@
   color: var(--acentos-suaves-color);
   border: 1px solid var(--acentos-suaves-color);
   text-align: center;
+  opacity: 0;
+  padding: 10px;
+  transition: opacity 1s ease-in-out;
 }
 .mensaje-envio.show {
   display: block;
+  color:green;
+  position:absolute;
+  opacity: 1;
+
 }
 .horarios {
   margin-top: 20px;
