@@ -119,6 +119,30 @@ npm start
 
 http://localhost:3000
 
+Nota importante — por qué "levantar solo el backend" funciona en desarrollo y producción
+----------------------------------------------------------------------
+
+Si previamente ejecutas `cd client && npm run build`, Create React App genera una carpeta estática `client/build` con los archivos HTML/CSS/JS optimizados. El backend (en `backend/index.js`) está preparado para servir esos archivos estáticos y además devuelve `index.html` como fallback para cualquier ruta GET no-API (comportamiento típico de una SPA).
+
+Por eso, si existe `client/build` podes levantar únicamente el backend (`cd backend && npm start`) y el servidor servirá la interfaz React desde el mismo origen (mismo host y puerto) que la API. Al compartir origen la comunicación entre frontend y backend ocurre sin restricciones CORS, porque el navegador no considera la petición como cross-origin.
+
+Pasos rápidos para usar este flujo (build + backend):
+
+```powershell
+# 1) Generar el build en la carpeta client/build
+cd client
+npm install      # (si no se hizo antes)
+npm run build
+
+# 2) Arrancar solo el backend (servirá los archivos estáticos y la API)
+cd ..\backend
+npm install      # (si no se hizo antes)
+npm start
+
+# Entonces abre en el navegador (ejemplo):
+http://localhost:3000
+```
+
 🏗️ Arquitectura del Proyecto
 
 ```
