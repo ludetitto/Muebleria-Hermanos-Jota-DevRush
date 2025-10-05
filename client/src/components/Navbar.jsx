@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "../assets/css/header.css";
 import logo from "../assets/logo.svg";
 
-export default function Navbar({ cartCount = 0, onNavigate, onOpenCart }) {
+export default function Navbar({ contadorCarrito = 0, onNavegar, onAbrirCarrito }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [lightSection, setLightSection] = useState(false);
   const headerRef = useRef(null);
@@ -91,9 +91,9 @@ export default function Navbar({ cartCount = 0, onNavigate, onOpenCart }) {
               id="btn-ver-carrito"
               title="Ver carrito"
               onClick={() =>
-                typeof onOpenCart === "function"
-                  ? onOpenCart()
-                  : onNavigate && onNavigate("cart")
+                typeof onAbrirCarrito === "function"
+                  ? onAbrirCarrito()
+                  : onNavegar && onNavegar("cart")
               }
             >
               <svg
@@ -111,7 +111,7 @@ export default function Navbar({ cartCount = 0, onNavigate, onOpenCart }) {
                 <circle cx="17.5" cy="18.5" r="1.5" fill="currentColor" />
               </svg>
               <span id="contador-carrito" className="badge">
-                {cartCount}
+                {contadorCarrito}
               </span>
             </button>
           </div>

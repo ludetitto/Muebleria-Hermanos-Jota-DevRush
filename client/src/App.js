@@ -12,8 +12,8 @@ import './assets/css/styles.css';
 export default function App() {
   const [pagina, setPagina] = useState("home");
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
-  const [cart, setCart] = useState([]);
-  const [showCartModal, setShowCartModal] = useState(false);
+  const [carrito, setCarrito] = useState([]);
+  const [mostrarCarritoModal, setMostrarCarritoModal] = useState(false);
 
   // Cargar carrito desde localStorage al iniciar
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function App() {
           const parsedLegacy = JSON.parse(legacy);
           if (Array.isArray(parsedLegacy)) {
             localStorage.setItem('hj_cart', JSON.stringify(parsedLegacy));
-            setCart(parsedLegacy);
+            setCarrito(parsedLegacy);
             return;
           }
         } catch (e) {
@@ -35,7 +35,20 @@ export default function App() {
       const raw = localStorage.getItem('hj_cart');
       if (raw) {
         const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed)) setCart(parsed);
+        if (Array.isArray(parsed)) {
+          const normalized = parsed.map((it) => {
+            if (it == null || typeof it !== 'object') return it;
+            if ('cantidad' in it) return it;
+            if ('quantity' in it) {
+              const copy = { ...it };
+              copy.cantidad = Number(copy.quantity) || 1;
+              delete copy.quantity;
+              return copy;
+            }
+            return { ...it, cantidad: 1 };
+          });
+          setCarrito(normalized);
+        }
       }
     } catch (e) {
       console.warn('No se pudo leer carrito desde localStorage', e);
@@ -44,11 +57,21 @@ export default function App() {
 
   useEffect(() => {
     try {
-      localStorage.setItem('hj_cart', JSON.stringify(cart));
+      const toStore = carrito.map((it) => {
+        if (it == null || typeof it !== 'object') return it;
+        const copy = { ...it };
+        if ('quantity' in copy && !('cantidad' in copy)) {
+          copy.cantidad = Number(copy.quantity) || 1;
+          delete copy.quantity;
+        }
+        if (!('cantidad' in copy)) copy.cantidad = 1;
+        return copy;
+      });
+      localStorage.setItem('hj_cart', JSON.stringify(toStore));
     } catch (e) {
       console.warn('No se pudo guardar carrito en localStorage', e);
     }
-  }, [cart]);
+  }, [carrito]);
 
   useEffect(() => {
     const path = window.location.pathname;
@@ -67,7 +90,7 @@ export default function App() {
     }
   }, []);
 
-  const navigate = useCallback((next, producto = null) => {
+  const onNavegar = useCallback((next, producto = null) => {
     setPagina(next);
     if (next === 'detalle' && producto) {
       setProductoSeleccionado(producto);
@@ -79,32 +102,35 @@ export default function App() {
     }
   }, []);
 
-  const addToCart = useCallback((producto, quantity = 1) => {
-    console.log('App: addToCart called', { producto, quantity });
-    setCart((prev) => {
+  const agregarAlCarrito = useCallback((producto, cantidad = 1) => {
+    console.log('App: agregarAlCarrito called', { producto, cantidad });
+    setCarrito((prev) => {
       const idx = prev.findIndex((p) => String(p.id) === String(producto.id));
       if (idx >= 0) {
         const copy = [...prev];
-        copy[idx] = { ...copy[idx], quantity: (copy[idx].quantity || 1) + quantity };
+        const existing = copy[idx];
+        const existingCantidad = Number(existing.cantidad || existing.quantity || 1);
+        copy[idx] = { ...existing, cantidad: existingCantidad + Number(cantidad) };
+        delete copy[idx].quantity;
         return copy;
       }
-      return [...prev, { ...producto, quantity }];
+      return [...prev, { ...producto, cantidad: Number(cantidad) }];
     });
   }, []);
 
-  const updateQuantity = useCallback((productId, quantity) => {
-    setCart((prev) => prev.map((p) => (String(p.id) === String(productId) ? { ...p, quantity } : p)));
+  const actualizarCantidad = useCallback((productId, cantidad) => {
+    setCarrito((prev) => prev.map((p) => (String(p.id) === String(productId) ? { ...p, cantidad } : p)));
   }, []);
 
-  const removeFromCart = useCallback((productId) => {
-    setCart((prev) => prev.filter((p) => String(p.id) !== String(productId)));
+  const eliminarDelCarrito = useCallback((productId) => {
+    setCarrito((prev) => prev.filter((p) => String(p.id) !== String(productId)));
   }, []);
 
-  const checkout = useCallback(() => {
-    console.log('Checkout', cart);
-    setCart([]);
+  const finalizarCompra = useCallback(() => {
+    console.log('Finalizar compra', carrito);
+    setCarrito([]);
     alert('Gracias por tu compra (simulada).');
-  }, [cart]);
+  }, [carrito]);
 
   useEffect(() => {
     const handler = () => {
@@ -123,8 +149,8 @@ export default function App() {
     return () => window.removeEventListener('popstate', handler);
   }, []);
 
-  const openCartModal = useCallback(() => setShowCartModal(true), []);
-  const closeCartModal = useCallback(() => setShowCartModal(false), []);
+  const abrirCarritoModal = useCallback(() => setMostrarCarritoModal(true), []);
+  const cerrarCarritoModal = useCallback(() => setMostrarCarritoModal(false), []);
 
   useEffect(() => {
     const onClick = (e) => {
@@ -136,49 +162,49 @@ export default function App() {
       const path = href.replace(window.location.origin, '');
       if (path === '/' || path === '/productos' || path === '/contacto' || path === '/nosotros' || path.startsWith('/productos/')) {
         e.preventDefault();
-        if (path === '/' ) return navigate('home');
-        if (path === '/productos') return navigate('catalog');
-        if (path === '/contacto' || path === '/contact') return navigate('contact');
-        if (path === '/nosotros' || path === '/about') return navigate('about');
+        if (path === '/' ) return onNavegar('home');
+        if (path === '/productos') return onNavegar('catalog');
+        if (path === '/contacto' || path === '/contact') return onNavegar('contact');
+        if (path === '/nosotros' || path === '/about') return onNavegar('about');
         if (path.startsWith('/productos/')) {
           const id = path.split('/')[2];
-          navigate('detalle', { id });
+          onNavegar('detalle', { id });
         }
       }
     };
     document.addEventListener('click', onClick);
     return () => document.removeEventListener('click', onClick);
-  }, [navigate]);
+  }, [onNavegar]);
 
   return (
     <>
-      <Navbar onNavigate={navigate} onOpenCart={openCartModal} cartCount={cart.reduce((s, p) => s + (p.quantity || 1), 0)} />
+  <Navbar onNavegar={onNavegar} onAbrirCarrito={abrirCarritoModal} contadorCarrito={carrito.reduce((s, p) => s + (Number(p.cantidad || p.quantity) || 0), 0)} />
 
-      {pagina === 'home' && <Home onVerProductos={() => navigate('catalog')} />}
+  {pagina === 'home' && <Home onVerProductos={() => onNavegar('catalog')} onSelectProducto={(p) => onNavegar('detalle', p)} />}
 
       {pagina === 'catalog' && (
         <Catalog
-          onBack={() => navigate('home')}
-          onSelectProducto={(p) => navigate('detalle', p)}
-          onAddToCart={(producto, cantidad) => addToCart(producto, cantidad)}
+          onVolver={() => onNavegar('home')}
+          onSelectProducto={(p) => onNavegar('detalle', p)}
+          onAgregarAlCarrito={(producto, cantidad) => agregarAlCarrito(producto, cantidad)}
         />
       )}
 
       {pagina === 'cart' && (
         <Cart
-          cart={cart}
-          onUpdateQuantity={updateQuantity}
-          onRemove={removeFromCart}
-          onCheckout={checkout}
-          onBack={() => navigate('catalog')}
+          carrito={carrito}
+          onActualizarCantidad={actualizarCantidad}
+          onEliminar={eliminarDelCarrito}
+          onFinalizarCompra={finalizarCompra}
+          onVolver={() => onNavegar('catalog')}
         />
       )}
 
       {pagina === 'detalle' && (
         <ProductDetailPage
           producto={productoSeleccionado}
-          onBack={() => navigate('catalog')}
-          onAddToCart={(producto, cantidad) => addToCart(producto, cantidad)}
+          onVolver={() => onNavegar('catalog')}
+          onAgregarAlCarrito={(producto, cantidad) => agregarAlCarrito(producto, cantidad)}
         />
       )}
 
@@ -189,16 +215,16 @@ export default function App() {
         <Contact></Contact>
       )}
 
-      {showCartModal && (
-        <div className="modal-fondo" onClick={closeCartModal}>
+      {mostrarCarritoModal && (
+        <div className="modal-fondo" onClick={cerrarCarritoModal}>
           <div className="modal-contenido show" onClick={(e) => e.stopPropagation()}>
-            <button className="cerrar" onClick={closeCartModal} aria-label="Cerrar modal">×</button>
+            <button className="cerrar" onClick={cerrarCarritoModal} aria-label="Cerrar modal">×</button>
             <Cart
-              cart={cart}
-              onUpdateQuantity={updateQuantity}
-              onRemove={removeFromCart}
-              onCheckout={() => { checkout(); closeCartModal(); }}
-              onBack={closeCartModal}
+              carrito={carrito}
+              onActualizarCantidad={actualizarCantidad}
+              onEliminar={eliminarDelCarrito}
+              onFinalizarCompra={() => { finalizarCompra(); cerrarCarritoModal(); }}
+              onVolver={cerrarCarritoModal}
             />
           </div>
         </div>

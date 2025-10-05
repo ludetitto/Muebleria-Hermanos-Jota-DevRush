@@ -1,9 +1,11 @@
 import '../assets/css/home.css';
 import logo from '../assets/logo.svg';
 import ProductList from '../components/ProductList';
-import products from '../data/products';
+import useProductos from '../hooks/useProductos';
 
-export default function Home({ onVerProductos }) {
+export default function Home({ onVerProductos, onSelectProducto }) {
+  const { productos, loading, error } = useProductos();
+
   return (
     <main>
       {/* Hero principal */}
@@ -24,7 +26,13 @@ export default function Home({ onVerProductos }) {
       <section className="productos-destacados" data-bg="light">
         <h2 className="titulo-principal">NUESTROS DESTACADOS</h2>
         <div className="grid" id="destacados-container">
-          <ProductList productos={products.filter(p => p.destacado)} onSelect={() => { /* handled by Catalog navigation */ }} />
+          {loading ? (
+            <p>Cargando destacados…</p>
+          ) : error ? (
+            <p className="error">Error cargando destacados: {error}</p>
+            ) : (
+            <ProductList productos={productos.filter(p => p.destacado)} onSelect={(p) => onSelectProducto ? onSelectProducto(p) : null} />
+          )}
         </div>
       </section>
 

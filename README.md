@@ -86,53 +86,65 @@ git clone https://github.com/<tu-usuario>/<nombre-del-repo>.git
 Ingresar al directorio del proyecto
 ```
 
-🏗️ Arquitectura del Proyecto
-```plaintext
-📦 muebleria-jota
- ┣ 📂 assets
- ┃ ┣ 📂 productos
- ┃ ┃ ┣ 📜 Aparador-Uspallata.png
- ┃ ┃ ┣ 📜 background.jpg
- ┃ ┃ ┣ 📜 Biblioteca-Recoleta.png
- ┃ ┃ ┣ 📜 Butaca-Mendoza.png
- ┃ ┃ ┣ 📜 Escritorio-Costa.png
- ┃ ┃ ┣ 📜 Mesa-Comedor-Pampa.png
- ┃ ┃ ┣ 📜 Mesa-de-Centro-Araucaria.png
- ┃ ┃ ┣ 📜 Mesa-de-Noche-Aconcagua.png
- ┃ ┃ ┣ 📜 Silla-de-Trabajo-Belgrano.png
- ┃ ┃ ┣ 📜 Sillas-Cordoba.png
- ┃ ┃ ┣ 📜 Sillon-Copacabana.png
- ┃ ┃ ┗ 📜 Sofa-Patagonia.png
- ┃ ┣ 📜 bg.png
- ┃ ┣ 📜 contact-bg.png
- ┃ ┣ 📜 logo_v2.svg
- ┃ ┣ 📜 logo.svg
- ┃ ┗ 📜 Video institucional Hermanos Jota
- ┣ 📂 css
- ┃ ┣ 📜 contacto.css
- ┃ ┣ 📜 footer.css
- ┃ ┣ 📜 header.css
- ┃ ┣ 📜 home.css
- ┃ ┣ 📜 nosotros.css
- ┃ ┣ 📜 producto.css
- ┃ ┣ 📜 productos.css
- ┃ ┗ 📜 styles.css
- ┣ 📂 js
- ┃ ┣ 📜 carrito.js
- ┃ ┣ 📜 data.js
- ┃ ┣ 📜 destacados.js
- ┃ ┣ 📜 producto.js
- ┃ ┗ 📜 productos.js
- ┣ 📂 pages
- ┃ ┣ 📜 contacto.html
- ┃ ┣ 📜 home.html
- ┃ ┣ 📜 nosotros.html
- ┃ ┣ 📜 producto.html
- ┃ ┗ 📜 productos.html
- ┣ 📜 index.html
- ┣ 📜 boceto.pdf
- ┗ 📜 README.md         # Documentación
+### ▶️ Ejecutar localmente
+
+1. Instala dependencias (si no lo hiciste todavía):
+
+```powershell
+# En la raíz del repo (opcional)
+cd "c:\..\Muebleria-Hermanos-Jota-DevRush"
+
+# Backend
+cd backend
+npm install
+
+# Frontend
+cd ..\client
+npm install
 ```
+
+2. Ejecuta backend y frontend en dos terminales separadas:
+
+```powershell
+# Terminal 1: levantar backend (API)
+cd backend
+npm start
+
+# Terminal 2: levantar frontend (React dev server)
+cd client
+npm start
+```
+
+3. Abre la aplicación en el navegador (CRA suele abrir en):
+
+http://localhost:3000
+
+🏗️ Arquitectura del Proyecto
+
+```
+Muebleria-Hermanos-Jota-DevRush/
+├─ backend/                  # Server Express + API
+│  ├─ index.js               # Entrada del servidor
+│  ├─ package.json
+│  └─ src/
+│     ├─ routes/
+│     │  └─ productos.js     # Rutas API para productos
+│     └─ data/
+│        └─ data.js          # Datos de ejemplo usados por la API
+├─ client/                   # Frontend (Create React App)
+│  ├─ package.json
+│  ├─ public/                # Archivos estáticos servidos (favicons, assets, imágenes)
+│  │  └─ assets/
+│  │     └─ productos/       # Imágenes de productos usadas por la SPA
+│  └─ src/                   # Código fuente React
+│     ├─ components/
+│     ├─ pages/
+│     ├─ hooks/
+│     └─ assets/
+├─ assets/                   # Activos compartidos (imágenes, logo, etc.)
+|_ README.md                 # Documentación del proyecto
+```
+
 👥 Integrantes del Grupo  
 De Titto Lucia  
 Duran Lucas  

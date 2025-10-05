@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "../assets/css/producto.css";
 
-export default function ProductDetail({ producto, onClose, onAddToCart }) {
+export default function ProductDetail({ producto, onVolver, onAgregarAlCarrito }) {
   const [cantidad, setCantidad] = useState(1);
 
   if (!producto) return null;
 
   const handleAdd = () => {
     console.log('ProductDetail: handleAdd', { producto, cantidad });
-    if (onAddToCart) onAddToCart(producto, Number(cantidad));
+    if (onAgregarAlCarrito) onAgregarAlCarrito(producto, Number(cantidad));
   };
 
   return (
@@ -66,7 +66,7 @@ export default function ProductDetail({ producto, onClose, onAddToCart }) {
           </div>
         </div>
 
-        <button onClick={onClose} className="btn-secondary">
+        <button onClick={onVolver} className="btn-secondary">
           ⬅ Volver al catálogo
         </button>
       </section>

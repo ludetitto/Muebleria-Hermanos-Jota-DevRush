@@ -137,8 +137,8 @@ function mostrarModalCarrito() {
 
 
 // Inicialización
-document.addEventListener("DOMContentLoaded", () => {
-  actualizarContadorCarrito();
-  const btnCarrito = document.getElementById("btn-ver-carrito");
-  btnCarrito.addEventListener("click", mostrarModalCarrito);
-});
+  document.addEventListener("DOMContentLoaded", () => {
+    actualizarContadorCarrito();
+    const btnCarrito = document.getElementById("btn-ver-carrito");
+    if (btnCarrito) btnCarrito.addEventListener("click", mostrarModalCarrito);
+  });

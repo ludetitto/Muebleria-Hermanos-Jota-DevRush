@@ -2,11 +2,11 @@ import React from "react";
 import Footer from "../components/Footer";
 import ProductDetail from "../components/ProductDetail";
 
-export default function ProductDetailPage({ producto, onBack, onAddToCart }) {
+export default function ProductDetailPage({ producto, onVolver, onAgregarAlCarrito }) {
   return (
     <>
       <main>
-        <ProductDetail producto={producto} onBack={onBack} onAddToCart={onAddToCart} />
+        <ProductDetail producto={producto} onVolver={onVolver} onAgregarAlCarrito={onAgregarAlCarrito} />
       </main>
       <Footer />
     </>
