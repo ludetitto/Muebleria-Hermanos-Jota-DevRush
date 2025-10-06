@@ -1,8 +1,18 @@
-require('dotenv').config();
+require("dotenv").config();
 
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use(
+  cors({
+    origin: "http://localhost:3001", //url de app react
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 app.use(express.json());
 
@@ -17,15 +27,15 @@ const productosRouter = require("./src/routes/productos");
 app.use("/api/productos", productosRouter);
 
 // Servir el build de React
-const fs = require('fs');
-const path = require('path');
-const clientBuildPath = path.join(__dirname, '..', 'client', 'build');
+const fs = require("fs");
+const path = require("path");
+const clientBuildPath = path.join(__dirname, "..", "client", "build");
 if (fs.existsSync(clientBuildPath)) {
   app.use(express.static(clientBuildPath));
   // Manejar rutas de React (SPA)
   app.use((req, res, next) => {
-    if (req.method === 'GET' && req.accepts && req.accepts('html')) {
-      return res.sendFile(path.join(clientBuildPath, 'index.html'));
+    if (req.method === "GET" && req.accepts && req.accepts("html")) {
+      return res.sendFile(path.join(clientBuildPath, "index.html"));
     }
     next();
   });
