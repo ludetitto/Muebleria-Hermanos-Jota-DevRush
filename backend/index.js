@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3000;
+const MongoService = require('./src/services/mongoService');
 
 app.use(
   cors({
@@ -46,8 +47,7 @@ if (fs.existsSync(clientBuildPath)) {
   res.json({ ok: true, msg: "backend arriba" });
 });*/
 
-app.listen(PORT, () => console.log(`Server corriendo en: ${PORT}`));
-
+// Middleware de manejo de errores (después de listen)
 app.use((req, res, next) => {
   res.status(404).json({ ok: false, error: "Ruta no encontrada" });
 });
@@ -55,4 +55,29 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   console.error("Error:", err.stack);
   res.status(500).json({ ok: false, error: "Error interno del servidor" });
+});
+
+// Función para iniciar el servidor con conexión a MongoDB
+async function startServer() {
+  try {
+    await MongoService.connect();
+    app.listen(PORT, () => console.log(`Server corriendo en: ${PORT}`));
+  } catch (error) {
+    console.error('Error starting server:', error);
+    process.exit(1);
+  }
+}
+
+// Iniciar servidor
+startServer();
+
+// Manejar cierre graceful
+process.on('SIGTERM', async () => {
+  await MongoService.disconnect();
+  process.exit(0);
+});
+
+process.on('SIGINT', async () => {
+  await MongoService.disconnect();
+  process.exit(0);
 });
