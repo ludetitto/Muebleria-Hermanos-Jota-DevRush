@@ -9,7 +9,7 @@ export default function useProductos() {
     let montado = true;
   setLoading(true);
 
-  const backendUrl = 'http://localhost:3000/api/productos';
+  const backendUrl = 'http://localhost:3001/api/productos';
     fetch(backendUrl)
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
