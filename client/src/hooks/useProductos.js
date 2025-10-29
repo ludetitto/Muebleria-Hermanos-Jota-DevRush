@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { getProductos } from '../services/productoService';
 
 export default function useProductos() {
   const [productos, setProductos] = useState([]);
@@ -7,23 +8,17 @@ export default function useProductos() {
 
   useEffect(() => {
     let montado = true;
-  setLoading(true);
+    setLoading(true);
 
-  const backendUrl = 'http://localhost:3001/api/productos';
-    fetch(backendUrl)
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.json();
-      })
+    getProductos()
       .then((data) => {
-    if (!montado) return;
-    setProductos(Array.isArray(data) ? data : []);
-    setError(null);
+        if (!montado) return;
+        setProductos(Array.isArray(data) ? data : []);
+        setError(null);
       })
       .catch((err) => {
-  if (!montado) return;
-  console.error('Error al obtener productos (fetch):', err);
-  setError(err.message || 'Error al obtener productos');
+        if (!montado) return;
+        setError(err.message || 'Error al obtener productos');
       })
       .finally(() => {
         if (!montado) return;
