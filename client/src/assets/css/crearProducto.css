@@ -1,0 +1,30 @@
+#crear-producto-page {
+  background: linear-gradient(180deg, #f7f7f7 0%, #e9ecef 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 20px;
+  padding-top: 100px;
+}
+
+.crear-producto-container {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 700px;
+}
+
+.crear-producto-container h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.crear-producto-container p {
+  color: #fff;
+  margin-bottom: 30px;
+}
