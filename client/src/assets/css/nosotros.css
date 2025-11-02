@@ -1,0 +1,21 @@
+.about-us p {
+  color: #333;
+  text-align: justify;
+  margin-bottom: 20px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.about-us p.fade-in {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.about-us p.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+video {
+  max-width: 100%;
+  height: auto;
+}
