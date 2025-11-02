@@ -75,7 +75,10 @@ export default function Navbar({ contadorCarrito = 0, onNavegar, onAbrirCarrito 
                 <a href="/">Inicio</a>
               </li>
               <li>
-                <a href="/productos">Productos</a>
+                <a href="/productos">Catálogo</a>
+              </li>
+              <li>
+                <a href="/admin/crear-producto">Crear Producto</a>
               </li>
               <li>
                 <a href="/nosotros">Nosotros</a>
