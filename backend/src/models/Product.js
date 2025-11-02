@@ -103,5 +103,5 @@ ProductSchema.methods.reducirStock = function(cantidad) {
   throw new Error('Stock insuficiente');
 };
 
-// Exportar el modelo
-module.exports = mongoose.model('Product', ProductSchema, 'Products');
+// Exportar el modelo 
+module.exports = mongoose.model('Product', ProductSchema, 'products');
