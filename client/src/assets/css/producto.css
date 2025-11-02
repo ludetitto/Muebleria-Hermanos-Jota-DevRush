@@ -36,12 +36,13 @@
     color: #555;
   }
 .producto-loaded {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.726);
   margin-top: 8rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  padding: clamp(1rem, 2vw, 2rem);
+  gap: clamp(2rem, 4vw, 6rem);
 }
 
 .producto-info {
