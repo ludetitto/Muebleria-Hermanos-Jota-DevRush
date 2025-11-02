@@ -12,24 +12,18 @@ const imagesMap = (() => {
       const resolved = req(key);
       map[name] = resolved?.default || resolved;
     });
-  } catch (e) {
-  }
+  } catch (e) {}
   return map;
 })();
 
 function traerImagen(imagen) {
   if (!imagen) return fallbackImg;
   if (typeof imagen === "string") {
-    // Si ya es una URL absoluta o empieza con /assets, se deja
     if (/^https?:\/\//.test(imagen) || imagen.startsWith("/assets/")) return imagen;
-
-    // Si viene con /images/.., mapeo al public assets
     if (imagen.startsWith("/images/")) {
       const filename = imagen.split('/').pop();
       return `/assets/productos/${filename}`;
     }
-
-    // Si viene con ../assets/productos/Name.png o sólo filename
     const parts = imagen.split("/");
     const filename = parts[parts.length - 1];
     return imagesMap[filename] || `/assets/productos/${filename}` || fallbackImg;
@@ -44,12 +38,33 @@ export default function ProductCard({ producto = {}, onSelect = null }) {
     : producto?.precio ?? "";
 
   return (
-    <div className="card" role="article">
+    <div className="card" role="article" style={{ position: "relative" }}>
+      {producto.destacado && (
+        <span
+          style={{
+            position: "absolute",
+            top: "10px",
+            right: "10px",
+            backgroundColor: "#a0522d",
+            color: "#fff",
+            padding: "2px 6px",
+            borderRadius: "4px",
+            fontSize: "0.8rem",
+            zIndex: 2,
+          }}
+        >
+          Destacado
+        </span>
+      )}
+
       <img src={img} alt={producto?.nombre ?? "Producto"} />
+
       <div className="card-body">
         <h3>{producto?.nombre ?? "Sin nombre"}</h3>
         <p>{producto?.descripcion ?? "Sin descripción"}</p>
         <p><strong>{priceFormatted}</strong></p>
+        {producto.categoria && <p><strong>Categoría:</strong> {producto.categoria}</p>}
+        {producto.stock !== undefined && <p><strong>Stock:</strong> {producto.stock}</p>}
         <button
           className="btn-secondary"
           onClick={() => onSelect && onSelect(producto)}
@@ -69,6 +84,9 @@ ProductCard.propTypes = {
     descripcion: PropTypes.string,
     precio: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     imagen: PropTypes.string,
+    categoria: PropTypes.string,
+    stock: PropTypes.number,
+    destacado: PropTypes.bool,
   }),
   onSelect: PropTypes.func,
 };

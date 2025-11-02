@@ -5,7 +5,11 @@ export default function ProductList({ productos, onSelect }) {
   return (
     <div className="grid">
       {productos.map((p) => (
-        <ProductCard key={p.id} producto={p} onSelect={onSelect} />
+        <ProductCard
+          key={p.id || p._id} 
+          producto={p}
+          onSelect={onSelect}
+        />
       ))}
     </div>
   );

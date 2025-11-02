@@ -13,7 +13,16 @@ export default function useProductos() {
     getProductos()
       .then((data) => {
         if (!montado) return;
-        setProductos(Array.isArray(data) ? data : []);
+
+        // Convertimos 'destacado' a booleano
+        const productosConDestacado = Array.isArray(data)
+          ? data.map(p => ({
+              ...p,
+              destacado: p.destacado === true || p.destacado === "true",
+            }))
+          : [];
+
+        setProductos(productosConDestacado);
         setError(null);
       })
       .catch((err) => {
