@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -21,23 +20,20 @@ export default function ContactForm() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setEnviado(true);
-    setFormData({ nombre: "", email: "", mensaje: "" }); // limpiar  formulario
-    setTimeout(() => setEnviado(false), 5000); // desaparecer mensaje exitoso
+    setFormData({ nombre: "", email: "", mensaje: "" });
+    setTimeout(() => setEnviado(false), 5000);
   };
 
   return (
     <>
-      <form className="contact-form" onSubmit={handleSubmit}>
-        <div className="form-group">
+      <form className="cf-form" onSubmit={handleSubmit}>
+        <div className="cf-field">
           <label htmlFor="nombre">Nombre *</label>
           <input
             type="text"
@@ -50,7 +46,7 @@ export default function ContactForm() {
           />
         </div>
 
-        <div className="form-group">
+        <div className="cf-field">
           <label htmlFor="email">Email *</label>
           <input
             type="email"
@@ -63,7 +59,7 @@ export default function ContactForm() {
           />
         </div>
 
-        <div className="form-group">
+        <div className="cf-field">
           <label htmlFor="mensaje">Consulta *</label>
           <textarea
             id="mensaje"
@@ -75,12 +71,13 @@ export default function ContactForm() {
           />
         </div>
 
-        <button type="submit" className="submit-btn btn-primary">
+        <button type="submit" className="cf-btn">
           Enviar
         </button>
       </form>
+
       {enviado && (
-        <div ref={mensajeRef} className={`mensaje-envio info-text show`}>
+        <div ref={mensajeRef} className="cf-msg show">
           <p>Formulario enviado correctamente ¡Gracias por contactarnos!</p>
         </div>
       )}
