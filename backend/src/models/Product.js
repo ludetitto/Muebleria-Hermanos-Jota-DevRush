@@ -104,4 +104,4 @@ ProductSchema.methods.reducirStock = function(cantidad) {
 };
 
 // Exportar el modelo
-module.exports = mongoose.model('Product', ProductSchema);
+module.exports = mongoose.model('Product', ProductSchema, 'Products');

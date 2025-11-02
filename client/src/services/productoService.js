@@ -1,5 +1,13 @@
 // Servicio para interactuar con la API de productos
-const API_URL = "http://localhost:5000/api/productos";
+// Detecta automáticamente el entorno
+const getBaseURL = () => {
+  if (process.env.NODE_ENV === 'development' || window.location.hostname === 'localhost') {
+    return 'http://localhost:5000';
+  }
+  return 'https://muebleria-hermanos-jota-devrush.onrender.com';
+};
+
+const API_URL = `${getBaseURL()}/api/productos`;
 
 export async function getProductos() {
 	const res = await fetch(API_URL);
