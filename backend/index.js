@@ -11,32 +11,12 @@ const responseHandler = require('./src/middleware/responseHandler');
 const errorHandler = require('./src/middleware/errorHandler');
 
 // Configuración CORS
-const corsOptions = {
-  origin: function (origin, callback) {
-    // Permitir requests sin origin
-    if (!origin) return callback(null, true);
-    
-    // Lista de orígenes permitidos
-    const allowedOrigins = [
-      'http://localhost:3000',
-      process.env.CLIENT_URL,
-      process.env.CLIENT_URL?.replace(/\/$/, ''), // Sin barra final
-      process.env.CLIENT_URL + '/', // Con barra final
-    ].filter(Boolean);
-    
-    // Verificar si el origen está permitido
-    if (allowedOrigins.some(allowedOrigin => origin.startsWith(allowedOrigin))) {
-      return callback(null, true);
-    }
-    
-    callback(new Error('No permitido por CORS'));
-  },
+app.use(cors({
+  origin: ['http://localhost:3000', 'http://localhost:3001', process.env.CLIENT_URL],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
-};
-
-app.use(cors(corsOptions));
+}));
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
