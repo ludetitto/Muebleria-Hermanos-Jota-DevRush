@@ -19,12 +19,26 @@ Al finalizar, el sistema contará con:
 
 ---
 
+### 🔧 Endpoints Disponibles
+```
+GET    /api/health                    # Estado de la API
+GET    /api/productos                 # Listar productos (con filtros)
+GET    /api/productos/:id             # Obtener producto por ID  
+POST   /api/productos                 # Crear nuevo producto
+PUT    /api/productos/:id             # Actualizar producto
+DELETE /api/productos/:id             # Eliminar producto
+```
+
+---
+
 ## 🛠️ Tecnologías y Herramientas  
 
 - **Frontend**: HTML5, CSS3, JavaScript (ES6+), React, React Router, Context API.  
 - **Backend**: Node.js, Express.js.  
 - **Base de datos**: MongoDB + Mongoose.  
-- **Seguridad**: JSON Web Tokens (JWT), bcrypt.  
+- **API Features**: CRUD completo.
+- **Seguridad**: JSON Web Tokens (JWT), bcrypt, CORS configurado.  
+- **Testing y APIs**: Postman con colecciones automatizadas.  
 - **Colaboración**: Git, GitHub, Slack.  
 - **Testing y APIs**: Postman.  
 - **Editor**: Visual Studio Code.  
@@ -88,17 +102,17 @@ Ingresar al directorio del proyecto
 
 ### ▶️ Ejecutar localmente
 
-1. Instala dependencias (si no lo hiciste todavía):
+#### 1️⃣ Prerrequisitos
+- **Node.js** v16+ y npm
+- **MongoDB** instalado y ejecutándose en puerto 27017
 
+#### 2️⃣ Instalar dependencias
 ```powershell
-# En la raíz del repo (opcional)
-cd "c:\..\Muebleria-Hermanos-Jota-DevRush"
-
 # Backend
 cd backend
 npm install
 
-# Frontend
+# Frontend  
 cd ..\client
 npm install
 ```
@@ -115,9 +129,10 @@ cd client
 npm start
 ```
 
-3. Abre la aplicación en el navegador (CRA suele abrir en):
-
-http://localhost:3000
+#### 6️⃣ Verificar que funciona
+- **API Health Check**: http://localhost:5000/api/health
+- **Frontend React**: http://localhost:3001  
+- **API Productos**: http://localhost:5000/api/productos
 
 Nota importante — por qué "levantar solo el backend" funciona en desarrollo y producción
 ----------------------------------------------------------------------
@@ -140,33 +155,75 @@ npm install      # (si no se hizo antes)
 npm start
 
 # Entonces abre en el navegador (ejemplo):
-http://localhost:3000
+http://localhost:5000
 ```
 
-🏗️ Arquitectura del Proyecto
+## 🧪 Testing de la API con Postman
+
+### Variables de Entorno Sugeridas
+- `baseUrl`: `http://localhost:5000/api`
+- `productId`: ID real de producto para pruebas
+
+### Ejemplos de Consultas Avanzadas
+```bash
+# Productos destacados con paginación
+GET /api/productos?destacado=true&page=1&limit=5
+
+# Filtrar por categoría y rango de precios  
+GET /api/productos?categoria=sillas&minPrecio=1000&maxPrecio=3000
+
+# Búsqueda por texto con ordenamiento
+GET /api/productos?search=mesa&sort=precio&order=asc
+
+# Health check de la API
+GET /api/health
+```
+
+### Colección Postman Básica
+Importa y configura estas requests básicas:
+1. **Health Check** - `GET /api/health`
+2. **Listar Productos** - `GET /api/productos`
+3. **Crear Producto** - `POST /api/productos`
+4. **Obtener por ID** - `GET /api/productos/{{productId}}`
+5. **Actualizar** - `PUT /api/productos/{{productId}}`
+6. **Eliminar** - `DELETE /api/productos/{{productId}}`
+
+> 📖 **Documentación completa de la API**: Ver `/backend/README.md`
+
+## 🏗️ Arquitectura del Proyecto
 
 ```
 Muebleria-Hermanos-Jota-DevRush/
-├─ backend/                  # Server Express + API
-│  ├─ index.js               # Entrada del servidor
+├─ backend/                  # Server Express + API REST robusta
+│  ├─ index.js               # Entrada principal del servidor
+│  ├─ importData.js          # Script para importar datos de ejemplo
 │  ├─ package.json
+│  ├─ README.md              # Documentación completa de la API
 │  └─ src/
 │     ├─ routes/
-│     │  └─ productos.js     # Rutas API para productos
+│     │  └─ productos.js     # Rutas CRUD con filtros y paginación
+│     ├─ models/
+│     │  └─ Product.js       # Modelo Mongoose con validaciones
+│     ├─ services/
+│     │  └─ mongoService.js  # Servicio de conexión a MongoDB
+│     ├─ middleware/
+│     │  ├─ errorHandler.js  # Manejo centralizado de errores
+│     │  └─ responseHandler.js # Respuestas consistentes
 │     └─ data/
-│        └─ data.js          # Datos de ejemplo usados por la API
+│        └─ data.js          # Datos de ejemplo estáticos
 ├─ client/                   # Frontend (Create React App)
 │  ├─ package.json
-│  ├─ public/                # Archivos estáticos servidos (favicons, assets, imágenes)
+│  ├─ public/                # Archivos estáticos servidos
 │  │  └─ assets/
-│  │     └─ productos/       # Imágenes de productos usadas por la SPA
+│  │     └─ productos/       # Imágenes de productos
 │  └─ src/                   # Código fuente React
-│     ├─ components/
-│     ├─ pages/
-│     ├─ hooks/
-│     └─ assets/
-├─ assets/                   # Activos compartidos (imágenes, logo, etc.)
-|_ README.md                 # Documentación del proyecto
+│     ├─ components/         # Componentes reutilizables
+│     ├─ pages/             # Páginas principales
+│     ├─ hooks/             # Custom hooks
+│     ├─ services/          # Servicios para API calls
+│     └─ assets/            # Recursos estáticos
+├─ assets/                   # Activos compartidos del proyecto
+└─ README.md                 # Esta documentación
 ```
 
 👥 Integrantes del Grupo  
