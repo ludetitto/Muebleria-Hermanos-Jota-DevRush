@@ -1,18 +1,16 @@
-
 .product-page-content {
     background-color: #f5e6d3;
     padding: 30px;
     margin: 0;
     width: 100%;
 }
-
 .product-page-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 25px;
     padding-bottom: 15px;
-    border-bottom: 1px solid #c47a6d; /* Línea separadora */
+    border-bottom: 1px solid #c47a6d; 
 }
 
 .page-title {
@@ -48,7 +46,7 @@
     background-color: #c47a6d;
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05); /* Sombra muy sutil */
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
     margin-bottom: 25px; 
     border: 1px solid #f5e6d3; 
 }
@@ -95,7 +93,6 @@
     box-shadow: 0 0 0 3px #773f35;
     outline: none;
 }
-
 .inline-group {
     display: flex;
     gap: 20px;
@@ -105,9 +102,6 @@
     flex-grow: 1;
     flex-basis: 0; 
 }
-
-
-/* Estilos de Radio Button Group (Visibility) */
 .radio-group label {
     display: block;
     font-weight: normal;
@@ -115,8 +109,6 @@
 .radio-group input[type="radio"] {
     margin-right: 8px;
 }
-
-/* Preview de Imagen */
 .image-preview {
     margin: 15px 0;
     padding: 20px;
@@ -139,7 +131,40 @@
     font-size: 0.9rem;
     margin-top: 10px;
 }
-
+.swal2-popup {
+    background-color: #f5e6d3 !important; 
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    color: #333; 
+}
+.swal2-popup .swal2-confirm {
+    background-color: #87a96b !important; 
+    color: white !important;
+    font-weight: bold;
+}
+.swal2-popup .swal2-confirm:focus,
+.swal2-popup .swal2-confirm:hover {
+    background-color: #729457 !important; 
+}
+.swal2-popup .swal2-cancel {
+    background-color: #a0522d !important; 
+    color: white !important;
+}
+.swal2-icon.swal2-success {
+    border-color: #87a96b !important; 
+    color: #87a96b !important; 
+}
+.swal2-icon.swal2-success .swal2-success-ring {
+    border-color: #87a96b !important;
+}
+.swal2-icon.swal2-error {
+    border-color: #c47a6d !important; 
+    color: #c47a6d !important; 
+}
+.swal2-icon.swal2-warning {
+    border-color: #d4a437 !important; 
+    color: #d4a437 !important; 
+}
 
 @media (max-width: 900px) {
     .form-columns-container {

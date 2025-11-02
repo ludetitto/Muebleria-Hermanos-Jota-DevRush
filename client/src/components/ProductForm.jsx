@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2"; 
 import "../assets/css/productForm.css"; 
 
 const ProductForm = ({ onSubmit }) => {
@@ -18,7 +19,7 @@ const ProductForm = ({ onSubmit }) => {
 
     // (Clave/Valor)
     const [detallesList, setDetallesList] = useState([
-        { id: Date.now(), key: '', value: '' } // campo vacío
+        { id: Date.now(), key: '', value: '' }
     ]); 
 
     const [isSubmitting, setIsSubmitting] = useState(false); 
@@ -30,8 +31,6 @@ const ProductForm = ({ onSubmit }) => {
             [name]: type === "checkbox" ? checked : value,
         });
     };
-
-    // FUNCIONES para manejar los DETALLES DINÁMICOS
     const handleDetallesChange = (id, field, value) => {
         setDetallesList(detallesList.map(item => 
             item.id === id ? { ...item, [field]: value } : item
@@ -57,7 +56,20 @@ const ProductForm = ({ onSubmit }) => {
         if (isSubmitting) return; 
         setIsSubmitting(true); 
 
-        //  ENSAMBLAR EL OBJETO DETALLES
+        if (!formData.nombre.trim() || !formData.precio || !formData.stock) {
+            Swal.fire({
+                title: "Advertencia",
+                text: "Debes completar el Nombre, Precio y Stock para guardar el producto.",
+                icon: "warning",
+                confirmButtonColor: "#f39c12",
+                background: "#fffde7" 
+            });
+            setIsSubmitting(false);
+            return;
+        }
+
+
+        //  ENSAMBLAR EL OBJETO DETALLES
         let detallesObjeto = {};
         detallesList.forEach(item => {
             const trimmedKey = item.key.trim();
@@ -78,7 +90,7 @@ const ProductForm = ({ onSubmit }) => {
             }
         });
 
-        //  Preparar el objeto de datos final 
+        //  Preparar el objeto de datos final 
         const productoData = {
             nombre: formData.nombre,
             descripcion: formData.descripcion,
@@ -92,7 +104,7 @@ const ProductForm = ({ onSubmit }) => {
         };
 
         try {
-            //  petición POST
+            //  petición POST
             const response = await fetch('/api/productos', { 
                 method: 'POST',
                 headers: {
@@ -106,22 +118,41 @@ const ProductForm = ({ onSubmit }) => {
                 throw new Error(errorData.error || errorData.message || 'Fallo en la creación del producto.');
             }
 
-            //  Mostrar mensaje y Redirigir
             const newProduct = await response.json();
-            alert(" Producto creado exitosamente!");
-            
-            // Redirige usando el ID del nuevo producto
-            if (newProduct._id) {
-                navigate(`/catalogo/${newProduct._id}`); 
-            } else {
-                navigate('/catalogo');
-            }
+            //  Mensaje de éxito 
+            await Swal.fire({
+                title: "¡Guardado!",
+                text: `El producto '${formData.nombre}' ha sido creado con éxito.`,
+                icon: "success",
+                confirmButtonColor: "#27ae60",
+                confirmButtonText: "Ir al Producto",
+                showCancelButton: true,
+                cancelButtonText: "Cerrar",
+                background: "#e8f8f5"
+            }).then((result) => {
+                if (result.isConfirmed && newProduct._id) {
+                    navigate(`/catalogo/${newProduct._id}`); 
+                } else if (!result.isConfirmed) {
+                    setFormData({
+                        nombre: "", descripcion: "", precio: "", stock: "", 
+                        imagen: "", categoria: "", destacado: false,
+                    });
+                    setDetallesList([{ id: Date.now(), key: '', value: '' }]);
+                }
+            });
             
             if (onSubmit) onSubmit(productoData); 
 
         } catch (error) {
             console.error("Error al enviar el formulario:", error);
-            alert(` Error al guardar el producto: ${error.message}`);
+            
+            Swal.fire({
+                title: "Error de Guardado",
+                html: `No se pudo crear el producto. <br> **Detalle:** ${error.message}`,
+                icon: "error",
+                confirmButtonColor: "#e74c3c",
+                background: "#fef0ef"
+            });
         } finally {
             setIsSubmitting(false); 
         }
@@ -204,13 +235,14 @@ const ProductForm = ({ onSubmit }) => {
                                     value={formData.stock}
                                     onChange={handleChange}
                                     min="0"
+                                    required
                                 />
                             </div>
                         </div>
 
                     </div>
                     
-                    {/* TARJETA 2: Detalles Dinámicos */}
+                    {/*Detalles Dinámicos */}
                     <div className="form-card">
                         <h3 className="card-title">Detalles Técnicos y Características</h3>
 
@@ -234,7 +266,7 @@ const ProductForm = ({ onSubmit }) => {
                                         onChange={(e) => handleDetallesChange(detalle.id, 'value', e.target.value)}
                                     />
                                 </div>
-                                {/* Botón Eliminar (Visible solo si hay más de un campo) */}
+                                {/* Botón Eliminar  */}
                                 {detallesList.length > 1 && (
                                     <button 
                                         type="button" 
@@ -254,7 +286,7 @@ const ProductForm = ({ onSubmit }) => {
                     </div>
                 </div>
 
-                {/* COLUMNA DERECHA: Visibilidad e Imagen */}
+                {/*Visibilidad e Imagen */}
                 <div className="column-right">
                     
                     {/* Configuración y Categoría */}

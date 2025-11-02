@@ -4,7 +4,7 @@ import Home from "../pages/Home";
 import Catalog from "../pages/Catalog";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import Contact from "../pages/Contact";
-// import CrearProducto from "../pages/CrearProducto"; // Descomenta cuando tengas el componente
+import CrearProducto from "../pages/CrearProducto";
 
 const AppRoutes = () => (
   <Routes>
@@ -12,7 +12,7 @@ const AppRoutes = () => (
     <Route path="/productos" element={<Catalog />} />
     <Route path="/productos/:id" element={<ProductDetailPage />} />
     <Route path="/contacto" element={<Contact />} />
-    {/* <Route path="/admin/crear-producto" element={<CrearProducto />} /> */}
+    <Route path="/admin/crear-producto" element={<CrearProducto />} /> 
   </Routes>
 );
 
