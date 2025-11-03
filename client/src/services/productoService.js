@@ -1,5 +1,5 @@
 // Servicio para interactuar con la API de productos
-const API_URL = "http://localhost:5000/api/productos";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api/productos";
 
 export async function getProductos() {
 	const res = await fetch(API_URL);
