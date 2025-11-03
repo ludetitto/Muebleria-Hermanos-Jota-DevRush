@@ -182,6 +182,12 @@ export default function ProductDetail({ producto, onVolver /*, onAgregarAlCarrit
           <button onClick={handleEliminar} className="btn-eliminar">
             <FaTrashAlt /> Eliminar
           </button>
+          <button
+  className="btn-secondary"
+  onClick={() => navigate(`/productos/editar/${producto._id || producto.id}`)}
+>
+  Editar
+</button>
         </div>
       </section>
     </main>

@@ -7,16 +7,20 @@ import Contact from "../pages/Contact";
 import CrearProducto from "../pages/CrearProducto";
 import About from "../pages/About";
 
+import EditarProducto from "../components/EditarProducto"; 
+
+
 const AppRoutes = () => (
-  <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/productos" element={<Catalog />} />
-    <Route path="/productos/:id" element={<ProductDetailPage />} />
-    <Route path="/contacto" element={<Contact />} />
-    <Route path="/admin/crear-producto" element={<CrearProducto />} /> 
-    <Route path="/nosotros" element={<About />} />
-  </Routes>
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/productos" element={<Catalog />} />
+    <Route path="/productos/editar/:id" element={<EditarProducto />} /> 
+    <Route path="/productos/:id" element={<ProductDetailPage />} />
+    <Route path="/contacto" element={<Contact />} />
+    <Route path="/admin/crear-producto" element={<CrearProducto />} /> 
+    <Route path="/nosotros" element={<About />} />
+
+  </Routes>
 );
 
 export default AppRoutes;
-
