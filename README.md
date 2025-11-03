@@ -117,6 +117,16 @@ cd ..\client
 npm install
 ```
 
+#### 3️⃣ Configurar variables de entorno (opcional para desarrollo)
+```powershell
+# En el directorio client, copia el archivo de ejemplo
+cd client
+cp .env.example .env
+
+# Edita .env si necesitas cambiar la URL del backend
+# Por defecto usa http://localhost:5000/api/productos
+```
+
 2. Ejecuta backend y frontend en dos terminales separadas:
 
 ```powershell
@@ -157,6 +167,30 @@ npm start
 # Entonces abre en el navegador (ejemplo):
 http://localhost:5000
 ```
+
+---
+
+## 🌐 Despliegue en Producción
+
+### Configuración de Variables de Entorno
+
+Para que la aplicación funcione correctamente en producción (ej: Netlify, Vercel), es necesario configurar la variable de entorno que apunta al backend:
+
+**En Netlify:**
+1. Ve a Site Settings > Build & Deploy > Environment
+2. Agrega la variable:
+   - **Key**: `REACT_APP_API_URL`
+   - **Value**: URL completa del backend en producción (ej: `https://tu-backend.render.com/api/productos`)
+
+**En Vercel:**
+1. Ve a Project Settings > Environment Variables
+2. Agrega la variable:
+   - **Name**: `REACT_APP_API_URL`
+   - **Value**: URL completa del backend en producción
+
+**Importante**: Sin esta variable configurada, las peticiones API fallarán en producción porque intentarán usar `localhost:5000`.
+
+---
 
 ## 🧪 Testing de la API con Postman
 
