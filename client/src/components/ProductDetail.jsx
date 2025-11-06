@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { FaTrashAlt, /* FaShoppingCart, */ FaArrowLeft } from "react-icons/fa"; // Carrito comentado
 import { useNavigate } from "react-router-dom";
+import { eliminarProducto } from "../services/productoService";
 import "../assets/css/producto.css";
 
 const PALETA_COLORES = {
@@ -13,7 +14,10 @@ const PALETA_COLORES = {
   texto: "#333",
 };
 
-export default function ProductDetail({ producto, onVolver /*, onAgregarAlCarrito */ }) { 
+export default function ProductDetail({
+  producto,
+  onVolver /*, onAgregarAlCarrito */,
+}) {
   const [cantidad, setCantidad] = useState(1);
   const navigate = useNavigate();
 
@@ -60,11 +64,7 @@ export default function ProductDetail({ producto, onVolver /*, onAgregarAlCarrit
           return;
         }
 
-        const response = await fetch(`http://localhost:5000/api/productos/${idAEliminar}`, {
-          method: "DELETE",
-        });
-
-        if (!response.ok) throw new Error("No se pudo eliminar el producto.");
+        await eliminarProducto(idAEliminar);
 
         await Swal.fire({
           title: "Producto eliminado",
@@ -76,7 +76,7 @@ export default function ProductDetail({ producto, onVolver /*, onAgregarAlCarrit
           iconColor: PALETA_COLORES.acentoSecundario,
         });
 
-        onVolver ? onVolver() : navigate("/catalogo");
+        onVolver ? onVolver() : navigate("/productos");
       } catch (error) {
         Swal.fire({
           title: "Error",
@@ -93,7 +93,10 @@ export default function ProductDetail({ producto, onVolver /*, onAgregarAlCarrit
 
   const priceFormatted =
     typeof producto?.precio === "number"
-      ? new Intl.NumberFormat("es-AR", { style: "currency", currency: "ARS" }).format(producto.precio)
+      ? new Intl.NumberFormat("es-AR", {
+          style: "currency",
+          currency: "ARS",
+        }).format(producto.precio)
       : producto?.precio ?? "";
 
   return (
@@ -183,11 +186,13 @@ export default function ProductDetail({ producto, onVolver /*, onAgregarAlCarrit
             <FaTrashAlt /> Eliminar
           </button>
           <button
-  className="btn-secondary"
-  onClick={() => navigate(`/productos/editar/${producto._id || producto.id}`)}
->
-  Editar
-</button>
+            className="btn-secondary"
+            onClick={() =>
+              navigate(`/productos/editar/${producto._id || producto.id}`)
+            }
+          >
+            Editar
+          </button>
         </div>
       </section>
     </main>
