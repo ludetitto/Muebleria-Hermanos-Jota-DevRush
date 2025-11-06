@@ -10,14 +10,13 @@ const MongoService = require('./src/services/mongoService');
 const responseHandler = require('./src/middleware/responseHandler');
 const errorHandler = require('./src/middleware/errorHandler');
 
-app.use(
-  cors({
-    origin: process.env.CLIENT_URL || "http://localhost:3000",
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+// Configuración CORS
+app.use(cors({
+  origin: ['http://localhost:3000', 'http://localhost:3001', process.env.CLIENT_URL],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
@@ -48,6 +47,21 @@ app.use((req, res, next) => {
 //Rutas de la API
 const productosRouter = require("./src/routes/productos");
 app.use("/api/productos", productosRouter);
+
+// Endpoint de debug temporal para verificar colecciones
+app.get("/api/debug/collections", async (req, res) => {
+  try {
+    const mongoose = require('mongoose');
+    const collections = await mongoose.connection.db.listCollections().toArray();
+    res.json({
+      database: mongoose.connection.name,
+      collections: collections.map(c => c.name),
+      connectionState: mongoose.connection.readyState
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {
