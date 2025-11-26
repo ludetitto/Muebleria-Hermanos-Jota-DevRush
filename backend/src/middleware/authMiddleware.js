@@ -1,7 +1,7 @@
 // backend/src/middleware/authMiddleware.js
-import jwt from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 
-export const verifyToken = (req, res, next) => {
+module.exports = (req, res, next) => {
     const token = req.headers["authorization"];
 
     if (!token) {
@@ -9,8 +9,7 @@ export const verifyToken = (req, res, next) => {
     }
 
     try {
-        // El token viene como: "Bearer asdasdasd123123"
-        const tokenPart = token.split(" ")[1];
+        const tokenPart = token.split(" ")[1]; // Bearer xyz
         const decoded = jwt.verify(tokenPart, process.env.JWT_SECRET);
         req.user = decoded;
         next();
