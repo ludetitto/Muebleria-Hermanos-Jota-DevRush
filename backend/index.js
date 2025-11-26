@@ -48,6 +48,10 @@ app.use((req, res, next) => {
 const productosRouter = require("./src/routes/productos");
 app.use("/api/productos", productosRouter);
 
+const authRouter = require("./src/routes/auth");
+app.use("/api/auth", authRouter);
+
+
 // Endpoint de debug temporal para verificar colecciones
 app.get("/api/debug/collections", async (req, res) => {
   try {
