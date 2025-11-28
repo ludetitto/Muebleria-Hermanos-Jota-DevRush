@@ -1,23 +1,19 @@
-import { getBaseURL } from "../utils/getBaseUrl.js";
-
-// Servicio para interactuar con la API de productos
-
-const API_URL = `${getBaseURL()}/api/productos`;
+import API_ENDPOINTS from "../config/api";
 
 export async function getProductos() {
-  const res = await fetch(API_URL);
+  const res = await fetch(API_ENDPOINTS.PRODUCTOS.BASE);
   if (!res.ok) throw new Error("Error al obtener productos");
   return await res.json();
 }
 
 export async function getProductoById(id) {
-  const res = await fetch(`${API_URL}/${id}`);
+  const res = await fetch(API_ENDPOINTS.PRODUCTOS.BY_ID(id));
   if (!res.ok) throw new Error("Producto no encontrado");
   return await res.json();
 }
 
 export async function crearProducto(producto) {
-  const res = await fetch(API_URL, {
+  const res = await fetch(API_ENDPOINTS.PRODUCTOS.BASE, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(producto),
@@ -27,7 +23,7 @@ export async function crearProducto(producto) {
 }
 
 export async function actualizarProducto(id, producto) {
-  const res = await fetch(`${API_URL}/${id}`, {
+  const res = await fetch(API_ENDPOINTS.PRODUCTOS.BY_ID(id), {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(producto),
@@ -37,7 +33,7 @@ export async function actualizarProducto(id, producto) {
 }
 
 export async function eliminarProducto(id) {
-  const res = await fetch(`${API_URL}/${id}`, {
+  const res = await fetch(API_ENDPOINTS.PRODUCTOS.BY_ID(id), {
     method: "DELETE",
   });
   if (!res.ok) throw new Error("Error al eliminar producto");

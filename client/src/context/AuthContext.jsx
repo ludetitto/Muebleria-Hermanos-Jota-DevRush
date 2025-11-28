@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
+import API_ENDPOINTS from "../config/api";
 
 const AuthContext = createContext();
 
@@ -23,15 +24,12 @@ export const AuthProvider = ({ children }) => {
 
         if (savedToken) {
           // Verificar si el token sigue siendo valido
-          const response = await fetch(
-            "http://localhost:5000/api/auth/verify-token",
-            {
-              method: "POST",
-              headers: {
-                Authorization: `Bearer ${savedToken}`,
-              },
-            }
-          );
+          const response = await fetch(API_ENDPOINTS.AUTH.VERIFY_TOKEN, {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${savedToken}`,
+            },
+          });
 
           if (response.ok) {
             const data = await response.json();
@@ -57,7 +55,7 @@ export const AuthProvider = ({ children }) => {
   // Login
   const login = async (email, password) => {
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch(API_ENDPOINTS.AUTH.LOGIN, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -85,7 +83,7 @@ export const AuthProvider = ({ children }) => {
   // Registro
   const register = async (nombre, email, password) => {
     try {
-      const response = await fetch("http://localhost:5000/api/auth/register", {
+      const response = await fetch(API_ENDPOINTS.AUTH.REGISTER, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
