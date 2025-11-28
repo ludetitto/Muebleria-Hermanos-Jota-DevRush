@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const Order = require("../models/Order");
-const auth = require("../middleware/authMiddleware");
+const { verifyJWT } = require("../middleware/authMiddleware");
 
 // Crear un pedido
-router.post("/", auth, async (req, res) => {
+router.post("/", verifyJWT, async (req, res) => {
   try {
     const { items, total } = req.body;
 
@@ -25,9 +25,11 @@ router.post("/", auth, async (req, res) => {
 });
 
 // Obtener todos los pedidos del usuario logueado
-router.get("/", auth, async (req, res) => {
+router.get("/", verifyJWT, async (req, res) => {
   try {
-    const orders = await Order.find({ user: req.user.id }).sort({ createdAt: -1 });
+    const orders = await Order.find({ user: req.user.id }).sort({
+      createdAt: -1,
+    });
     res.success(orders);
   } catch (error) {
     res.error(error.message);

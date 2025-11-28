@@ -1,0 +1,190 @@
+@import "./variables.css";
+
+/* Contenedor del dropdown */
+.user-dropdown-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Botón icono de usuario */
+.user-icon-button {
+  background: rgba(212, 164, 55, 0.1);
+  border-radius: 12px;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+}
+
+.user-icon-button:hover {
+  background: var(--detalles-color);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 164, 55, 0.3);
+}
+
+.user-icon-button svg {
+  width: 28px;
+  height: 28px;
+  fill: var(--detalles-color);
+  transition: fill 0.3s ease;
+}
+
+.user-icon-button:hover svg {
+  fill: #ffffff;
+}
+
+/* Menú desplegable */
+.user-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  min-width: 240px;
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: dropdownFadeIn 0.2s ease forwards;
+  overflow: hidden;
+}
+
+@keyframes dropdownFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header del dropdown (usuario autenticado) */
+.dropdown-header {
+  padding: 1rem;
+  background: linear-gradient(
+    135deg,
+    var(--detalles-color),
+    var(--acentos-suaves-color)
+  );
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.user-greeting {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.user-email {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Items del menú */
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  color: var(--color-texto);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+}
+
+.dropdown-item:hover {
+  background: rgba(212, 164, 55, 0.1);
+  color: var(--detalles-color);
+}
+
+.dropdown-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* Item de cerrar sesión */
+.logout-item {
+  color: #d32f2f;
+}
+
+.logout-item:hover {
+  background: rgba(211, 47, 47, 0.1);
+  color: #d32f2f;
+}
+
+/* Divisor */
+.dropdown-divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+  margin: 0;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .user-icon-button {
+    padding: 0.6rem;
+  }
+
+  .user-icon-button svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .user-dropdown-menu {
+    min-width: 220px;
+    right: -1rem;
+  }
+
+  .dropdown-header {
+    padding: 0.875rem;
+  }
+
+  .user-greeting {
+    font-size: 0.95rem;
+  }
+
+  .user-email {
+    font-size: 0.8rem;
+  }
+
+  .dropdown-item {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .dropdown-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-icon-button {
+    padding: 0.5rem;
+  }
+
+  .user-icon-button svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .user-dropdown-menu {
+    min-width: 200px;
+  }
+}

@@ -56,6 +56,7 @@ userSchema.methods.comparePassword = async function (candidatePassword) {
   }
 };
 
+// Retornar datos de usuario sin password
 userSchema.methods.toPublicJSON = function () {
   return {
     id: this._id,

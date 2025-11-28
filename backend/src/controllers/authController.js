@@ -112,6 +112,7 @@ exports.login = async (req, res) => {
   }
 };
 
+//Datos de usuario autenticado
 exports.getAuthUser = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
@@ -135,5 +136,3 @@ exports.getAuthUser = async (req, res) => {
     });
   }
 };
-
-
