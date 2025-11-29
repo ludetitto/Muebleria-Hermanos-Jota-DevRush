@@ -1,5 +1,5 @@
 // Servicio para interactuar con la API de productos
-// Detecta automáticamente el entorno (actualizado)
+// Detecta automáticamente el entorno
 const getBaseURL = () => {
   // Si estás en localhost (desarrollo local) usar backend local
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {

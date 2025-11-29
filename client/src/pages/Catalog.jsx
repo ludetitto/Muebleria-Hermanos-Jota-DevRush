@@ -13,7 +13,7 @@ export default function Catalog({
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState(null);
 
-  const { productos, loading, error } = useProductos();
+  const { productos, loading, error, reload } = useProductos();
 
   const productosFiltrados = useMemo(() => {
     return productos.filter((p) =>
@@ -56,7 +56,11 @@ export default function Catalog({
         // Vista detalle
         <ProductDetail
           producto={selected}
-          onVolver={() => setSelected(null)} // vuelve al catálogo
+          onVolver={() => {
+            setSelected(null);
+            // recargar catálogo al volver
+            reload();
+          }} // vuelve al catálogo
           onAgregarAlCarrito={onAgregarAlCarrito}
         />
       )}

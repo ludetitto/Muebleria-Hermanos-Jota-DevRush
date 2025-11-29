@@ -6,38 +6,40 @@ export default function useProductos() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const loadProductos = async () => {
+    setLoading(true);
+    try {
+      const data = await getProductos();
+
+      const productosConDestacado = Array.isArray(data)
+        ? data.map((p) => ({
+            ...p,
+            destacado: p.destacado === true || p.destacado === "true",
+          }))
+        : [];
+
+      setProductos(productosConDestacado);
+      setError(null);
+    } catch (err) {
+      setError(err.message || "Error al obtener productos");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     let montado = true;
-    setLoading(true);
-
-    getProductos()
-      .then((data) => {
-        if (!montado) return;
-
-        // Convertimos 'destacado' a booleano
-        const productosConDestacado = Array.isArray(data)
-          ? data.map(p => ({
-              ...p,
-              destacado: p.destacado === true || p.destacado === "true",
-            }))
-          : [];
-
-        setProductos(productosConDestacado);
-        setError(null);
-      })
-      .catch((err) => {
-        if (!montado) return;
-        setError(err.message || 'Error al obtener productos');
-      })
-      .finally(() => {
-        if (!montado) return;
-        setLoading(false);
-      });
+    // Carga inicial
+    if (montado) loadProductos();
 
     return () => {
       montado = false;
     };
   }, []);
 
-  return { productos, loading, error };
+  const reload = () => {
+    return loadProductos();
+  };
+
+  return { productos, loading, error, reload };
 }
