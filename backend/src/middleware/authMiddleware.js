@@ -1,20 +1,88 @@
-// backend/src/middleware/authMiddleware.js
 const jwt = require("jsonwebtoken");
+const User = require("../models/User");
 
-module.exports = (req, res, next) => {
-    const token = req.headers["authorization"];
+const verifyJWT = async (req, res, next) => {
+  try {
+    const authHeader = req.headers.authorization;
 
-    if (!token) {
-        return res.status(401).json({ message: "Acceso denegado. No se proporcionó token." });
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({
+        ok: false,
+        error: "No se proporciono token de autenticación",
+      });
     }
+    const token = authHeader.split("")[1]; //Bearer
 
+    //Decodificar token
+    let decoded;
     try {
-        const tokenPart = token.split(" ")[1]; // Bearer xyz
-        const decoded = jwt.verify(tokenPart, process.env.JWT_SECRET);
-        req.user = decoded;
-        next();
+      decoded = jwt.verify(token, process.env.JWT_SECRET);
     } catch (error) {
-        console.error("Error al verificar token:", error);
-        return res.status(403).json({ message: "Token inválido" });
+      if (error.name === "TokenExpiredError") {
+        return res.status(401).json({
+          ok: false,
+          error: "Token expirado. Por favor inicie sesion nuevamente",
+        });
+      }
+      if (error.name === "JsonWebTokenError") {
+        return res.status(401).json({
+          ok: false,
+          error: "Token invalido",
+        });
+      }
+      throw error;
     }
+
+    //Verificar que el usuario todaia existe
+    const user = await User.findById(decoded);
+    if (!user) {
+      return res.status(401).json({
+        ok: false,
+        error: "Usuario no encontrado",
+      });
+    }
+
+    req.user = {
+      id: user._id,
+      nombre: user.nombre,
+      email: user.email,
+    };
+
+    next();
+  } catch (error) {
+    console.error("Error en middleware de autenticacion:", error);
+    return res.status(500).json({
+      ok: false,
+      error: "Error al verificar autenticacion",
+    });
+  }
 };
+
+//Opcional para rutas que no requieren autenticacion
+const optionalAuth = async (req, res, next) => {
+  try {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return next();
+    }
+
+    const token = authHeader.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.userId);
+
+    if (user) {
+      req.user = {
+        id: user._id,
+        nombre: user.nombre,
+        email: user.email,
+      };
+    }
+
+    next();
+  } catch (error) {
+    next();
+  }
+};
+
+module.exports = { verifyJWT, optionalAuth };
