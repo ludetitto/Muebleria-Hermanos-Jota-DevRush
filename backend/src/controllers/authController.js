@@ -3,7 +3,14 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 
 const generateToken = (userId) => {
-  return jwt.sign({ userId }, process.env.JWT_SECRET, {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error(
+      "JWT secret no está definido en las variables de entorno."
+    );
+  }
+
+  return jwt.sign({ userId }, secret, {
     expiresIn: process.env.JWT_EXPIRES_IN || "7d",
   });
 };

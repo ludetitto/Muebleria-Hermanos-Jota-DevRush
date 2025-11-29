@@ -12,6 +12,7 @@ import CartPage from "../pages/CartPage";
 import ProtectedRoute from "../components/ProtectedRoute";
 import EditarProducto from "../components/EditarProducto";
 import CrearProducto from "../pages/CrearProducto";
+import AdminRoute from "../components/AdminRoute";
 
 const AppRoutes = () => (
   <Routes>
@@ -23,7 +24,7 @@ const AppRoutes = () => (
     <Route path="/contacto" element={<Contact />} />
     <Route path="/login" element={<Login />} />
     <Route path="/registro" element={<Register />} />
-    <Route path="/admin/crear-producto" element={<CrearProducto />} />
+    <Route path="/admin/crear-producto" element={<AdminRoute><CrearProducto /></AdminRoute>} />
 
     {/* Rutas protegidas */}
     <Route

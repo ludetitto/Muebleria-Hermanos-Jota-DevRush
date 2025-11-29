@@ -4,6 +4,8 @@ import { FaTrashAlt, /* FaShoppingCart, */ FaArrowLeft } from "react-icons/fa"; 
 import { useNavigate } from "react-router-dom";
 import { eliminarProducto } from "../services/productoService";
 import "../assets/css/producto.css";
+import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/CartContext";
 
 const PALETA_COLORES = {
   primario: "#a0522d",
@@ -31,6 +33,34 @@ export default function ProductDetail({
   /* const handleAdd = () => {
     if (onAgregarAlCarrito) onAgregarAlCarrito(producto, Number(cantidad));
   }; */
+
+  const { user } = useAuth();
+  const { agregarAlCarrito } = useCart();
+
+  const handleAgregar = () => {
+    try {
+      agregarAlCarrito(producto, Number(cantidad || 1));
+
+      Swal.fire({
+        title: "Agregado al carrito",
+        text: `"${producto.nombre}" fue añadido al carrito.`,
+        icon: "success",
+        background: PALETA_COLORES.fondoPrincipal,
+        color: PALETA_COLORES.texto,
+        confirmButtonColor: PALETA_COLORES.primario,
+      });
+    } catch (error) {
+      console.error("Error agregando al carrito:", error);
+      Swal.fire({
+        title: "Error",
+        text: "No se pudo agregar el producto al carrito.",
+        icon: "error",
+        background: PALETA_COLORES.fondoPrincipal,
+        color: PALETA_COLORES.texto,
+        confirmButtonColor: PALETA_COLORES.primario,
+      });
+    }
+  };
 
   const handleEliminar = async () => {
     const idAEliminar = producto._id || producto.id;
@@ -161,38 +191,42 @@ export default function ProductDetail({
           </div>
         )}
 
-        {/*
         <div className="cantidad-container">
           <label htmlFor="cantidad">Cantidad:</label>
           <input
             id="cantidad"
             type="number"
             min="1"
-            max="10"
+            max="100"
             value={cantidad}
             onChange={(e) => setCantidad(e.target.value)}
           />
-          <button className="btn-agregar" onClick={handleAdd}>
-            <FaShoppingCart /> Añadir al carrito
-          </button>
         </div>
-        */}
 
         <div className="acciones-producto">
           <button onClick={onVolver} className="btn-secondary">
             <FaArrowLeft /> Volver al catálogo
           </button>
-          <button onClick={handleEliminar} className="btn-eliminar">
-            <FaTrashAlt /> Eliminar
-          </button>
-          <button
-            className="btn-secondary"
-            onClick={() =>
-              navigate(`/productos/editar/${producto._id || producto.id}`)
-            }
-          >
-            Editar
-          </button>
+
+          {user && user.role === "admin" ? (
+            <>
+              <button onClick={handleEliminar} className="btn-eliminar">
+                <FaTrashAlt /> Eliminar
+              </button>
+              <button
+                className="btn-secondary"
+                onClick={() =>
+                  navigate(`/productos/editar/${producto._id || producto.id}`)
+                }
+              >
+                Editar
+              </button>
+            </>
+          ) : (
+            <button className="btn-agregar" onClick={handleAgregar}>
+              {/* <FaShoppingCart /> */} Añadir al carrito
+            </button>
+          )}
         </div>
       </section>
     </main>

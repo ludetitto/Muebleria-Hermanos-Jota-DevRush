@@ -15,7 +15,7 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
     try {
-      const savedCart = localStorage.getItem("hj_cart");
+      const savedCart = localStorage.getItem("cart");
       if (savedCart) {
         const parsed = JSON.parse(savedCart);
         if (Array.isArray(parsed)) {
@@ -29,7 +29,7 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
     try {
-      localStorage.setItem("hj_cart", JSON.stringify(carrito));
+      localStorage.setItem("cart", JSON.stringify(carrito));
     } catch (error) {
       console.error("Error al guardar carrito:", error);
     }

@@ -11,7 +11,8 @@ const verifyJWT = async (req, res, next) => {
         error: "No se proporciono token de autenticación",
       });
     }
-    const token = authHeader.split("")[1]; //Bearer
+
+    const token = authHeader.split(" ")[1]; // 'Bearer <token>'
 
     //Decodificar token
     let decoded;
@@ -33,19 +34,22 @@ const verifyJWT = async (req, res, next) => {
       throw error;
     }
 
-    //Verificar que el usuario todaia existe
-    const user = await User.findById(decoded);
+    // Verificar que el usuario todavia existe. El token guarda { userId }
+    const userId = decoded?.userId || decoded?.id || decoded?.user || null;
+    if (!userId) {
+      return res.status(401).json({ ok: false, error: "Token sin userId" });
+    }
+
+    const user = await User.findById(userId);
     if (!user) {
-      return res.status(401).json({
-        ok: false,
-        error: "Usuario no encontrado",
-      });
+      return res.status(401).json({ ok: false, error: "Usuario no encontrado" });
     }
 
     req.user = {
       id: user._id,
       nombre: user.nombre,
       email: user.email,
+      role: user.role,
     };
 
     next();

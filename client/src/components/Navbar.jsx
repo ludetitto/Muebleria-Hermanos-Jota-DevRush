@@ -124,9 +124,11 @@ export default function Navbar() {
               </li>
               {isAuthenticated && (
                 <>
-                  <li>
-                    <Link to="/admin/crear-producto">Crear Producto</Link>
-                  </li>
+                  {user && user.role === "admin" && (
+                    <li>
+                      <Link to="/admin/crear-producto">Crear Producto</Link>
+                    </li>
+                  )}
                   <li className="responsive-link">
                     <Link to="/perfil">Mi perfil</Link>
                   </li>
