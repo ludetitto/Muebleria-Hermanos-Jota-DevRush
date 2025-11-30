@@ -24,6 +24,11 @@ const userSchema = new mongoose.Schema(
       minlength: [6, "La contraseña debe tener al menos 6 caracteres"],
       select: false,
     },
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user",
+    },
     createdAt: {
       type: Date,
       default: Date.now,
@@ -61,6 +66,7 @@ userSchema.methods.toPublicJSON = function () {
   return {
     id: this._id,
     nombre: this.nombre,
+    role: this.role,
     email: this.email,
     createdAt: this.createdAt,
   };
