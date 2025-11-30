@@ -96,7 +96,7 @@
   text-decoration: none;
   text-align: center;
   transition: background-color 0.2s ease;
-    display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -108,18 +108,7 @@
 
 /* INPUT DE BÚSQUEDA */
 #searchInput {
-  width: 100%;
-  max-width: 400px;
-  padding: 0.8rem;
-  margin: 1rem auto 2rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  transition: border-color 0.2s ease;
-}
-
-#searchInput:focus {
-  border-color: var(--acento-principal-color);
-  outline: none;
+  background-color: var(--fondo-principal-color);
 }
 
 /* RESPONSIVE */

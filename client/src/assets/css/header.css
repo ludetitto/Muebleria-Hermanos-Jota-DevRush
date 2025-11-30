@@ -9,6 +9,7 @@ header {
   width: 100%;
   z-index: 1000;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.192);
   backdrop-filter: blur(10px);
 }
 
@@ -135,6 +136,10 @@ header.on-light-section .nav-links li a {
 
 header.on-light-section .nav-links li a:hover {
   color: var(--detalles-color);
+}
+
+header.on-light-section {
+  background-color: #f5e6d3a4;
 }
 
 @keyframes pulse {
