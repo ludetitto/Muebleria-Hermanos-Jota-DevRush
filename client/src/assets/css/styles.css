@@ -107,8 +107,6 @@ figcaption {
   background-color: #c94343;
 }
 
-.btn
-
 .btn-primary:hover,
 .btn-secondary:hover {
   transform: translateY(-3px);
@@ -250,18 +248,20 @@ textarea {
 
 .form-group input,
 .form-group textarea {
+  background-color: transparent;
   width: 100%;
   padding: 15px;
-  border: 2px solid #e9ecef;
+  border: 2px solid #a0512d21;
   border-radius: 8px;
   transition: all 0.3s ease;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #c47a6d;
-  box-shadow: 0 0 0 3px #c47a6d3d;
+  border-color: var(--detalles-color);
   transform: translateY(-2px);
 }
 

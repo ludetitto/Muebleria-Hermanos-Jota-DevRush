@@ -1,130 +1,94 @@
-
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import "../assets/css/productForm.css";
+import "../assets/css/crearProducto.css";
 
-const ProductForm = ({ onSubmit }) => {
-  const navigate = useNavigate();
-
+export default function ProductForm({ onSubmit, onCancel }) {
   const [formData, setFormData] = useState({
     nombre: "",
     descripcion: "",
     precio: "",
-    stock: "",
     imagen: "",
     categoria: "",
+    stock: "",
     destacado: false,
+    detalles: {
+      dimensiones: "",
+      materiales: "",
+      peso: "",
+      garantia: "",
+    },
   });
 
-  const [detallesList, setDetallesList] = useState([{ id: Date.now(), key: "", value: "" }]);
+  const [mensaje, setMensaje] = useState({ tipo: "", texto: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
 
-  const handleDetallesChange = (id, field, value) => {
-    setDetallesList(
-      detallesList.map((item) =>
-        item.id === id ? { ...item, [field]: value } : item
-      )
-    );
-  };
-
-  const handleAddDetalle = () => {
-    setDetallesList([...detallesList, { id: Date.now(), key: "", value: "" }]);
-  };
-
-  const handleRemoveDetalle = (id) => {
-    setDetallesList(detallesList.filter((item) => item.id !== id));
+    if (name.startsWith("detalles.")) {
+      const detalleKey = name.split(".")[1];
+      setFormData({
+        ...formData,
+        detalles: {
+          ...formData.detalles,
+          [detalleKey]: value,
+        },
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: type === "checkbox" ? checked : value,
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isSubmitting) return;
     setIsSubmitting(true);
-
-    if (!formData.nombre.trim() || formData.precio === "" || isNaN(Number(formData.precio))) {
-      Swal.fire({
-        title: "Advertencia",
-        text: "Debe completar el Nombre y un Precio válido.",
-        icon: "warning",
-        confirmButtonColor: "#f39c12",
-        background: "#fffde7",
-      });
-      setIsSubmitting(false);
-      return;
-    }
-
-    // Convertir lista de detalles a objeto
-    const detallesObjeto = {};
-    detallesList.forEach((item) => {
-      const key = item.key.trim();
-      let value = item.value.trim();
-      if (!key) return;
-
-      if (!isNaN(parseFloat(value)) && value !== "") value = Number(value);
-      else if (value.toLowerCase() === "true") value = true;
-      else if (value.toLowerCase() === "false") value = false;
-
-      detallesObjeto[key] = value;
-    });
-
-    const productoData = {
-      nombre: formData.nombre.trim(),
-      descripcion: formData.descripcion.trim(),
-      precio: parseFloat(formData.precio),
-      stock: parseInt(formData.stock, 10) || 0,
-      imagen: formData.imagen.trim(),
-      categoria: formData.categoria.trim(),
-      destacado: formData.destacado,
-      detalles: detallesObjeto,
-    };
+    setMensaje({ tipo: "", texto: "" });
 
     try {
-      const response = await fetch("/api/productos", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(productoData),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || "Fallo en la creación del producto.");
+      if (!formData.nombre.trim()) {
+        throw new Error("El nombre del producto es obligatorio");
+      }
+      if (!formData.precio || formData.precio <= 0) {
+        throw new Error("El precio debe ser mayor a 0");
       }
 
-      const newProduct = await response.json();
+      const productoData = {
+        ...formData,
+        precio: parseFloat(formData.precio),
+        stock: parseInt(formData.stock) || 0,
+      };
 
-      // Mostrar alerta de éxito
-      Swal.fire({
-        title: "¡Guardado!",
-        text: `El producto '${productoData.nombre}' ha sido creado con éxito.`,
-        icon: "success",
-        confirmButtonColor: "#27ae60",
-        background: "#e8f8f5",
+      await onSubmit(productoData);
+
+      setMensaje({
+        tipo: "exito",
+        texto: "¡Producto creado exitosamente!",
       });
 
-      // Redirigir automáticamente al detalle del producto
-      if (newProduct._id) {
-        navigate(`/catalogo/${newProduct._id}`);
-      } else {
-        navigate("/productos");
-      }
-
-      if (onSubmit) onSubmit(productoData);
+      setTimeout(() => {
+        setFormData({
+          nombre: "",
+          descripcion: "",
+          precio: "",
+          imagen: "",
+          categoria: "",
+          stock: "",
+          destacado: false,
+          detalles: {
+            dimensiones: "",
+            materiales: "",
+            peso: "",
+            garantia: "",
+          },
+        });
+        setMensaje({ tipo: "", texto: "" });
+      }, 2000);
     } catch (error) {
-      console.error("Error al enviar el formulario:", error);
-      Swal.fire({
-        title: "Error de Guardado",
-        html: `No se pudo crear el producto.<br><b>Detalle:</b> ${error.message}`,
-        icon: "error",
-        confirmButtonColor: "#e74c3c",
-        background: "#fef0ef",
+      setMensaje({
+        tipo: "error",
+        texto: error.message || "Error al crear el producto",
       });
     } finally {
       setIsSubmitting(false);
@@ -132,163 +96,204 @@ const ProductForm = ({ onSubmit }) => {
   };
 
   return (
-    <form className="product-page-content" onSubmit={handleSubmit}>
-      <div className="product-page-header">
-        <h1 className="page-title">Nuevo Producto</h1>
-        <div className="header-actions">
-          <button type="submit" className="btn-primary" disabled={isSubmitting}>
-            {isSubmitting ? "Guardando..." : "Guardar producto"}
+    <form className="product-form" onSubmit={handleSubmit}>
+      <h2>Nuevo Producto</h2>
+
+      <div className="form-group">
+        <label htmlFor="nombre">
+          Nombre del Producto <span className="required-indicator">*</span>
+        </label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          required
+          placeholder="Ej: Silla Escandinava"
+          value={formData.nombre}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="descripcion">
+          Descripción <span className="required-indicator">*</span>
+        </label>
+        <textarea
+          id="descripcion"
+          name="descripcion"
+          required
+          placeholder="Describe el producto, sus características principales..."
+          value={formData.descripcion}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="precio">
+          Precio (ARS) <span className="required-indicator">*</span>
+        </label>
+        <input
+          type="number"
+          id="precio"
+          name="precio"
+          required
+          min="0"
+          step="0.01"
+          placeholder="Ej: 15000.00"
+          value={formData.precio}
+          onChange={handleChange}
+        />
+        <p className="form-help-text">Ingrese el precio sin puntos ni comas</p>
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="imagen">URL de la Imagen</label>
+        <input
+          type="url"
+          id="imagen"
+          name="imagen"
+          placeholder="https://ejemplo.com/imagen.jpg o /assets/productos/imagen.jpg"
+          value={formData.imagen}
+          onChange={handleChange}
+        />
+        <p className="form-help-text">
+          URL completa o ruta relativa a /assets/productos/
+        </p>
+        {formData.imagen && (
+          <div className="image-preview">
+            <img
+              src={formData.imagen}
+              alt="Vista previa"
+              onError={(e) => {
+                e.target.style.display = "none";
+              }}
+            />
+            <p>Vista previa de la imagen</p>
+          </div>
+        )}
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="categoria">Categoría</label>
+        <select
+          id="categoria"
+          name="categoria"
+          value={formData.categoria}
+          onChange={handleChange}
+        >
+          <option value="">Seleccione una categoría</option>
+          <option value="sillas">Sillas</option>
+          <option value="mesas">Mesas</option>
+          <option value="sofas">Sofás</option>
+          <option value="camas">Camas</option>
+          <option value="almacenamiento">Almacenamiento</option>
+          <option value="decoracion">Decoración</option>
+        </select>
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="stock">Stock Disponible</label>
+        <input
+          type="number"
+          id="stock"
+          name="stock"
+          min="0"
+          placeholder="Ej: 10"
+          value={formData.stock}
+          onChange={handleChange}
+        />
+        <p className="form-help-text">
+          Cantidad disponible en inventario (opcional)
+        </p>
+      </div>
+
+      <div className="form-group-checkbox">
+        <input
+          type="checkbox"
+          id="destacado"
+          name="destacado"
+          checked={formData.destacado}
+          onChange={handleChange}
+        />
+        <label htmlFor="destacado">Marcar como producto destacado</label>
+      </div>
+
+      <div className="detalles-section">
+        <h3>Detalles del Producto</h3>
+
+        <div className="form-group">
+          <label htmlFor="detalles.dimensiones">Dimensiones</label>
+          <input
+            type="text"
+            id="detalles.dimensiones"
+            name="detalles.dimensiones"
+            placeholder="Ej: 80cm x 45cm x 90cm (ancho x prof x alto)"
+            value={formData.detalles.dimensiones}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="detalles.materiales">Materiales</label>
+          <input
+            type="text"
+            id="detalles.materiales"
+            name="detalles.materiales"
+            placeholder="Ej: Madera de roble, Acero inoxidable, Tela"
+            value={formData.detalles.materiales}
+            onChange={handleChange}
+          />
+          <p className="form-help-text">
+            Separe múltiples materiales con comas
+          </p>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="detalles.peso">Peso</label>
+          <input
+            type="text"
+            id="detalles.peso"
+            name="detalles.peso"
+            placeholder="Ej: 8.5 kg"
+            value={formData.detalles.peso}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="detalles.garantia">Garantía</label>
+          <input
+            type="text"
+            id="detalles.garantia"
+            name="detalles.garantia"
+            placeholder="Ej: 2 años"
+            value={formData.detalles.garantia}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+
+      <div className="product-form-buttons">
+        <button type="submit" className="btn-primary" disabled={isSubmitting}>
+          {isSubmitting ? "Creando..." : "Crear Producto"}
+        </button>
+        {onCancel && (
+          <button
+            type="button"
+            className="btn-primary btn-danger"
+            onClick={onCancel}
+            disabled={isSubmitting}
+          >
+            Cancelar
           </button>
-        </div>
+        )}
       </div>
 
-      <div className="form-columns-container">
-        <div className="column-left">
-          <div className="form-card">
-            <h3 className="card-title">Información Principal</h3>
-            <div className="form-group">
-              <label htmlFor="nombre">Nombre del producto*</label>
-              <input
-                type="text"
-                id="nombre"
-                name="nombre"
-                value={formData.nombre}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="descripcion">Descripción</label>
-              <textarea
-                id="descripcion"
-                name="descripcion"
-                value={formData.descripcion}
-                onChange={handleChange}
-                maxLength="1000"
-              />
-            </div>
-            <div className="inline-group">
-              <div className="form-group">
-                <label htmlFor="precio">Precio*</label>
-                <input
-                  type="number"
-                  id="precio"
-                  name="precio"
-                  value={formData.precio}
-                  onChange={handleChange}
-                  min="0"
-                  step="0.01"
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="stock">Stock*</label>
-                <input
-                  type="number"
-                  id="stock"
-                  name="stock"
-                  value={formData.stock}
-                  onChange={handleChange}
-                  min="0"
-                  required
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="form-card">
-            <h3 className="card-title">Detalles Técnicos y Características</h3>
-            {detallesList.map((detalle) => (
-              <div key={detalle.id} className="inline-group detail-item">
-                <div className="form-group detail-key">
-                  <input
-                    type="text"
-                    placeholder="Característica"
-                    value={detalle.key}
-                    onChange={(e) => handleDetallesChange(detalle.id, "key", e.target.value)}
-                  />
-                </div>
-                <div className="form-group detail-value">
-                  <input
-                    type="text"
-                    placeholder="Valor"
-                    value={detalle.value}
-                    onChange={(e) => handleDetallesChange(detalle.id, "value", e.target.value)}
-                  />
-                </div>
-                {detallesList.length > 1 && (
-                  <button
-                    type="button"
-                    className="btn-remove"
-                    onClick={() => handleRemoveDetalle(detalle.id)}
-                  >
-                    🗑️
-                  </button>
-                )}
-              </div>
-            ))}
-            <button
-              type="button"
-              className="btn-secondary add-detail-btn"
-              onClick={handleAddDetalle}
-            >
-              + Añadir Característica
-            </button>
-          </div>
+      {mensaje.texto && (
+        <div className={`mensaje-feedback ${mensaje.tipo}`}>
+          {mensaje.texto}
         </div>
-
-        <div className="column-right">
-          <div className="form-card">
-            <h3 className="card-title">Categoría y Visibilidad</h3>
-            <div className="form-group">
-              <label htmlFor="categoria">Categoría</label>
-              <input
-                type="text"
-                id="categoria"
-                name="categoria"
-                value={formData.categoria}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-group checkbox-group">
-              <label className="checkbox-label">
-                Producto destacado
-                <input
-                  type="checkbox"
-                  name="destacado"
-                  checked={formData.destacado}
-                  onChange={handleChange}
-                />
-                <span className="custom-checkbox"></span>
-              </label>
-            </div>
-          </div>
-
-          <div className="form-card">
-            <h3 className="card-title">Imagen del Producto</h3>
-            <div className="form-group">
-              <label htmlFor="imagen">URL de la Imagen</label>
-              <input
-                type="text"
-                id="imagen"
-                name="imagen"
-                value={formData.imagen}
-                onChange={handleChange}
-                placeholder="https:// o /uploads/img.jpg"
-              />
-            </div>
-            {formData.imagen ? (
-              <div className="image-preview">
-                <img src={formData.imagen} alt="Vista previa" />
-              </div>
-            ) : (
-              <p className="upload-tip">Vista previa imagen</p>
-            )}
-          </div>
-        </div>
-      </div>
+      )}
     </form>
   );
-};
-
-export default ProductForm;
+}
