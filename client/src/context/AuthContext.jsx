@@ -27,6 +27,7 @@ export const AuthProvider = ({ children }) => {
           const response = await fetch(API_ENDPOINTS.AUTH.VERIFY_TOKEN, {
             method: "POST",
             headers: {
+              "Content-Type": "application/json",
               Authorization: `Bearer ${savedToken}`,
             },
           });
@@ -35,27 +36,25 @@ export const AuthProvider = ({ children }) => {
             const data = await response.json();
             setToken(savedToken);
             setUser(data.user);
-            try {
-              sessionStorage.setItem("user", JSON.stringify(data.user));
-            } catch (err) {
-              console.warn("No se pudo guardar user en sessionStorage", err);
-            }
             setIsAuthenticated(true);
           } else {
             // Token inválido o expirado
-            sessionStorage.removeItem("auth_token");
-            sessionStorage.removeItem("user");
+            localStorage.removeItem("auth_token");
+            localStorage.removeItem("user");
+            setToken(null);
+            setUser(null);
+            setIsAuthenticated(false);
           }
+        } else {
+          setIsAuthenticated(false);
         }
       } catch (error) {
         console.error("Error al verificar token:", error);
-        sessionStorage.removeItem("auth_token");
-        try {
-          localStorage.removeItem("auth_token");
-          localStorage.removeItem("user");
-        } catch (e) {
-          /* ignore */
-        }
+        localStorage.removeItem("auth_token");
+        localStorage.removeItem("user");
+        setToken(null);
+        setUser(null);
+        setIsAuthenticated(false);
       } finally {
         setLoading(false);
       }
@@ -81,20 +80,11 @@ export const AuthProvider = ({ children }) => {
         throw new Error(data.error || "Error al iniciar sesión");
       }
 
-      sessionStorage.setItem("auth_token", data.token);
+      localStorage.setItem("auth_token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
       setToken(data.token);
       setUser(data.user);
-      try {
-        sessionStorage.setItem("user", JSON.stringify(data.user));
-      } catch (err) {
-        console.warn("No se pudo guardar user en sessionStorage", err);
-      }
-      try {
-        localStorage.removeItem("auth_token");
-        localStorage.removeItem("user");
-      } catch (e) {
-        /* ignore */
-      }
       setIsAuthenticated(true);
 
       return { success: true };
@@ -115,26 +105,16 @@ export const AuthProvider = ({ children }) => {
       });
 
       const data = await response.json();
-      console.log(data);
 
       if (!response.ok) {
         throw new Error(data.error || "Error al registrarse");
       }
 
-      sessionStorage.setItem("auth_token", data.token);
+      localStorage.setItem("auth_token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
       setToken(data.token);
       setUser(data.user);
-      try {
-        sessionStorage.setItem("user", JSON.stringify(data.user));
-      } catch (err) {
-        console.warn("No se pudo guardar user en sessionStorage", err);
-      }
-      try {
-        localStorage.removeItem("auth_token");
-        localStorage.removeItem("user");
-      } catch (e) {
-        /* ignore */
-      }
       setIsAuthenticated(true);
 
       return { success: true };
@@ -145,20 +125,11 @@ export const AuthProvider = ({ children }) => {
 
   // Logout
   const logout = () => {
-    sessionStorage.removeItem("auth_token");
+    localStorage.removeItem("auth_token");
+    localStorage.removeItem("user");
     setToken(null);
     setUser(null);
     setIsAuthenticated(false);
-    try {
-      sessionStorage.removeItem("user");
-    } catch (err) {
-    }
-    try {
-      localStorage.removeItem("auth_token");
-      localStorage.removeItem("user");
-    } catch (e) {
-      /* ignore */
-    }
   };
 
   const getAuthHeaders = () => {
