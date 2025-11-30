@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require('mongoose');
 const router = express.Router();
 const Product = require("../models/Product"); // importacion del modelo Mongoose
+const { verifyJWT } = require("../middleware/authMiddleware");
 
 // GET todos los productos
 router.get("/", async (req, res) => {
@@ -36,8 +37,11 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // POST crear producto
-router.post("/", async (req, res, next) => {
+router.post("/", verifyJWT, async (req, res, next) => {
   try {
+    if (req.user?.role !== 'admin') {
+      return res.status(403).json({ ok: false, error: 'Acción no autorizada' });
+    }
     // Validaciones básicas antes de crear
     const { nombre, precio } = req.body;
     
@@ -59,8 +63,11 @@ router.post("/", async (req, res, next) => {
 });
 
 // PUT actualizar producto
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", verifyJWT, async (req, res, next) => {
   try {
+    if (req.user?.role !== 'admin') {
+      return res.status(403).json({ ok: false, error: 'Acción no autorizada' });
+    }
     const { id } = req.params;
     
     // Validar formato de ObjectId
@@ -94,8 +101,11 @@ router.put("/:id", async (req, res, next) => {
 });
 
 // DELETE eliminar producto
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", verifyJWT, async (req, res, next) => {
   try {
+    if (req.user?.role !== 'admin') {
+      return res.status(403).json({ ok: false, error: 'Acción no autorizada' });
+    }
     const { id } = req.params;
     
     // Validar formato de ObjectId
