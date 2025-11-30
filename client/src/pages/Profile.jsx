@@ -2,16 +2,31 @@ import React from "react";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 import Banner from "../components/Banner";
+import ConfirmModal from "../components/ConfirmModal";
+import useConfirmModal from "../hooks/useConfirmModal";
 import "../assets/css/profile.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const { user, logout } = useAuth();
   const { carrito, contadorCarrito } = useCart();
+  const { isOpen, modalConfig, openModal, closeModal, handleConfirm } =
+    useConfirmModal();
+
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    if (window.confirm("¿Estás seguro que deseas cerrar sesión?")) {
-      logout();
-    }
+    openModal({
+      title: "Cerrar Sesión",
+      message: "¿Estás seguro que deseas cerrar sesión?",
+      confirmText: "Sí, cerrar sesión",
+      cancelText: "Cancelar",
+      danger: true,
+      onConfirm: () => {
+        logout();
+        navigate("/");
+      },
+    });
   };
 
   return (
@@ -64,6 +79,17 @@ export default function Profile() {
             Cerrar Sesión
           </button>
         </section>
+
+        <ConfirmModal
+          isOpen={isOpen}
+          onClose={closeModal}
+          onConfirm={handleConfirm}
+          title={modalConfig.title}
+          message={modalConfig.message}
+          confirmText={modalConfig.confirmText}
+          cancelText={modalConfig.cancelText}
+          danger={modalConfig.danger}
+        />
       </main>
     </>
   );
