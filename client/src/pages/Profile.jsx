@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const { user, logout } = useAuth();
-  const { carrito, contadorCarrito } = useCart();
+  const { contadorCarrito } = useCart();
   const { isOpen, modalConfig, openModal, closeModal, handleConfirm } =
     useConfirmModal();
 

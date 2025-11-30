@@ -11,7 +11,7 @@ import logo from "../assets/logo.svg";
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [lightSection, setLightSection] = useState(false);
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, user } = useAuth();
   const headerRef = useRef(null);
   const {
     isOpen: isModalOpen,
@@ -130,7 +130,7 @@ export default function Navbar() {
                   Contacto
                 </Link>
               </li>
-              {isAuthenticated && (
+              {isAuthenticated && user && user.role === "admin" && (
                 <li>
                   <Link to="/admin/crear-producto">Crear Producto</Link>
                 </li>
@@ -154,11 +154,6 @@ export default function Navbar() {
               </li>
               {isAuthenticated && (
                 <>
-                  {user && user.role === "admin" && (
-                    <li>
-                      <Link to="/admin/crear-producto">Crear Producto</Link>
-                    </li>
-                  )}
                   <li className="responsive-link">
                     <Link to="/perfil">Mi perfil</Link>
                   </li>
