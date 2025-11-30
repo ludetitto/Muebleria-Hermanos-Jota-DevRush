@@ -103,6 +103,12 @@ figcaption {
   cursor: pointer;
 }
 
+.btn-danger {
+  background-color: #c94343;
+}
+
+.btn
+
 .btn-primary:hover,
 .btn-secondary:hover {
   transform: translateY(-3px);

@@ -3,14 +3,23 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 import Dropdown from "./Dropdown";
+import ConfirmModal from "./ConfirmModal";
+import useConfirmModal from "../hooks/useConfirmModal";
 import "../assets/css/header.css";
 import logo from "../assets/logo.svg";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [lightSection, setLightSection] = useState(false);
-  const { isAuthenticated, user, logout } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const headerRef = useRef(null);
+  const {
+    isOpen: isModalOpen,
+    modalConfig,
+    openModal,
+    closeModal,
+    handleConfirm,
+  } = useConfirmModal();
   const navigate = useNavigate();
 
   const { contadorCarrito } = useCart();
@@ -59,10 +68,19 @@ export default function Navbar() {
   };
 
   const handleLogout = () => {
-    if (window.confirm("¿Estás seguro que deseas cerrar sesión?")) {
-      logout();
-      navigate("/");
-    }
+    // Abrir modal de confirmación
+    openModal({
+      title: "Cerrar Sesión",
+      message: "¿Estás seguro que deseas cerrar sesión?",
+      confirmText: "Sí, cerrar sesión",
+      cancelText: "Cancelar",
+      danger: true,
+      onConfirm: () => {
+        logout();
+        navigate("/");
+        closeMenu();
+      },
+    });
   };
 
   return (
@@ -112,6 +130,18 @@ export default function Navbar() {
                   Contacto
                 </Link>
               </li>
+              {isAuthenticated && (
+                <li>
+                  <Link to="/admin/crear-producto">Crear Producto</Link>
+                </li>
+              )}
+              {isAuthenticated && (
+                <li>
+                  <Link to="/perfil" className="responsive-link">
+                    Mi perfil
+                  </Link>
+                </li>
+              )}
               <li className="responsive-link">
                 <Link to="/login" onClick={closeMenu}>
                   Login
@@ -124,12 +154,6 @@ export default function Navbar() {
               </li>
               {isAuthenticated && (
                 <>
-                  <li>
-                    <Link to="/admin/crear-producto">Crear Producto</Link>
-                  </li>
-                  <li className="responsive-link">
-                    <Link to="/perfil">Mi perfil</Link>
-                  </li>
                   <li className="responsive-link">
                     <Link onClick={handleLogout}>Cerrar sesión</Link>
                   </li>
@@ -174,6 +198,17 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+      
+      <ConfirmModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onConfirm={handleConfirm}
+        title={modalConfig.title}
+        message={modalConfig.message}
+        confirmText={modalConfig.confirmText}
+        cancelText={modalConfig.cancelText}
+        danger={modalConfig.danger}
+      />
     </header>
   );
 }

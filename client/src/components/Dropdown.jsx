@@ -1,15 +1,24 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import ConfirmModal from "./ConfirmModal";
+import useConfirmModal from "../hooks/useConfirmModal";
 import "../assets/css/userDropdown.css";
 
-//Dropdown de usuario para header
 export default function Dropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
   const { isAuthenticated, user, logout } = useAuth();
   const navigate = useNavigate();
+  const {
+    isOpen: isModalOpen,
+    modalConfig,
+    openModal,
+    closeModal,
+    handleConfirm,
+  } = useConfirmModal();
 
+  // Cerrar dropdown al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -31,11 +40,19 @@ export default function Dropdown() {
   };
 
   const handleLogout = () => {
-    if (window.confirm("¿Estás seguro que deseas cerrar sesión?")) {
-      logout();
-      navigate("/");
-      setIsOpen(false);
-    }
+    // Abrir modal de confirmación
+    openModal({
+      title: "Cerrar Sesión",
+      message: "¿Estás seguro que deseas cerrar sesión?",
+      confirmText: "Sí, cerrar sesión",
+      cancelText: "Cancelar",
+      danger: true,
+      onConfirm: () => {
+        logout();
+        navigate("/");
+        setIsOpen(false);
+      },
+    });
   };
 
   const closeDropdown = () => {
@@ -51,6 +68,7 @@ export default function Dropdown() {
         aria-label="Menú de usuario"
         aria-expanded={isOpen}
       >
+        {/* Icono de usuario */}
         <svg
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -65,10 +83,12 @@ export default function Dropdown() {
         </svg>
       </button>
 
+      {/* Dropdown menu */}
       {isOpen && (
         <div className={`user-dropdown-menu ${isOpen ? "show" : ""}`}>
           {isAuthenticated ? (
             <>
+              {/* Usuario autenticado */}
               <div className="dropdown-header">
                 <span className="user-greeting">
                   Hola, {user?.nombre || "Usuario"}
@@ -114,6 +134,7 @@ export default function Dropdown() {
             </>
           ) : (
             <>
+              {/* Usuario NO autenticado */}
               <Link
                 to="/login"
                 className="dropdown-item"
@@ -153,6 +174,18 @@ export default function Dropdown() {
           )}
         </div>
       )}
+
+      {/* Modal de confirmación */}
+      <ConfirmModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onConfirm={handleConfirm}
+        title={modalConfig.title}
+        message={modalConfig.message}
+        confirmText={modalConfig.confirmText}
+        cancelText={modalConfig.cancelText}
+        danger={modalConfig.danger}
+      />
     </div>
   );
 }
