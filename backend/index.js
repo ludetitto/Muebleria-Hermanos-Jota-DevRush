@@ -68,6 +68,10 @@ app.use("/api/auth", authRouter);
 const productosRouter = require("./src/routes/productos");
 app.use("/api/productos", productosRouter);
 
+//Rutas de carrito
+const cartRouter = require("./src/routes/carrito");
+app.use("/api/carrito", cartRouter);
+
 // NUEVA RUTA DE ÓRDENES
 const ordersRouter = require("./src/routes/orders");
 app.use("/api/orders", ordersRouter);

@@ -37,6 +37,15 @@ export const API_ENDPOINTS = {
     BASE: `${API_URL}/api/pedidos`,
     BY_ID: (id) => `${API_URL}/api/pedidos/${id}`,
   },
+
+  CART: {
+    BASE: `${API_URL}/api/carrito`,
+    ADD: `${API_URL}/api/carrito/add`,
+    UPDATE: (productId) => `${API_URL}/api/carrito/update/${productId}`,
+    REMOVE: (productId) => `${API_URL}/api/carrito/remove/${productId}`,
+    CLEAR: `${API_URL}/api/carrito/clear`,
+    SYNC: `${API_URL}/api/carrito/sync`,
+  },
 };
 
 // Helper para logging (solo en desarrollo)
