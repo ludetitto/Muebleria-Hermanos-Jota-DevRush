@@ -29,6 +29,29 @@ const userSchema = new mongoose.Schema(
       enum: ["user", "admin"],
       default: "user",
     },
+    cart: [
+      {
+        productId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Product",
+          required: true,
+        },
+        nombre: { type: String, required: true },
+        precio: { type: Number, required: true },
+        imagen: { type: String },
+        descripcion: { type: String },
+        cantidad: {
+          type: Number,
+          required: true,
+          min: [1, "La cantidad mínima es 1"],
+          default: 1,
+        },
+        addedAt: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
     createdAt: {
       type: Date,
       default: Date.now,
@@ -61,7 +84,62 @@ userSchema.methods.comparePassword = async function (candidatePassword) {
   }
 };
 
-// Retornar datos de usuario sin password
+// Métodos del carrito
+userSchema.methods.addToCart = function (productData) {
+  const existingItemIndex = this.cart.findIndex(
+    (item) => item.productId.toString() === productData.productId.toString()
+  );
+
+  if (existingItemIndex >= 0) {
+    this.cart[existingItemIndex].cantidad += productData.cantidad || 1;
+  } else {
+    this.cart.push({
+      productId: productData.productId,
+      nombre: productData.nombre,
+      precio: productData.precio,
+      imagen: productData.imagen,
+      descripcion: productData.descripcion,
+      cantidad: productData.cantidad || 1,
+    });
+  }
+
+  return this.save();
+};
+
+userSchema.methods.updateCartItemQuantity = function (productId, cantidad) {
+  const itemIndex = this.cart.findIndex(
+    (item) => item.productId.toString() === productId.toString()
+  );
+
+  if (itemIndex >= 0) {
+    if (cantidad <= 0) {
+      this.cart.splice(itemIndex, 1);
+    } else {
+      this.cart[itemIndex].cantidad = cantidad;
+    }
+  }
+
+  return this.save();
+};
+
+userSchema.methods.removeFromCart = function (productId) {
+  this.cart = this.cart.filter(
+    (item) => item.productId.toString() !== productId.toString()
+  );
+  return this.save();
+};
+
+userSchema.methods.clearCart = function () {
+  this.cart = [];
+  return this.save();
+};
+
+userSchema.methods.getCartTotal = function () {
+  return this.cart.reduce((total, item) => {
+    return total + item.precio * item.cantidad;
+  }, 0);
+};
+
 userSchema.methods.toPublicJSON = function () {
   return {
     id: this._id,
@@ -69,6 +147,7 @@ userSchema.methods.toPublicJSON = function () {
     role: this.role,
     email: this.email,
     createdAt: this.createdAt,
+    cart: this.cart,
   };
 };
 
