@@ -69,7 +69,7 @@ const productosRouter = require("./src/routes/productos");
 app.use("/api/productos", productosRouter);
 
 //Rutas de carrito
-const cartRouter = require("./src/routes/carrito");
+const cartRouter = require("./src/routes/cart");
 app.use("/api/carrito", cartRouter);
 
 // NUEVA RUTA DE ÓRDENES
