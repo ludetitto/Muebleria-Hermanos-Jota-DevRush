@@ -107,10 +107,17 @@ figcaption {
   background-color: #c94343;
 }
 
+.submit-btn {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
 .btn-primary:hover,
 .btn-secondary:hover {
   transform: translateY(-3px);
-  background-color: var(--acentos-suaves-color); /* Rosa Polvoriento */
+  background-color: var(--acentos-suaves-color);
 }
 
 main {
@@ -228,7 +235,7 @@ textarea {
   background-size: cover;
   background-position: bottom;
   background-attachment: fixed;
-  height: 500px;
+  height: 425px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -244,6 +251,18 @@ textarea {
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  margin: 0 auto;
+  padding: 2.5rem;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
 }
 
 .form-group input,
@@ -270,6 +289,13 @@ textarea {
   resize: vertical;
 }
 
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--color-texto);
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -278,6 +304,12 @@ textarea {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  form {
+    padding: 1.5rem;
   }
 }
 
@@ -297,7 +329,4 @@ textarea {
   body {
     font-size: 11pt;
   }
-}
-
-@media (max-width: 425px) {
 }

@@ -77,7 +77,7 @@ export const AuthProvider = ({ children }) => {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Error al iniciar sesión");
+        throw new Error(data.message || "Error al iniciar sesión");
       }
 
       localStorage.setItem("auth_token", data.token);
@@ -107,7 +107,7 @@ export const AuthProvider = ({ children }) => {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Error al registrarse");
+        throw new Error(data.message || "Error al registrarse");
       }
 
       localStorage.setItem("auth_token", data.token);

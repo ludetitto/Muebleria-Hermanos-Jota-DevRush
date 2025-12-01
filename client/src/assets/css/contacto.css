@@ -1,77 +1,200 @@
-@import 'variables.css';
-.cf-form {
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-  background: #fff;
-}
+@import "variables.css";
 
-.cf-field {
-  margin-bottom: 25px;
-}
-
-.cf-field label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #1f2937;
-}
-
-.cf-field input,
-.cf-field textarea {
-  width: 100%;
-  padding: 0.9rem 1rem;
-  border: 1.5px solid #d1d5db;
-  border-radius: 10px;
-  background-color: #f9fafb;
-  font-size: 1rem;
-  transition: all 0.2s ease;
-  outline: none;
-}
-
-/* Botón */
-.cf-btn {
-  display: block;
+.contact-main {
+  padding: 3rem 2rem;
+  max-width: 1400px;
   margin: 0 auto;
-  background-color: var(--acentos-suaves-color);
-  color: #fff;
-  border: none;
-  padding: 0.9rem 1.5rem;
-  border-radius: 10px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.25s ease, transform 0.15s ease;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-.cf-btn:hover {
-  background-color: #1e40af;
-  transform: translateY(-1px);
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
 }
 
-/* Mensaje de envío */
-.cf-msg {
-  display: none;
-  margin-top: 20px;
-  padding: 12px;
-  border-radius: 8px;
-  background: #ffffff;
-  color: #16a34a;
-  border: 1px solid #16a34a;
-  text-align: center;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
+.cf-form {
+  width: 100%;
+  height: 100%;
+}
+
+.contact-map-column {
   position: relative;
+  height: 100%;
+  min-height: 600px;
 }
 
-.cf-msg.show {
-  display: block;
-  opacity: 1;
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 600px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsivo */
-@media (max-width: 768px) {
-  .cf-form {
+.map-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.location-overlay {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 10;
+  max-width: 320px;
+  pointer-events: none;
+  transition: all 500ms ease;
+}
+
+.location-card {
+  background: rgba(255, 255, 255, 0.98);
+  padding: 1.75rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  pointer-events: auto;
+  border: 2px solid var(--detalles-color);
+}
+
+.location-overlay:hover {
+  opacity: 0;
+}
+
+.location-card h3 {
+  color: var(--color-primario);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.location-card h4 {
+  color: var(--color-texto);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+.location-card .address {
+  color: var(--color-texto);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+}
+
+.location-card .schedule {
+  border-top: 2px solid var(--detalles-color);
+  padding-top: 1rem;
+}
+
+.location-card .schedule-title {
+  font-weight: 700;
+  color: var(--color-primario);
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.location-card .schedule p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+  color: var(--color-texto);
+}
+
+@media (max-width: 1024px) {
+  .contact-container {
+    gap: 2rem;
+  }
+
+  .location-overlay {
+    top: 1.5rem;
+    right: 1.5rem;
+    max-width: 280px;
+  }
+
+  .location-card {
     padding: 1.5rem;
+  }
+
+  .location-card h4 {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-main {
+    padding: 2rem 1rem;
+  }
+
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .contact-column {
+    min-height: auto;
+  }
+
+  .contact-map-column {
+    min-height: 500px;
+  }
+
+  .map-wrapper {
+    min-height: 500px;
+  }
+
+  .location-overlay {
+    position: absolute;
+    top: auto;
+    bottom: 1.5rem;
+    right: 1rem;
+    left: 1rem;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-wrapper {
+    min-height: 450px;
+  }
+
+  .contact-map-column {
+    min-height: 450px;
+  }
+
+  .location-overlay {
+    bottom: 1rem;
+  }
+
+  .location-card {
+    padding: 1rem;
+  }
+
+  .location-card h3 {
+    font-size: 0.9rem;
+  }
+
+  .location-card h4 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .location-card .address {
+    font-size: 0.85rem;
+  }
+
+  .location-card .schedule p {
+    font-size: 0.8rem;
+  }
+
+  .cf-form {
+    padding: 1.25rem;
   }
 }

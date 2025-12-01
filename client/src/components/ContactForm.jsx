@@ -33,7 +33,7 @@ export default function ContactForm() {
   return (
     <>
       <form className="cf-form" onSubmit={handleSubmit}>
-        <div className="cf-field">
+        <div className="form-group">
           <label htmlFor="nombre">Nombre *</label>
           <input
             type="text"
@@ -46,7 +46,7 @@ export default function ContactForm() {
           />
         </div>
 
-        <div className="cf-field">
+        <div className="form-group">
           <label htmlFor="email">Email *</label>
           <input
             type="email"
@@ -59,7 +59,7 @@ export default function ContactForm() {
           />
         </div>
 
-        <div className="cf-field">
+        <div className="form-group">
           <label htmlFor="mensaje">Consulta *</label>
           <textarea
             id="mensaje"
@@ -71,7 +71,7 @@ export default function ContactForm() {
           />
         </div>
 
-        <button type="submit" className="cf-btn">
+        <button type="submit" className="btn-primary submit-btn">
           Enviar
         </button>
       </form>
