@@ -13,19 +13,6 @@ export default function ConfirmModal({
   confirmButtonClass = "btn-primary",
   danger = false,
 }) {
-  // Bloquear scroll del body cuando el modal está abierto
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isOpen]);
-
   // Cerrar modal con tecla Escape
   useEffect(() => {
     const handleEscape = (e) => {

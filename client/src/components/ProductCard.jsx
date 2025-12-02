@@ -45,7 +45,7 @@ export default function ProductCard({ producto = {}, onSelect = null }) {
             position: "absolute",
             top: "10px",
             right: "10px",
-            backgroundColor: "#a0522d",
+            backgroundColor: "#87a96b",
             color: "#fff",
             padding: "2px 6px",
             borderRadius: "4px",
@@ -57,7 +57,7 @@ export default function ProductCard({ producto = {}, onSelect = null }) {
         </span>
       )}
 
-      <img src={img} alt={producto?.nombre ?? "Producto"} />
+      <img src={img} alt={producto?.nombre ?? "Producto"} loading="lazy"/>
 
       <div className="card-body">
         <h3>{producto?.nombre ?? "Sin nombre"}</h3>

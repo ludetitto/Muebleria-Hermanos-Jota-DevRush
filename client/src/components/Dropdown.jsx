@@ -62,7 +62,7 @@ export default function Dropdown() {
   return (
     <div className="user-dropdown-container" ref={dropdownRef}>
       <button
-        className="user-icon-button"
+        className="link-icon"
         onClick={toggleDropdown}
         title={isAuthenticated ? `Hola, ${user?.nombre}` : "Cuenta"}
         aria-label="Menú de usuario"

@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from "react";
 import ProductList from "../components/ProductList";
-import ProductCard from "../components/ProductCard";
 import ProductDetail from "../components/ProductDetail";
 import useProductos from "../hooks/useProductos";
 import Banner from "../components/Banner";

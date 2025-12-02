@@ -17,7 +17,16 @@ body {
   flex-direction: column;
   font-size: 12pt;
   font-family: "Inter", sans-serif;
-  background-color: var(--fondo-principal-color);
+  background-image: linear-gradient(
+      180deg,
+      #f5ebdd 0%,
+      #f5e6d3 45%,
+      #e7d1b4 100%
+    ),
+    url("https://www.transparenttextures.com/patterns/exclusive-paper.png");
+
+  background-size: cover;
+  background-blend-mode: overlay;
   color: var(--color-texto);
   margin: 0;
   padding: 0;
@@ -59,6 +68,12 @@ h2 {
   font-family: "Playfair Display", "Georgia";
   font-size: clamp(1.5em, calc(1em + 2.4vw), 2em);
   margin-bottom: 30px;
+}
+
+h3 {
+  font-family: "Playfair Display", "Georgia";
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 /*Titulo banner*/
@@ -294,6 +309,43 @@ form {
   margin-bottom: 0.5rem;
   font-weight: 600;
   color: var(--color-texto);
+}
+
+.divider-svg {
+  width: 100%;
+  max-width: 800px;
+  display: block;
+  fill: var(--color-primario);
+  margin: 0 auto;
+}
+
+.link-icon {
+  background: rgba(212, 164, 55, 0.1);
+  border-radius: 12px;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.link-icon:hover {
+  background: var(--detalles-color);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 164, 55, 0.3);
+}
+
+.link-icon svg {
+  width: 28px;
+  height: 28px;
+  fill: var(--detalles-color);
+  transition: fill 0.3s ease;
+}
+
+.link-icon:hover svg {
+  fill: #ffffff;
 }
 
 @keyframes fadeInUp {

@@ -172,7 +172,7 @@ export default function Navbar() {
             <div className="cart-container">
               <Link to="/carrito" onClick={closeMenu}>
                 <button
-                  id="btn-ver-carrito"
+                  className="link-icon"
                   title="Ver carrito"
                   aria-label="Ver carrito de compras"
                 >
@@ -201,7 +201,7 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-      
+
       <ConfirmModal
         isOpen={isModalOpen}
         onClose={closeModal}

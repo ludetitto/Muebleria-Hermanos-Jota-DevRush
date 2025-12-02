@@ -82,35 +82,6 @@ header {
   align-items: center;
 }
 
-#btn-ver-carrito {
-  background: rgba(212, 164, 55, 0.1);
-  border-radius: 12px;
-  padding: 0.8rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#btn-ver-carrito:hover {
-  background: var(--detalles-color);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(212, 164, 55, 0.3);
-}
-
-#btn-ver-carrito svg {
-  width: 28px;
-  height: 28px;
-  fill: var(--detalles-color);
-  transition: fill 0.3s ease;
-}
-
-#btn-ver-carrito:hover svg {
-  fill: #ffffff;
-}
-
 .badge {
   background-color: var(--detalles-color);
   position: absolute;
@@ -179,6 +150,10 @@ header.on-light-section {
 
 /* Responsive */
 @media (max-width: 768px) {
+  header {
+    background-color: transparent;
+  }
+
   .top-bar {
     padding: 1rem;
     justify-content: space-between;

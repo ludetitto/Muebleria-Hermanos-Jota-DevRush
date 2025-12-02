@@ -16,8 +16,8 @@
 /* CARD */
 .card {
   background: var(--fondo-principal-color);
-  border-radius: 14px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.726);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
   overflow: hidden;
   width: 100%;
   max-width: 320px;
@@ -31,7 +31,7 @@
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.904);
+  box-shadow: var(--shadow-lg);
 }
 
 .card img {
@@ -53,13 +53,11 @@
 
 /* TÍTULO */
 .card-body h3 {
-  font-weight: 700;
-  font-size: 2rem;
-  color: #a0522d;
-  margin-bottom: 0.5rem;
-  min-height: 2.2rem;
+  font-size: 1.3rem;
   line-height: 1.2;
+  margin-bottom: 1rem;
   text-align: center;
+  color: var(--color-primario);
 }
 
 /* DESCRIPCIÓN */
@@ -67,13 +65,13 @@
   font-size: 1rem;
   color: #555;
   margin-bottom: 0.75rem;
-  flex-grow: 1;
   display: -webkit-box;
   -webkit-line-clamp: 4;
+  line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-left: 1.2rem;
+  padding: 0 1.2rem;
 }
 
 /* PRECIO */
@@ -84,31 +82,9 @@
   margin-bottom: 1rem;
 }
 
-/* BOTÓN dentro de la card */
-.card-body a,
-.card-body button {
-  background-color: #a0522d;
-  color: #fff;
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  text-align: center;
-  transition: background-color 0.2s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.card-body a:hover,
-.card-body button:hover {
-  background-color: var(--acento-secundario-color);
-}
-
 /* INPUT DE BÚSQUEDA */
 #searchInput {
-  background-color: var(--fondo-principal-color);
+  background-color: white;
 }
 
 /* RESPONSIVE */

@@ -45,9 +45,14 @@ export default function ProductDetail({
         title: "Agregado al carrito",
         text: `"${producto.nombre}" fue añadido al carrito.`,
         icon: "success",
-        background: PALETA_COLORES.fondoPrincipal,
+        iconColor: "var(--acento-secundario-color)",
+        background: "#fff",
         color: PALETA_COLORES.texto,
-        confirmButtonColor: PALETA_COLORES.primario,
+        customClass: {
+          container: "add-prod-modal-overlay",
+          popup: "add-prod-modal",
+          confirmButton: "btn-primary",
+        },
       });
     } catch (error) {
       console.error("Error agregando al carrito:", error);
@@ -130,7 +135,7 @@ export default function ProductDetail({
       : producto?.precio ?? "";
 
   return (
-    <main className="producto-loaded" role="main">
+    <main className="container" role="main">
       <section className="producto-galeria">
         <figure>
           {producto.imagen ? (
@@ -172,14 +177,9 @@ export default function ProductDetail({
           <strong>Stock disponible:</strong> {producto.stock ?? 0}
         </div>
 
-        {/* Mostrar categoría */}
-        <div className="producto-categoria">
-          <strong>Categoría:</strong> {producto.categoria ?? "Sin categoría"}
-        </div>
-
         {/* Mostrar detalles del producto */}
         {producto.detalles && Object.keys(producto.detalles).length > 0 && (
-          <div className="producto-detalles">
+          <div className="detalle-producto">
             <h3>Detalles del producto</h3>
             <ul>
               {Object.entries(producto.detalles).map(([key, value]) => (

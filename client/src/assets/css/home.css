@@ -1,5 +1,4 @@
 @import "variables.css";
-
 /* Hero */
 #hero-banner {
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)),
@@ -61,22 +60,30 @@
   filter: brightness(1);
 }
 
-#logo-img:hover {
-  filter: brightness(1.1);
-  transform: scale(1.05) rotate(1deg);
-}
-
 /* Productos destacados*/
 .productos-destacados {
   padding: clamp(40px, 8vw, 60px) 20px;
   text-align: center;
 }
 
+.productos-destacados .titulo-principal,
+.filosofia .titulo-principal {
+  margin-bottom: 0;
+}
+
+.productos-destacados .divider-svg,
+.filosofia .divider-svg {
+  margin-bottom: 2.5rem;
+}
+
 /* Filosofía */
 .filosofia {
-  background-color: #87a96b;
-  color: white;
+  text-align: center;
   padding: clamp(40px, 8vw, 60px) 20px;
+  margin-bottom: 10rem;
+}
+
+.filosofia .content {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -87,7 +94,7 @@
 
 #philosophy-img {
   width: 100%;
-  max-width: 600px;
+  max-width: 700px;
   height: auto;
   display: block;
   border-radius: 5px;
@@ -96,16 +103,15 @@
 }
 
 .filosofia h2 {
-  color: white;
   margin-bottom: 20px;
 }
 
 .filosofia p {
-  text-align: left;
+  text-align: center;
   max-width: 700px;
   margin: 0 auto;
   line-height: 1.6;
-  font-size: clamp(1rem, 2vw, 1.1rem);
+  font-size: clamp(1rem, 2vw, 1.2rem);
 }
 
 @media (max-height: 600px) {
@@ -237,6 +243,17 @@
   }
 }
 
+@media (max-width: 425px) {
+  .productos-destacados .divider-svg,
+  .filosofia .divider-svg {
+    margin-bottom: 1rem;
+  }
+
+  .filosofia p {
+    text-align: left;
+  }
+}
+
 /* Celulares pequeños */
 @media (max-width: 375px) {
   #hero-banner {
@@ -265,4 +282,61 @@
   .hero-content {
     padding: 0 10px;
   }
+}
+
+/* ====== decoraciones simples para .filosofia .text ====== */
+.filosofia .text {
+  position: relative;
+  overflow: visible;
+  padding: 1.6rem;
+}
+.filosofia .text p {
+  position: relative;
+  z-index: 2;
+  max-width: 62ch;
+  line-height: 1.6;
+}
+
+/* estilos base de los SVGs */
+.flora {
+  position: absolute;
+  display: block;
+  width: 88px;
+  height: auto;
+  pointer-events: none;
+  color: #7aa57a;
+  opacity: 0.95;
+  z-index: 1;
+  transform-origin: center;
+}
+
+.fil osofia .text .flora--leaf {
+  left: -24px;
+  top: 8%;
+  transform: rotate(-10deg);
+  max-width: 92px;
+  color: #8fc07a;
+}
+.filosofia .text .flora--flower {
+  right: -10px;
+  bottom: -8%;
+  max-width: 110px;
+  transform: rotate(6deg);
+  color: #d68a86;
+}
+.filosofia .text .flora--bud {
+  left: 8%;
+  top: -18px;
+  max-width: 56px;
+  color: #9fbce6;
+}
+
+.filosofia .text .flora--leaf {
+  color: var(--detalles-color);
+}
+.filosofia .text .flora--flower {
+  color: var(--detalles-color);
+}
+.filosofia .text .flora--bud {
+  color: var(--detalles-color);
 }
