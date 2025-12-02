@@ -192,15 +192,20 @@ export default function ProductDetail({
         )}
 
         <div className="cantidad-container">
-          <label htmlFor="cantidad">Cantidad:</label>
-          <input
-            id="cantidad"
-            type="number"
-            min="1"
-            max="100"
-            value={cantidad}
-            onChange={(e) => setCantidad(e.target.value)}
-          />
+          <label htmlFor="cantidad">Cantidad</label>
+          <div className="flex-container">
+            <input
+              id="cantidad"
+              type="number"
+              min="1"
+              max="100"
+              value={cantidad}
+              onChange={(e) => setCantidad(e.target.value)}
+            />
+            <button className="btn-agregar btn-primary" onClick={handleAgregar}>
+              {/* <FaShoppingCart /> */} Añadir al carrito
+            </button>
+          </div>
         </div>
 
         <div className="acciones-producto">
@@ -223,9 +228,7 @@ export default function ProductDetail({
               </button>
             </>
           ) : (
-            <button className="btn-agregar" onClick={handleAgregar}>
-              {/* <FaShoppingCart /> */} Añadir al carrito
-            </button>
+            <></>
           )}
         </div>
       </section>

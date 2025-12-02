@@ -12,7 +12,7 @@ export default function ProductDetailPage({ onVolver, onAgregarAlCarrito }) {
   if (!producto) return <p>No se encontró el producto</p>;
 
   return (
-    <ProductDetail
+    <ProductDetail data-bg="light"
       producto={producto}
       onVolver={onVolver}
       onAgregarAlCarrito={onAgregarAlCarrito}
