@@ -160,6 +160,13 @@ http://localhost:5000
 
 ## 🧪 Testing de la API con Postman
 
+#### Credenciales de prueba (usuario admin)
+
+- `email`: `admin@muebleriajota.com`
+- `password`: `admin123`
+
+> **Nota de seguridad**: Estas credenciales son únicamente para entornos de desarrollo y pruebas locales. No las uses en producción; cambia la contraseña inmediatamente y gestiona las credenciales mediante variables de entorno o un gestor de secretos en despliegues reales.
+
 ### Variables de Entorno Sugeridas
 - `baseUrl`: `http://localhost:5000/api`
 - `productId`: ID real de producto para pruebas
