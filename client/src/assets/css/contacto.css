@@ -1,21 +1,13 @@
 @import "variables.css";
 
-.contact-main {
-  padding: 3rem 2rem;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.contact-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: start;
-}
-
 .cf-form {
   width: 100%;
   height: 100%;
+}
+
+.contact-info {
+  text-align: center;
+  padding: 30px;
 }
 
 .contact-map-column {
@@ -130,12 +122,12 @@
 
 @media (max-width: 768px) {
   .contact-main {
-    padding: 2rem 1rem;
+    padding: 2rem 1rem !important;
   }
 
   .contact-container {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
   }
 
   .contact-column {
@@ -196,5 +188,12 @@
 
   .cf-form {
     padding: 1.25rem;
+  }
+
+  @media (max-width: 425px) {
+    .contact-info {
+      padding: 0;
+      margin-bottom: 1.2rem;
+    }
   }
 }

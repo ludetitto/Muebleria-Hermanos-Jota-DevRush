@@ -65,11 +65,17 @@ export default function ConfirmModal({
         </div>
 
         <div className="confirm-modal-footer">
-          <button className="btn-secondary" onClick={onClose} type="button">
+          <button
+            className="btn-secondary btn-secondary-wide"
+            onClick={onClose}
+            type="button"
+          >
             {cancelText}
           </button>
           <button
-            className={`btn-secondary ${danger ? "btn-danger" : confirmButtonClass}`}
+            className={`btn-secondary btn-secondary-wide ${
+              danger ? "btn-danger" : confirmButtonClass
+            }`}
             onClick={handleConfirm}
             type="button"
           >

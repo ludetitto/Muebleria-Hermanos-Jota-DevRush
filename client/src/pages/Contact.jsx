@@ -9,8 +9,12 @@ export default function Contact() {
     <div>
       <Banner titulo="CONTACTO" ariaLabel="banner-contacto"></Banner>
 
-      <main className="contact-main" role="main" data-bg="light">
-        <section className=" info-text">
+      <main
+        className="contact-main basic-main-container"
+        role="main"
+        data-bg="light"
+      >
+        <section className="contact-info">
           <p>
             Complete el siguiente formulario y a la brevedad un representante se
             comunicará con usted.
@@ -18,7 +22,7 @@ export default function Contact() {
           <Divider className="divider-svg" aria-hidden="true" />
         </section>
 
-        <div className="contact-container">
+        <div className="basic-grid-container contact-container">
           <ContactForm />
 
           <div className="contact-column contact-map-column">

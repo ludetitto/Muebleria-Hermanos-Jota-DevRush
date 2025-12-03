@@ -86,9 +86,9 @@ export default function CartPage() {
           {/* Listado de productos */}
           <section className="cart-items-section">
             <div className="cart-items-header">
-              <h2>Productos</h2>
+              <h2>PRODUCTOS</h2>
               <button
-                className="btn-secondary btn-danger"
+                className="btn-secondary btn-secondary-wide btn-danger btn-clear-cart"
                 onClick={vaciarCarrito}
                 title="Vaciar carrito"
               >
@@ -149,7 +149,7 @@ export default function CartPage() {
           <aside className="order-summary-sidebar">
             <div className="order-summary-sticky">
               <div className="order-summary-card">
-                <h3 className="order-summary-title">Resumen del pedido</h3>
+                <h3 className="order-summary-title underlined-title">Resumen del pedido</h3>
 
                 <div className="order-summary-details">
                   <div className="summary-row">

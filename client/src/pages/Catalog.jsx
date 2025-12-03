@@ -1,18 +1,15 @@
 import React, { useState, useMemo } from "react";
 import ProductList from "../components/ProductList";
-import ProductDetail from "../components/ProductDetail";
+import { useNavigate } from "react-router-dom";
 import useProductos from "../hooks/useProductos";
 import Banner from "../components/Banner";
+import "../assets/css/productos.css";
 
-export default function Catalog({
-  onSelectProducto,
-  onVolver,
-  onAgregarAlCarrito,
-}) {
+export default function Catalog() {
   const [search, setSearch] = useState("");
-  const [selected, setSelected] = useState(null);
+  const navigate = useNavigate();
 
-  const { productos, loading, error, reload } = useProductos();
+  const { productos, loading, error } = useProductos();
 
   const productosFiltrados = useMemo(() => {
     return productos.filter((p) =>
@@ -20,49 +17,37 @@ export default function Catalog({
     );
   }, [productos, search]);
 
-  return (
-    <>
-      {!selected ? (
-        <main data-bg="light">
-          <Banner titulo="CATÁLOGO DE PRODUCTOS" ariaLabel="banner-catálogo">
-            <div className="form-group">
-              <input
-                type="text"
-                id="searchInput"
-                placeholder="Buscar productos..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-            </div>
-          </Banner>
+  const handleSelectProducto = (producto) => {
+    const productoId = producto._id || producto.id;
+    navigate(`/productos/${productoId}`);
+  };
 
-          <section className="catalogo">
-            {loading ? (
-              <p>Cargando...</p>
-            ) : error ? (
-              <p className="error">Error al cargar los productos</p>
-            ) : (
-              <ProductList
-                productos={productosFiltrados}
-                onSelect={(prod) =>
-                  onSelectProducto ? onSelectProducto(prod) : setSelected(prod)
-                } // cuando clickeas pasa a detalle
-              />
-            )}
-          </section>
-        </main>
-      ) : (
-        // Vista detalle
-        <ProductDetail
-          producto={selected}
-          onVolver={() => {
-            setSelected(null);
-            // recargar catálogo al volver
-            reload();
-          }} // vuelve al catálogo
-          onAgregarAlCarrito={onAgregarAlCarrito}
-        />
-      )}
-    </>
+  return (
+    <main data-bg="light">
+      <Banner titulo="CATÁLOGO DE PRODUCTOS" ariaLabel="banner-catálogo">
+        <div className="form-group">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Buscar productos..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+      </Banner>
+
+      <section className="catalogo">
+        {loading ? (
+          <p>Cargando...</p>
+        ) : error ? (
+          <p className="error">Error al cargar los productos</p>
+        ) : (
+          <ProductList
+            productos={productosFiltrados}
+            onSelect={handleSelectProducto}
+          />
+        )}
+      </section>
+    </main>
   );
 }

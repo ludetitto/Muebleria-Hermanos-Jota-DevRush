@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import { FaTrashAlt, /* FaShoppingCart, */ FaArrowLeft } from "react-icons/fa";
+import { FaTrashAlt, FaArrowLeft } from "react-icons/fa";
 import QuantityControl from "./QuantityControl";
 import { useNavigate } from "react-router-dom";
 import { eliminarProducto } from "../services/productoService";
@@ -23,7 +23,6 @@ export default function ProductDetail({ producto, onVolver }) {
 
   useEffect(() => {
     if (producto) {
-      console.log("Producto recibido en detalle:", producto);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [producto]);
@@ -124,6 +123,14 @@ export default function ProductDetail({ producto, onVolver }) {
     }
   };
 
+  const handleVolver = () => {
+    if (onVolver) {
+      onVolver();
+    } else {
+      navigate("/productos");
+    }
+  };
+
   const priceFormatted =
     typeof producto?.precio === "number"
       ? new Intl.NumberFormat("es-AR", {
@@ -178,10 +185,10 @@ export default function ProductDetail({ producto, onVolver }) {
         {/* Mostrar detalles del producto */}
         {producto.detalles && Object.keys(producto.detalles).length > 0 && (
           <div className="detalle-producto">
-            <h3>Detalles del producto</h3>
+            <h3 className="underlined-title">Detalles del producto</h3>
             <ul>
               {Object.entries(producto.detalles).map(([key, value]) => (
-                <li key={key}>
+                <li key={key} className="custom-li">
                   <strong>{key}:</strong> {value.toString()}
                 </li>
               ))}
@@ -201,14 +208,17 @@ export default function ProductDetail({ producto, onVolver }) {
               Añadir al carrito
             </button>
 
-            <button className="btn-agregar-short btn-primary" onClick={handleAgregar}>
+            <button
+              className="btn-agregar-short btn-primary"
+              onClick={handleAgregar}
+            >
               Añadir
             </button>
           </div>
         </div>
 
         <div className="acciones-producto">
-          <button onClick={onVolver} className="btn-secondary">
+          <button onClick={handleVolver} className="btn-secondary">
             <FaArrowLeft /> Volver al catálogo
           </button>
 
