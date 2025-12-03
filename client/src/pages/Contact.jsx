@@ -2,6 +2,7 @@ import React from "react";
 import "../assets/css/contacto.css";
 import Banner from "../components/Banner";
 import ContactForm from "../components/ContactForm";
+import { ReactComponent as Divider } from "../assets/images/DecorativeDivider2.svg";
 
 export default function Contact() {
   return (
@@ -14,6 +15,7 @@ export default function Contact() {
             Complete el siguiente formulario y a la brevedad un representante se
             comunicará con usted.
           </p>
+          <Divider className="divider-svg" aria-hidden="true" />
         </section>
 
         <div className="contact-container">

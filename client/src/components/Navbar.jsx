@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 import Dropdown from "./Dropdown";
@@ -20,7 +20,9 @@ export default function Navbar() {
     closeModal,
     handleConfirm,
   } = useConfirmModal();
+
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { contadorCarrito } = useCart();
 
@@ -57,7 +59,7 @@ export default function Navbar() {
       window.removeEventListener("scroll", updateHeaderLinksColor);
       window.removeEventListener("resize", updateHeaderLinksColor);
     };
-  }, []);
+  }, [location.pathname]);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);

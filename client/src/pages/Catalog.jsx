@@ -29,7 +29,7 @@ export default function Catalog({
               <input
                 type="text"
                 id="searchInput"
-                placeholder="🔍 Buscar productos..."
+                placeholder="Buscar productos..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />

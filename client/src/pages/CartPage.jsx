@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 import Banner from "../components/Banner";
-import "../assets/css/productos.css";
 import "../assets/css/cart.css";
+import QuantityControl from "../components/QuantityControl";
 
 export default function CartPage() {
   const navigate = useNavigate();
@@ -18,16 +18,18 @@ export default function CartPage() {
   } = useCart();
 
   const total = calcularTotal();
+  const cantidadTotal = carrito.reduce(
+    (sum, item) => sum + (item.cantidad || 1),
+    0
+  );
 
   const handleFinalizarCompra = () => {
     if (!isAuthenticated) {
-      // Si no está autenticado, redirigir al login
       alert("Debes iniciar sesión para finalizar la compra");
       navigate("/login", { state: { from: { pathname: "/carrito" } } });
       return;
     }
 
-    // TODO: Implementar creación de pedido en el backend
     alert(
       "Funcionalidad de pedidos próximamente. Por ahora, tu carrito se vaciará."
     );
@@ -35,113 +37,160 @@ export default function CartPage() {
     navigate("/");
   };
 
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("es-AR", {
+      style: "currency",
+      currency: "ARS",
+    }).format(price);
+  };
+
+  if (carrito.length === 0) {
+    return (
+      <>
+        <Banner titulo="TU CARRITO" ariaLabel="banner-carrito" />
+        <main className="cart-page-container" role="main" data-bg="light">
+          <div className="empty-cart">
+            <svg
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              className="empty-cart-icon"
+            >
+              <path d="M7 4h-2l-1 2h2l1-2zm0 0" fill="currentColor" />
+              <path
+                d="M7 4h10l-1.2 6.3A3 3 0 0 1 12.9 13H9.1a3 3 0 0 1-3-2.7L4.9 4H7z"
+                fill="currentColor"
+              />
+              <circle cx="10.5" cy="18.5" r="1.5" fill="currentColor" />
+              <circle cx="17.5" cy="18.5" r="1.5" fill="currentColor" />
+            </svg>
+            <h2>Tu carrito está vacío</h2>
+            <p>Agrega productos para comenzar tu compra</p>
+            <button
+              className="btn-primary"
+              onClick={() => navigate("/productos")}
+            >
+              Explorar Productos
+            </button>
+          </div>
+        </main>
+      </>
+    );
+  }
+
   return (
     <>
       <Banner titulo="TU CARRITO" ariaLabel="banner-carrito" />
 
-      <main className="tight-container" role="main" data-bg="light">
-        <div className="carrito-raiz">
-          {carrito.length === 0 ? (
-            <div style={{ textAlign: "center", padding: "3rem 0" }}>
-              <p style={{ fontSize: "1.2rem", marginBottom: "1.5rem" }}>
-                Tu carrito está vacío
-              </p>
+      <main className="cart-page-container" role="main" data-bg="light">
+        <div className="cart-content-wrapper">
+          {/* Listado de productos */}
+          <section className="cart-items-section">
+            <div className="cart-items-header">
+              <h2>Productos</h2>
               <button
-                className="btn-primary"
-                onClick={() => navigate("/productos")}
+                className="btn-secondary btn-danger"
+                onClick={vaciarCarrito}
+                title="Vaciar carrito"
               >
-                Ver Productos
+                Vaciar carrito
               </button>
             </div>
-          ) : (
-            <>
-              <ul className="carrito-lista">
-                {carrito.map((producto) => {
-                  const cantidad = producto.cantidad || 1;
-                  const subtotal = (producto.precio || 0) * cantidad;
-                  const priceFormatted = new Intl.NumberFormat("es-AR", {
-                    style: "currency",
-                    currency: "ARS",
-                  }).format(producto.precio);
-                  const subtotalFormatted = new Intl.NumberFormat("es-AR", {
-                    style: "currency",
-                    currency: "ARS",
-                  }).format(subtotal);
 
-                  return (
-                    <li key={producto.id} className="carrito-item">
+            <div className="cart-items-list">
+              {carrito.map((producto) => {
+                const cantidad = producto.cantidad || 1;
+                const subtotal = (producto.precio || 0) * cantidad;
+
+                return (
+                  <article key={producto.id} className="cart-item-card">
+                    <div className="cart-item-image-wrapper">
                       <img
-                        className="carrito-item-miniatura"
                         src={producto.imagen}
                         alt={producto.nombre}
+                        className="cart-item-image"
                       />
-                      <div className="carrito-item-cuerpo">
-                        <div className="carrito-item-fila">
-                          <strong>{producto.nombre}</strong>
-                          <span className="carrito-item-precio">
-                            {priceFormatted}
-                          </span>
-                        </div>
-                        <p className="carrito-item-descripcion">
-                          {producto.descripcion}
-                        </p>
-                        <div className="carrito-item-controles">
-                          <input
-                            className="carrito-item-cantidad"
-                            type="number"
-                            min="1"
-                            max="99"
-                            value={cantidad}
-                            onChange={(e) =>
-                              actualizarCantidad(
-                                producto.id,
-                                Number(e.target.value)
-                              )
-                            }
-                          />
-                          <button
-                            className="btn-secondary"
-                            onClick={() => eliminarDelCarrito(producto.id)}
-                          >
-                            Eliminar
-                          </button>
-                          <div className="carrito-item-subtotal">
-                            Subtotal: {subtotalFormatted}
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
+                    </div>
 
-              <footer className="carrito-footer">
-                <div>
-                  <p style={{ margin: 0, fontSize: "1.3rem", fontWeight: 700 }}>
-                    Total:{" "}
-                    {new Intl.NumberFormat("es-AR", {
-                      style: "currency",
-                      currency: "ARS",
-                    }).format(total)}
-                  </p>
+                    <div className="cart-item-details">
+                      <h3 className="cart-item-name">{producto.nombre}</h3>
+                      <p className="cart-item-description">
+                        {producto.descripcion}
+                      </p>
+                      {/*Boton cantidad*/}
+                    <QuantityControl
+                      productoId={producto.id}
+                      cantidad={producto.cantidad}
+                      actualizarCantidad={actualizarCantidad}
+                    />
+                    </div>
+
+                    <div className="cart-item-actions">
+                      <button
+                        className="confirm-modal-close"
+                        onClick={() => eliminarDelCarrito(producto.id)}
+                        aria-label={`Eliminar ${producto.nombre}`}
+                      >
+                        ×
+                      </button>
+                      <div className="cart-item-subtotal">
+                        <span className="subtotal-label">Subtotal:</span>
+                        <span className="subtotal-value">
+                          {formatPrice(subtotal)}
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* Resumen del pedido */}
+          <aside className="order-summary-sidebar">
+            <div className="order-summary-sticky">
+              <div className="order-summary-card">
+                <h3 className="order-summary-title">Resumen del pedido</h3>
+
+                <div className="order-summary-details">
+                  <div className="summary-row">
+                    <span className="summary-label">Productos</span>
+                    <span className="summary-value">{cantidadTotal}</span>
+                  </div>
+
+                  <div className="summary-row">
+                    <span className="summary-label">Subtotal</span>
+                    <span className="summary-value">{formatPrice(total)}</span>
+                  </div>
+
+                  <div className="summary-row">
+                    <span className="summary-label">Envío</span>
+                    <span className="summary-value summary-value-secondary">
+                      A calcular
+                    </span>
+                  </div>
+
+                  <div className="summary-row summary-total">
+                    <span className="summary-label">Total</span>
+                    <span className="summary-value">{formatPrice(total)}</span>
+                  </div>
                 </div>
-                <div style={{ display: "flex", gap: "0.5rem" }}>
-                  <button
-                    className="btn-primary"
-                    onClick={handleFinalizarCompra}
-                  >
-                    Finalizar compra
-                  </button>
-                  <button
-                    className="btn-secondary"
-                    onClick={() => navigate("/productos")}
-                  >
-                    Seguir comprando
-                  </button>
-                </div>
-              </footer>
-            </>
-          )}
+
+                <button
+                  className="btn-primary btn-checkout"
+                  onClick={handleFinalizarCompra}
+                >
+                  Finalizar compra
+                </button>
+
+                <button
+                  className="btn-secondary btn-continue"
+                  onClick={() => navigate("/productos")}
+                >
+                  Seguir comprando
+                </button>
+              </div>
+            </div>
+          </aside>
         </div>
       </main>
     </>

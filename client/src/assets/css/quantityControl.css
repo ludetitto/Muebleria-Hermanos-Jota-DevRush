@@ -1,0 +1,52 @@
+@import "variables.css";
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  max-width: 150px;
+  gap: 0.5rem;
+  border: 2px solid var(--detalles-color);
+  border-radius: 8px;
+  padding: 0.25rem;
+  background: white;
+}
+
+.quantity-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--detalles-color);
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.quantity-btn:hover:not(:disabled) {
+  background: var(--detalles-color);
+  color: white;
+}
+
+.quantity-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.quantity-input {
+  width: 50px;
+  text-align: center;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-texto);
+  background: transparent;
+}
+
+.quantity-input:focus {
+  outline: none;
+}

@@ -96,7 +96,7 @@ export default function Footer() {
 
         {/* Redes sociales */}
         <div className="footer-section">
-          <h4 className="footer-title">Síguenos</h4>
+          <h4 className="footer-title">Seguinos</h4>
           <p className="footer-social-text">
             Conecta con nosotros en redes sociales
           </p>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import { FaTrashAlt, /* FaShoppingCart, */ FaArrowLeft } from "react-icons/fa"; // Carrito comentado
+import { FaTrashAlt, /* FaShoppingCart, */ FaArrowLeft } from "react-icons/fa";
+import QuantityControl from "./QuantityControl";
 import { useNavigate } from "react-router-dom";
 import { eliminarProducto } from "../services/productoService";
 import "../assets/css/producto.css";
@@ -135,7 +136,7 @@ export default function ProductDetail({
       : producto?.precio ?? "";
 
   return (
-    <main className="container" role="main">
+    <main className="container" role="main" data-bg="light">
       <section className="producto-galeria">
         <figure>
           {producto.imagen ? (
@@ -194,13 +195,10 @@ export default function ProductDetail({
         <div className="cantidad-container">
           <label htmlFor="cantidad">Cantidad</label>
           <div className="flex-container">
-            <input
-              id="cantidad"
-              type="number"
-              min="1"
-              max="100"
-              value={cantidad}
-              onChange={(e) => setCantidad(e.target.value)}
+            <QuantityControl
+              productoId={producto.id}
+              cantidad={cantidad}
+              actualizarCantidad={setCantidad}
             />
             <button className="btn-agregar btn-primary" onClick={handleAgregar}>
               {/* <FaShoppingCart /> */} Añadir al carrito

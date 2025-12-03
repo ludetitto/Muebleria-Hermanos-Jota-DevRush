@@ -94,7 +94,7 @@ figcaption {
 
 .btn-primary {
   background-color: var(--detalles-color); /* Vara de Oro */
-  color: var(--fondo-principal-color);
+  color: white;
   padding: 12px 30px;
   text-decoration: none;
   font-weight: 700;
@@ -119,7 +119,7 @@ figcaption {
 }
 
 .btn-danger {
-  background-color: #c94343;
+  background-color: #c95a5a;
 }
 
 .submit-btn {
