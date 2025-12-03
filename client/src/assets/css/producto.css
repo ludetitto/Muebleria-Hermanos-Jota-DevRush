@@ -170,6 +170,10 @@ input[type="number"] {
   box-shadow: var(--shadow-soft-lg);
 }
 
+.btn-agregar-short {
+  display: none;
+}
+
 @media (max-width: 1024px) {
   .producto-galeria {
     position: relative;
@@ -186,11 +190,17 @@ input[type="number"] {
     font-size: 1rem;
   }
 
-  .cantidad-container .flex-container {
-    flex-wrap: wrap;
-  }
-
   .nav-links li a {
     color: var(--fondo-principal-color);
+  }
+}
+
+@media (max-width: 375px) {
+  .btn-agregar {
+    display: none;
+  }
+
+  .btn-agregar-short {
+    display:initial;
   }
 }

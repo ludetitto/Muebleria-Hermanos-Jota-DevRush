@@ -95,7 +95,7 @@ figcaption {
 .btn-primary {
   background-color: var(--detalles-color); /* Vara de Oro */
   color: white;
-  padding: 12px 30px;
+  padding: 13px 30px;
   text-decoration: none;
   font-weight: 700;
   border-radius: 8px;
@@ -368,7 +368,6 @@ form {
 @media (max-width: 480px) {
   .btn-primary,
   .btn-secondary {
-    padding: 10px 16px;
     font-size: 0.9rem;
   }
   #hero-banner {

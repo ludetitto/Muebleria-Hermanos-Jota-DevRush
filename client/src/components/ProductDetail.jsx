@@ -17,10 +17,7 @@ const PALETA_COLORES = {
   texto: "#333",
 };
 
-export default function ProductDetail({
-  producto,
-  onVolver /*, onAgregarAlCarrito */,
-}) {
+export default function ProductDetail({ producto, onVolver }) {
   const [cantidad, setCantidad] = useState(1);
   const navigate = useNavigate();
 
@@ -31,16 +28,16 @@ export default function ProductDetail({
     }
   }, [producto]);
 
-  /* const handleAdd = () => {
-    if (onAgregarAlCarrito) onAgregarAlCarrito(producto, Number(cantidad));
-  }; */
-
   const { user } = useAuth();
   const { agregarAlCarrito } = useCart();
 
+  const handleCantidadChange = (productoId, nuevaCantidad) => {
+    setCantidad(nuevaCantidad);
+  };
+
   const handleAgregar = () => {
     try {
-      agregarAlCarrito(producto, Number(cantidad || 1));
+      agregarAlCarrito(producto, Number(cantidad));
 
       Swal.fire({
         title: "Agregado al carrito",
@@ -198,10 +195,14 @@ export default function ProductDetail({
             <QuantityControl
               productoId={producto.id}
               cantidad={cantidad}
-              actualizarCantidad={setCantidad}
+              actualizarCantidad={handleCantidadChange}
             />
             <button className="btn-agregar btn-primary" onClick={handleAgregar}>
-              {/* <FaShoppingCart /> */} Añadir al carrito
+              Añadir al carrito
+            </button>
+
+            <button className="btn-agregar-short btn-primary" onClick={handleAgregar}>
+              Añadir
             </button>
           </div>
         </div>
