@@ -61,7 +61,6 @@
 .cart-items-header h2 {
   margin: 0;
   font-size: 1.8rem;
-  color: var(--color-primario);
 }
 
 .btn-clear-cart {

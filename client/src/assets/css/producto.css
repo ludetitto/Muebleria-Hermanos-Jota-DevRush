@@ -158,7 +158,6 @@ input[type="number"] {
   gap: 1rem;
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 2px solid rgba(160, 82, 45, 0.1);
 }
 
 .add-prod-modal-overlay {

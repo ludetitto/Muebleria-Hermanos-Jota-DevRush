@@ -1,48 +1,55 @@
 @import "variables.css";
 
+.profile-main {
+  padding: 3rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
 .profile-container {
-  margin-top: 2rem;
-  margin-bottom: 4rem;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 3rem;
+  align-items: start;
 }
 
 .profile-info,
 .profile-stats,
 .profile-actions {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  /*border-bottom: 2px solid rgba(160, 82, 45, 0.1);
+  padding: 2rem;*/
   margin-bottom: 2rem;
 }
 
 .profile-info h2,
 .profile-stats h2 {
-  color: var(--color-primario);
+  margin: 0;
+  font-size: 1.8rem;
   margin-bottom: 1.5rem;
-  font-size: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 3px solid var(--detalles-color);
 }
 
 .info-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: grid;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .info-item {
   display: grid;
-  grid-template-columns: 150px 1fr;
+  grid-template-columns: auto 1fr;
   gap: 1rem;
   padding: 1rem;
-  background: var(--fondo-principal-color);
-  border-radius: 8px;
+  background: linear-gradient(135deg, #f8f9fa88 0%, #ffffff27 100%);
+  border-left: 4px solid var(--detalles-color);
+  transition: all 0.3s ease;
 }
 
-.info-item strong {
-  color: var(--color-texto);
-}
-
-.info-item span {
-  color: var(--color-primario);
-  font-weight: 500;
+.info-item:hover {
+  transform: translateX(5px);
 }
 
 .stats-grid {
@@ -75,12 +82,28 @@
   opacity: 0.95;
 }
 
-.profile-actions {
-  text-align: center;
+.stat-link {
+  display: flex;
+  align-items: center;
+  color: var(--color-primario);
+  text-decoration: none;
+  padding: 1rem;
+  transition: all 200ms ease;
+}
+
+.stat-link:hover {
+  color: var(--acentos-suaves-color);
+  transform: translateX(5px);
 }
 
 .profile-actions button {
-  min-width: 200px;
+  min-width: 100px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 @media (max-width: 768px) {
@@ -91,5 +114,29 @@
 
   .stat-number {
     font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .profile-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .profile-info h2,
+  .profile-stats h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .profile-container {
+    gap: 1.5rem;
+  }
+
+  .profile-info h2,
+  .profile-stats h2 {
+    font-size: 1.3rem;
   }
 }
