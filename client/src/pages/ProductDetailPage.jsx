@@ -13,7 +13,7 @@ export default function ProductDetailPage({ onVolver, onAgregarAlCarrito }) {
 
   return (
     <ProductDetail data-bg="light"
-      producto={producto}
+      producto={producto.data}
       onVolver={onVolver}
       onAgregarAlCarrito={onAgregarAlCarrito}
     />

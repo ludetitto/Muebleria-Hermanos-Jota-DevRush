@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import Swal from "sweetalert2";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -76,11 +77,20 @@ export default function ContactForm() {
         </button>
       </form>
 
-      {enviado && (
-        <div ref={mensajeRef} className="cf-msg show">
-          <p>Formulario enviado correctamente ¡Gracias por contactarnos!</p>
-        </div>
-      )}
+      {enviado &&
+        Swal.fire({
+          title: "Formulario enviado",
+          text: `Recibira su respuesta en breve`,
+          icon: "success",
+          iconColor: "var(--acento-secundario-color)",
+          background: "#fff",
+          color: "#333",
+          customClass: {
+            container: "add-prod-modal-overlay",
+            popup: "add-prod-modal",
+            confirmButton: "btn-primary",
+          },
+        })}
     </>
   );
 }

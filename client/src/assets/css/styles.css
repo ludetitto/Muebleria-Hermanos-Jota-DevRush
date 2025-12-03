@@ -71,9 +71,16 @@ h2 {
 }
 
 h3 {
+  color: var(--color-primario);
   font-family: "Playfair Display", "Georgia";
   text-transform: uppercase;
   letter-spacing: 0.1em;
+}
+
+.underlined-title {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 3px solid var(--detalles-color);
 }
 
 /*Titulo banner*/
@@ -115,6 +122,15 @@ figcaption {
   text-transform: none;
   font-weight: 500;
   transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-secondary-wide {
+  min-width: 100px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
   cursor: pointer;
 }
 
@@ -346,6 +362,33 @@ form {
 
 .link-icon:hover svg {
   fill: #ffffff;
+}
+
+.basic-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.basic-main-container {
+  padding: 3rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.custom-li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f8f9fa88 0%, #ffffff27 100%);
+  border-left: 4px solid var(--detalles-color);
+  transition: all 0.3s ease;
+}
+
+.custom-li:hover {
+  transform: translateX(5px);
 }
 
 @keyframes fadeInUp {

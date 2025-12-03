@@ -12,7 +12,12 @@ export default function Home({ onVerProductos, onSelectProducto }) {
       {/* Hero principal */}
       <section id="hero-banner" data-bg="dark">
         <div className="hero-content">
-          <img id="logo-img" src={logo} alt="Logo de Mueblería Hermanos Jota" loading="lazy"/>
+          <img
+            id="logo-img"
+            src={logo}
+            alt="Logo de Mueblería Hermanos Jota"
+            loading="lazy"
+          />
           <h1 id="brand-name" className="titulo-principal">
             Hermanos Jota
           </h1>
@@ -39,10 +44,7 @@ export default function Home({ onVerProductos, onSelectProducto }) {
           ) : error ? (
             <p className="error">Error cargando destacados: {error}</p>
           ) : (
-            <ProductList
-              productos={productos.filter((p) => p.destacado)}
-              onSelect={(p) => (onSelectProducto ? onSelectProducto(p) : null)}
-            />
+            <ProductList productos={productos.filter((p) => p.destacado)} />
           )}
         </div>
       </section>
