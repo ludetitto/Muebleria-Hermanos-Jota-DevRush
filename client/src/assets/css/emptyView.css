@@ -1,0 +1,47 @@
+@import "variables.css";
+
+.empty-view-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.empty-view-container svg {
+  width: 120px;
+  height: 120px;
+  color: var(--detalles-color);
+  opacity: 0.4;
+}
+
+.empty-view-container h2 {
+  color: var(--color-primario);
+  margin: 0;
+}
+
+.empty-view-container p {
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+@media (max-width: 480px) {
+  .empty-view-container {
+    padding: 3rem 1rem;
+  }
+
+  .empty-view-container svg {
+    width: 90px;
+    height: 90px;
+  }
+
+  .empty-view-container h2 {
+    font-size: 1.3rem;
+  }
+
+  .empty-view-container p {
+    font: 1rem;
+  }
+}

@@ -8,34 +8,6 @@
   min-height: 60vh;
 }
 
-.empty-cart {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem 2rem;
-  text-align: center;
-  gap: 1.5rem;
-}
-
-.empty-cart-icon {
-  width: 120px;
-  height: 120px;
-  color: var(--detalles-color);
-  opacity: 0.4;
-}
-
-.empty-cart h2 {
-  color: var(--color-primario);
-  margin: 0;
-}
-
-.empty-cart p {
-  color: var(--color-texto);
-  font-size: 1.1rem;
-  opacity: 0.8;
-}
-
 /* Wrapper de contenido */
 .cart-content-wrapper {
   display: grid;
@@ -61,30 +33,6 @@
 .cart-items-header h2 {
   margin: 0;
   font-size: 1.8rem;
-}
-
-.btn-clear-cart {
-  padding: 0.5rem 1rem;
-  background: transparent;
-  color: var(--acentos-suaves-color);
-  border: 1px solid var(--acentos-suaves-color);
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-clear-cart:hover {
-  background: var(--acentos-suaves-color);
-  color: white;
-}
-
-/* Lista de items */
-.cart-items-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
 }
 
 /* Card de cada item */
@@ -216,9 +164,7 @@
 .order-summary-title {
   font-size: 1.5rem;
   color: var(--color-primario);
-  margin: 0 0 1.5rem 0;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid var(--fondo-principal-color);
+  border-bottom: 2px solid var(--fondo-principal-color) !important;
 }
 
 /* Detalles del resumen */
@@ -324,18 +270,8 @@
     padding: 2rem 1rem;
   }
 
-  .cart-items-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
   .cart-items-header h2 {
     font-size: 1.5rem;
-  }
-
-  .btn-clear-cart {
-    width: 100%;
   }
 
   .cart-item-card {
@@ -377,25 +313,20 @@
     padding: 1.5rem 0.75rem;
   }
 
-  .empty-cart {
-    padding: 3rem 1rem;
-  }
-
-  .empty-cart-icon {
-    width: 90px;
-    height: 90px;
-  }
-
-  .empty-cart h2 {
-    font-size: 1.3rem;
-  }
-
-  .empty-cart p {
-    font-size: 1rem;
-  }
-
   .cart-item-image-wrapper {
     width: 100%;
     height: 200px;
+  }
+}
+
+@media (max-width: 375px) {
+  .cart-items-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .btn-clear-cart {
+    width: 100%;
   }
 }

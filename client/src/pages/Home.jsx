@@ -2,6 +2,7 @@ import "../assets/css/home.css";
 import logo from "../assets/logo.svg";
 import ProductList from "../components/ProductList";
 import useProductos from "../hooks/useProductos";
+import Loader from "../components/Loader";
 import { ReactComponent as Divider } from "../assets/images/DecorativeDivider2.svg";
 
 export default function Home({ onVerProductos, onSelectProducto }) {
@@ -12,7 +13,12 @@ export default function Home({ onVerProductos, onSelectProducto }) {
       {/* Hero principal */}
       <section id="hero-banner" data-bg="dark">
         <div className="hero-content">
-          <img id="logo-img" src={logo} alt="Logo de Mueblería Hermanos Jota" loading="lazy"/>
+          <img
+            id="logo-img"
+            src={logo}
+            alt="Logo de Mueblería Hermanos Jota"
+            loading="lazy"
+          />
           <h1 id="brand-name" className="titulo-principal">
             Hermanos Jota
           </h1>
@@ -35,14 +41,11 @@ export default function Home({ onVerProductos, onSelectProducto }) {
         <Divider className="divider-svg" aria-hidden="true" />
         <div className="grid" id="destacados-container">
           {loading ? (
-            <p>Cargando destacados…</p>
+            <Loader text="Cargando destacados..."></Loader>
           ) : error ? (
             <p className="error">Error cargando destacados: {error}</p>
           ) : (
-            <ProductList
-              productos={productos.filter((p) => p.destacado)}
-              onSelect={(p) => (onSelectProducto ? onSelectProducto(p) : null)}
-            />
+            <ProductList productos={productos.filter((p) => p.destacado)} />
           )}
         </div>
       </section>

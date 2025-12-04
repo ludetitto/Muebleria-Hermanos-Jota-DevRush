@@ -1,16 +1,7 @@
 @import "variables.css";
 
-.profile-main {
-  padding: 3rem 2rem;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
 .profile-container {
-  display: grid;
   grid-template-columns: 3fr 2fr;
-  gap: 3rem;
-  align-items: start;
 }
 
 .profile-info,
@@ -23,11 +14,8 @@
 
 .profile-info h2,
 .profile-stats h2 {
-  margin: 0;
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 3px solid var(--detalles-color);
 }
 
 .info-grid {
@@ -36,20 +24,6 @@
   margin: 0;
   display: grid;
   gap: 1rem;
-}
-
-.info-item {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 1rem;
-  padding: 1rem;
-  background: linear-gradient(135deg, #f8f9fa88 0%, #ffffff27 100%);
-  border-left: 4px solid var(--detalles-color);
-  transition: all 0.3s ease;
-}
-
-.info-item:hover {
-  transform: translateX(5px);
 }
 
 .stats-grid {
@@ -94,16 +68,6 @@
 .stat-link:hover {
   color: var(--acentos-suaves-color);
   transform: translateX(5px);
-}
-
-.profile-actions button {
-  min-width: 100px;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 @media (max-width: 768px) {

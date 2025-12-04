@@ -12,6 +12,7 @@ export default function useConfirmModal() {
     cancelText: "Cancelar",
     onConfirm: () => {},
     danger: false,
+    secondDanger: false,
   });
 
   const openModal = useCallback((config = {}) => {

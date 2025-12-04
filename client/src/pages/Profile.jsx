@@ -34,32 +34,36 @@ export default function Profile() {
     <>
       <Banner titulo="MI PERFIL" ariaLabel="banner-perfil" />
 
-      <main className="profile-main" role="main" data-bg="light">
-        <div className="profile-container">
+      <main
+        className="profile-main basic-main-container"
+        role="main"
+        data-bg="light"
+      >
+        <div className="profile-container basic-grid-container">
           <section className="profile-info">
-            <h2>Información de la cuenta</h2>
-            <div className="info-grid">
-              <div className="info-item">
+            <h2 className="underlined-title">DATOS DE LA CUENTA</h2>
+            <ul className="info-grid">
+              <li className="info-item custom-li">
                 <strong>Nombre:</strong>
                 <span>{user?.nombre}</span>
-              </div>
-              <div className="info-item">
+              </li>
+              <li className="info-item custom-li">
                 <strong>Email:</strong>
                 <span>{user?.email}</span>
-              </div>
-              <div className="info-item">
+              </li>
+              <li className="info-item custom-li">
                 <strong>Miembro desde:</strong>
                 <span>
                   {user?.createdAt
                     ? new Date(user.createdAt).toLocaleDateString("es-AR")
                     : "Fecha no disponible"}
                 </span>
-              </div>
-            </div>
+              </li>
+            </ul>
           </section>
 
           <section className="profile-stats">
-            <h2>Estadísticas</h2>
+            <h2 className="underlined-title">COMPRAS</h2>
             <div className="stats-grid">
               <div className="stat-col">
                 <div className="stat-card">
@@ -75,7 +79,7 @@ export default function Profile() {
                   <div className="stat-number">0</div>
                   <div className="stat-label">Pedidos realizados</div>
                 </div>
-                <Link className="stat-link">
+                <Link className="stat-link" to="/mis-pedidos">
                   <FaAngleRight /> Ver pedidos
                 </Link>
               </div>
@@ -83,7 +87,10 @@ export default function Profile() {
           </section>
 
           <section className="profile-actions">
-            <button className="btn-secondary btn-danger" onClick={handleLogout}>
+            <button
+              className="btn-secondary btn-secondary-wide btn-danger"
+              onClick={handleLogout}
+            >
               Cerrar Sesión
             </button>
           </section>

@@ -1,6 +1,8 @@
 @import "variables.css";
 
 .container {
+  margin: 0 auto;
+  max-width: 1800px;
   margin-top: 8rem;
   display: flex;
   flex-wrap: wrap;
@@ -66,10 +68,6 @@
 
 .detalle-producto h3 {
   font-size: 1.5rem;
-  color: var(--color-primario);
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 3px solid var(--detalles-color);
 }
 
 .detalle-producto ul {
@@ -78,24 +76,6 @@
   margin: 0;
   display: grid;
   gap: 1rem;
-}
-
-.detalle-producto li {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 1rem;
-  padding: 1rem;
-  background: linear-gradient(135deg, #f8f9fa88 0%, #ffffff27 100%);
-  border-left: 4px solid var(--detalles-color);
-  transition: all 0.3s ease;
-}
-
-.detalle-producto li:hover {
-  transform: translateX(5px);
-}
-
-.detalle-producto strong {
-  text-transform: capitalize;
 }
 
 .cantidad-container {
@@ -200,6 +180,6 @@ input[type="number"] {
   }
 
   .btn-agregar-short {
-    display:initial;
+    display: initial;
   }
 }

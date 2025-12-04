@@ -72,9 +72,8 @@ app.use("/api/productos", productosRouter);
 const cartRouter = require("./src/routes/cart");
 app.use("/api/carrito", cartRouter);
 
-// NUEVA RUTA DE ÓRDENES
 const ordersRouter = require("./src/routes/orders");
-app.use("/api/orders", ordersRouter);
+app.use("/api/mis-pedidos", ordersRouter);
 
 // Endpoint de debug temporal para verificar colecciones
 app.get("/api/debug/collections", async (req, res) => {
