@@ -121,15 +121,6 @@
 }
 
 @media (max-width: 768px) {
-  .contact-main {
-    padding: 2rem 1rem !important;
-  }
-
-  .contact-container {
-    grid-template-columns: 1fr !important;
-    gap: 2rem !important;
-  }
-
   .contact-column {
     min-height: auto;
   }

@@ -13,6 +13,7 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import EditarProducto from "../components/EditarProducto";
 import CrearProducto from "../pages/CrearProducto";
 import AdminRoute from "../components/AdminRoute";
+import OrdersPage from "../pages/OrdersPage";
 
 const AppRoutes = () => (
   <Routes>
@@ -24,7 +25,14 @@ const AppRoutes = () => (
     <Route path="/contacto" element={<Contact />} />
     <Route path="/login" element={<Login />} />
     <Route path="/registro" element={<Register />} />
-    <Route path="/admin/crear-producto" element={<AdminRoute><CrearProducto /></AdminRoute>} />
+    <Route
+      path="/admin/crear-producto"
+      element={
+        <AdminRoute>
+          <CrearProducto />
+        </AdminRoute>
+      }
+    />
 
     {/* Rutas protegidas */}
     <Route
@@ -41,6 +49,15 @@ const AppRoutes = () => (
       element={
         <ProtectedRoute>
           <Profile />
+        </ProtectedRoute>
+      }
+    />
+
+    <Route
+      path="/mis-pedidos"
+      element={
+        <ProtectedRoute>
+          <OrdersPage />
         </ProtectedRoute>
       }
     />

@@ -2,6 +2,7 @@ import "../assets/css/home.css";
 import logo from "../assets/logo.svg";
 import ProductList from "../components/ProductList";
 import useProductos from "../hooks/useProductos";
+import Loader from "../components/Loader";
 import { ReactComponent as Divider } from "../assets/images/DecorativeDivider2.svg";
 
 export default function Home({ onVerProductos, onSelectProducto }) {
@@ -40,7 +41,7 @@ export default function Home({ onVerProductos, onSelectProducto }) {
         <Divider className="divider-svg" aria-hidden="true" />
         <div className="grid" id="destacados-container">
           {loading ? (
-            <p>Cargando destacados…</p>
+            <Loader text="Cargando destacados..."></Loader>
           ) : error ? (
             <p className="error">Error cargando destacados: {error}</p>
           ) : (

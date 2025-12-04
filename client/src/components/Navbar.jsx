@@ -138,31 +138,30 @@ export default function Navbar() {
                 </li>
               )}
               {isAuthenticated && (
-                <li>
-                  <Link to="/perfil" className="responsive-link">
-                    Mi perfil
-                  </Link>
-                </li>
-              )}
-              <li className="responsive-link">
-                <Link to="/login" onClick={closeMenu}>
-                  Login
-                </Link>
-              </li>
-              <li className="responsive-link">
-                <Link to="/registro" onClick={closeMenu}>
-                  Registrarse
-                </Link>
-              </li>
-              {isAuthenticated && (
                 <>
                   <li className="responsive-link">
-                    <Link to="/perfil">Mi perfil</Link>
+                    <Link to="/perfil" onClick={closeMenu}>
+                      Mi perfil
+                    </Link>
                   </li>
                   <li className="responsive-link">
                     <Link onClick={handleLogout}>Cerrar sesión</Link>
                   </li>
                 </>
+              )}
+              {!isAuthenticated && (
+                <li className="responsive-link">
+                  <Link to="/login" onClick={closeMenu}>
+                    Login
+                  </Link>
+                </li>
+              )}
+              {!isAuthenticated && (
+                <li className="responsive-link">
+                  <Link to="/registro" onClick={closeMenu}>
+                    Registrarse
+                  </Link>
+                </li>
               )}
             </ul>
           </div>
