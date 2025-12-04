@@ -79,7 +79,7 @@ export default function Profile() {
                   <div className="stat-number">0</div>
                   <div className="stat-label">Pedidos realizados</div>
                 </div>
-                <Link className="stat-link">
+                <Link className="stat-link" to="/mis-pedidos">
                   <FaAngleRight /> Ver pedidos
                 </Link>
               </div>

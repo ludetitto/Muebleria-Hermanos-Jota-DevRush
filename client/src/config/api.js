@@ -34,8 +34,8 @@ export const API_ENDPOINTS = {
   },
 
   PEDIDOS: {
-    BASE: `${API_URL}/api/pedidos`,
-    BY_ID: (id) => `${API_URL}/api/pedidos/${id}`,
+    BASE: `${API_URL}/api/orders`,
+    BY_ID: (id) => `${API_URL}/api/orders/${id}`,
   },
 
   CART: {

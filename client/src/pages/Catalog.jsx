@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useProductos from "../hooks/useProductos";
 import Banner from "../components/Banner";
 import "../assets/css/productos.css";
+import Loader from "../components/Loader";
 
 export default function Catalog() {
   const [search, setSearch] = useState("");
@@ -38,7 +39,7 @@ export default function Catalog() {
 
       <section className="catalogo">
         {loading ? (
-          <p>Cargando...</p>
+          <Loader text="Cargando productos..."></Loader>
         ) : error ? (
           <p className="error">Error al cargar los productos</p>
         ) : (

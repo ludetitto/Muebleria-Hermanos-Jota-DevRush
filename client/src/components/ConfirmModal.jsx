@@ -12,6 +12,7 @@ export default function ConfirmModal({
   cancelText = "Cancelar",
   confirmButtonClass = "btn-primary",
   danger = false,
+  secondDanger = false,
 }) {
   // Cerrar modal con tecla Escape
   useEffect(() => {
@@ -66,7 +67,9 @@ export default function ConfirmModal({
 
         <div className="confirm-modal-footer">
           <button
-            className="btn-secondary btn-secondary-wide"
+            className={`btn-secondary btn-secondary-wide ${
+              secondDanger && "btn-danger"
+            }`}
             onClick={onClose}
             type="button"
           >
@@ -97,4 +100,5 @@ ConfirmModal.propTypes = {
   cancelText: PropTypes.string,
   confirmButtonClass: PropTypes.string,
   danger: PropTypes.bool,
+  secondDanger: PropTypes.bool,
 };

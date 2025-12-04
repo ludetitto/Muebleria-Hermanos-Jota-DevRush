@@ -377,6 +377,12 @@ form {
   margin: 0 auto;
 }
 
+.basic-flex-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 .custom-li {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -399,6 +405,17 @@ form {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .basic-main-container {
+    padding: 2rem 1rem;
+  }
+
+  .basic-grid-container {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
   }
 }
 
